@@ -1,5 +1,32 @@
 # Some classes related to CV information
 
+class ArtItem:
+    num_attr = 6
+    def __init__(self, kind, title, year, technique, link, description):
+        self.kind=kind
+        self.title=title
+        self.year=year
+        self.technique=technique
+        self.description=description
+        self.link=link
+
+class Award:
+    num_attr = 5
+    def __init__(self, year, award, institution, description, location):
+        self.year=year
+        self.award=award
+        self.institution=institution
+        self.description=description
+        self.location=location
+
+class Job:
+    num_attr = 4
+    def __init__(self, position, period, employer, description):
+        self.position=position
+        self.period=period
+        self.employer=employer
+        self.description=description
+
 class Paper:
     num_attr = 8
     def __init__(self, kind, title, authors,
@@ -24,24 +51,6 @@ class Presentation:
         self.year=year
         self.link=link
         self.location=location
-
-class Job:
-    num_attr = 4
-    def __init__(self, position, period, employer, description):
-        self.position=position
-        self.period=period
-        self.employer=employer
-        self.description=description
-
-class ArtItem:
-    num_attr = 6
-    def __init__(self, kind, title, year, technique, link, description):
-        self.kind=kind
-        self.title=title
-        self.year=year
-        self.technique=technique
-        self.description=description
-        self.link=link
 
 class ProgrammingItem:
     num_attr = 5

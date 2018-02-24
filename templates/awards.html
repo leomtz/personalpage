@@ -1,0 +1,9 @@
+<h3>Awards</h3>
+
+{% for award in items %}
+<div class="blockitem">
+    <h3>{{ award.award }}<br>{{ award.year }}</h3>
+    <h4>{{ award.institution }}, {{ award.location }}</h4>
+    <p> {{ award.description | safe}}</p>
+</div>
+{% endfor %}

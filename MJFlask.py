@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Local imports
-from appclasses import Job, Paper
+from appclasses import Job, Paper, Award
 
 ### FUNCTIONS ###
 # Functions to load the items from the CV
@@ -66,7 +66,7 @@ def personal_page(section):
 
 @app.route("/request/<section>")
 def request(section):
-    fetch_classes={"papers":Paper, "jobs":Job}
+    fetch_classes={"papers":Paper, "jobs":Job, "awards":Award}
     if section=="home":
         return render_template("lion.html")
     if section in fetch_classes:
