@@ -4,6 +4,6 @@
 <div class="blockitem">
     <h3>{{ job.position }}<br>{{ job.period }}</h3>
     <h4>{{ job.employer }}</h4>
-    <p> {{ job.description }}</p>
+    <p> {{ job.description | safe}}</p>
 </div>
 {% endfor %}

@@ -25,6 +25,7 @@ button {
     margin-right: 5px;
     margin-bottom: 5px;
     text-transform: initial;
+    width: 200px;
 }
 
 div.bigblock{
@@ -66,6 +67,7 @@ div.PInfo{
     padding:5px;
     border-style: solid;
     border-color: rgb(0,0,43);
+    border-width: 1px;
 }
 
 div.thirdLabel{
@@ -75,6 +77,7 @@ div.thirdLabel{
     border-style: solid;
     float: left;
     border-color: rgb(200,55,113);
+    border-width: 1px;
     border-top: 0pt;
     color:rgb(200,55,113);
     box-sizing: border-box;

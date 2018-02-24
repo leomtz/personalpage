@@ -14,53 +14,24 @@ import matplotlib.pyplot as plt
 from appclasses import Job, Paper
 
 ### FUNCTIONS ###
-# Some functions for dealing with data from xls databases with curriculum info
+# Functions to load the items from the CV
 
 def fetch_CV():
-    return openpyxl.load_workbook(
-        r'data\CV.xlsx',
-        data_only=True
-        )
+    return openpyxl.load_workbook(r'data\CV.xlsx', data_only=True)
 
 def fetch_from_CV(section,class_):
     CV = fetch_CV()
     data_ws = CV[section.title()]
-    data_array = []
+    item_array = []
     num_attr = class_.num_attr
     j = 3 #Compensate for DB column titles
     while data_ws.cell(row=j,column=1).value is not None:
-        new_data=class_(
+        new_item=class_(
             *[data_ws.cell(row=j,column=k).value for k in range(2,2+num_attr)]
             )
-        data_array+=[new_data]
+        item_array+=[new_item]
         j+=1
-    return data_array
-
-def fetch_papers():
-    CV = fetch_CV()
-    papers = CV['Papers']
-    papers_array = []
-    j=3
-    while papers.cell(row=j,column=1).value is not None:
-        new_paper=Paper(
-            *[papers.cell(row=j,column=k).value for k in range(2,10)]
-            )
-        papers_array+=[new_paper]
-        j+=1
-    return papers_array
-
-def fetch_jobs():
-    CV = fetch_CV()
-    jobs = CV['Jobs']
-    jobs_array = []
-    j=3
-    while jobs.cell(row=j,column=1).value is not None:
-        new_job=Job(
-            *[jobs.cell(row=j,column=k).value for k in range(2,6)]
-            )
-        jobs_array+=[new_job]
-        j+=1
-    return jobs_array
+    return item_array
 
 ### FLASK APP STARTS HERE $$$
 
@@ -76,7 +47,8 @@ app = Flask(__name__)
 #     try:
 #         coolmath=request.args['mathjax']
 #     except:
-#         coolmath="En esta página puedes poner código $\LaTeX$ como $\\frac{1}{d+1}$."
+#         coolmath="En esta página puedes poner código 
+#                   $\LaTeX$ como $\\frac{1}{d+1}$."
 #     return render_template('math.html',coolmath=coolmath)
 # @app.route("/math2")
 # def math2():
@@ -100,9 +72,6 @@ def request(section):
     if section in fetch_classes:
         items_array=fetch_from_CV(section,fetch_classes[section])
         return render_template(section+".html",items=items_array)
-    # if section=="jobs":
-    #     jobs_array=fetch_jobs()
-    #     return render_template("jobs.html",jobs_array=jobs_array)
     return render_template("%s.html" % section)
 
 @app.route("/user/<username>")
