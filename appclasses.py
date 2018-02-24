@@ -1,6 +1,7 @@
 # Some classes related to CV information
 
 class Paper:
+    num_attr = 8
     def __init__(self, kind, title, authors,
          journal, year, volume, pages, doi):
         self.kind= kind
@@ -13,6 +14,7 @@ class Paper:
         self.doi=doi
 
 class Presentation:
+    num_attr = 7
     def __init__(self, kind, title, venue, conference,
          year, link):
         self.kind=kind
@@ -24,6 +26,7 @@ class Presentation:
         self.location=location
 
 class Job:
+    num_attr = 4
     def __init__(self, position, period, employer, description):
         self.position=position
         self.period=period
@@ -31,6 +34,7 @@ class Job:
         self.description=description
 
 class ArtItem:
+    num_attr = 6
     def __init__(self, kind, title, year, technique, link, description):
         self.kind=kind
         self.title=title
@@ -40,6 +44,7 @@ class ArtItem:
         self.link=link
 
 class ProgrammingItem:
+    num_attr = 5
     def __init__(self, title, year, technology, link, description):
         self.title=title
         self.year=year

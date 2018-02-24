@@ -22,8 +22,22 @@ def fetch_CV():
         data_only=True
         )
 
+def fetch_from_CV(section,class_):
+    CV = fetch_CV()
+    data_ws = CV[section.title()]
+    data_array = []
+    num_attr = class_.num_attr
+    j = 3 #Compensate for DB column titles
+    while data_ws.cell(row=j,column=1).value is not None:
+        new_data=class_(
+            *[data_ws.cell(row=j,column=k).value for k in range(2,2+num_attr)]
+            )
+        data_array+=[new_data]
+        j+=1
+    return data_array
+
 def fetch_papers():
-    CV= fetch_CV()
+    CV = fetch_CV()
     papers = CV['Papers']
     papers_array = []
     j=3
@@ -52,10 +66,11 @@ def fetch_jobs():
 
 app = Flask(__name__)
 
+# OLD CODE
+#
 # @app.route("/")
 # def hello():
 #     return render_template("home.html")
-
 # @app.route("/math", methods=['POST', 'GET'])
 # def math():
 #     try:
@@ -63,7 +78,6 @@ app = Flask(__name__)
 #     except:
 #         coolmath="En esta página puedes poner código $\LaTeX$ como $\\frac{1}{d+1}$."
 #     return render_template('math.html',coolmath=coolmath)
-
 # @app.route("/math2")
 # def math2():
 #     return render_template('math2.html')
@@ -74,20 +88,21 @@ def personal():
 
 @app.route("/<section>")
 def personal_page(section):
-    rcontent=request_section(section)
+    rcontent=request(section)
     print(type(rcontent))
     return render_template("personal.html", rcontent=rcontent)
 
 @app.route("/request/<section>")
-def request_section(section):
+def request(section):
+    fetch_classes={"papers":Paper, "jobs":Job}
     if section=="home":
         return render_template("lion.html")
-    if section=="papers":
-        papers_array=fetch_papers()
-        return render_template("papers.html",papers_array=papers_array)
-    if section=="experience":
-        jobs_array=fetch_jobs()
-        return render_template("experience.html",jobs_array=jobs_array)
+    if section in fetch_classes:
+        items_array=fetch_from_CV(section,fetch_classes[section])
+        return render_template(section+".html",items=items_array)
+    # if section=="jobs":
+    #     jobs_array=fetch_jobs()
+    #     return render_template("jobs.html",jobs_array=jobs_array)
     return render_template("%s.html" % section)
 
 @app.route("/user/<username>")
