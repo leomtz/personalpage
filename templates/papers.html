@@ -1,0 +1,19 @@
+<h3>Publications</h3>
+
+{% for paper in papers_array %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ paper.title }}</strong><br>
+        {{ paper.authors }}<br>
+        {% if paper.doi!=None %}
+        <a href="http://dx.doi.org/{{ paper.doi }}">Get via DOI</a>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel T">{{ paper.kind }}</div>
+        <div class="thirdLabel Y">{{ paper.year }}</div>
+        <div class="thirdLabel J">{{ paper.journal }}</div>
+    </div>
+</div>
+{% endfor %}

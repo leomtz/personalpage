@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        {% block head %}
+        <link rel="stylesheet" href="/static/style.css"/>
+        {% block scripts %}{% endblock %}
+        <title>{% block title %}{% endblock %} - Mi aplicación</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            <p>&copy; Todos los derechos reservados Leo Martínez, 2018</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+div{
+    width:50%;
+    margin:auto;
+    background-color: rgb(206, 221, 248);
+}
+
+div#footer{
+    background-color: rgb(156, 186, 243);
+    padding:5pt 0pt;
+}
+
+h1{
+    color: rgb(0, 51, 145);
+}
+
+p#textMJ{
+    background-color: bisque;
+    width:90%;
+    padding: 10pt;
+    margin:auto;
+    margin-bottom: 10pt;
+}
+
+textarea{
+    width:400pt;
+    height:200pt;
+}

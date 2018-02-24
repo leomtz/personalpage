@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block title %} Matemáticas 2 {% endblock %}
+{% block scripts %}
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script>
+    function update(){
+        document.getElementById("textMJ").innerHTML = document.getElementById("datamj").value
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+</script>
+{% endblock %}
+{% block content %}
+<h1>¡Bienvenido a la página de matemáticas!</h1>
+
+<p id="textMJ">
+    En esta página puedes poner código $\LaTeX$ como $\frac{1}{d+1}$.
+</p>
+
+<textarea id="datamj" name="mathjax">En esta página puedes poner código $\LaTeX$ como $\frac{1}{d+1}$.</textarea>
+<br>
+<button onclick="update()"> Pasar a MathJax</button>
+
+
+{% endblock %}

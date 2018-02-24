@@ -1,0 +1,16 @@
+<h3>Publications</h3>
+
+{% for paper in papers_array %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ paper.title }}</strong><br>
+        {{ paper.authors }}<br>
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel T">{{ paper.ptype }}</div>
+        <div class="thirdLabel Y">{{ paper.year }}</div>
+        <div class="thirdLabel J">{{ paper.journal }}</div>
+    </div>
+</div>
+{% endfor %}

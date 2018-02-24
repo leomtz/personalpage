@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block title %} Casa {{ user }} {% endblock %}
+{% block content %}
+<h1>¡Bienvenido!</h1>
+
+<p>
+    Aqui es casa. Hay varias cosas que puedes hacer.
+</p>
+
+<ul>
+    <li><a href="/user/Leo"> Ir a la página del usuario Leo </a></li>
+    <li><a href="/math"> Ir a la implementacion 1 de MathJax </a></li>
+    <li><a href="/math2"> Ir a la implementacion 2 de MathJax </a></li>
+</ul>
+
+{% endblock %}

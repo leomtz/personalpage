@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="/static/personal.css"/>
+        <title>Leonardo Martínez - Mathematics and Programming</title>
+        <script>
+            function updateData(section){
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET","/request/" + section, false);
+            xhttp.send();
+            document.getElementById("data").innerHTML = xhttp.responseText;
+            window.history.pushState("wow data", "Title", "/"+section)
+        }
+        </script>
+    </head>
+    <body>
+    <div class="outter wrapper">
+        <div class="bigblock" id="menu">
+            <h1>
+                Leonardo Ignacio Martínez Sandoval
+            </h1>
+
+            <h2> General</h2>
+            <div class="wrapper">
+                <ul class="menu">
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="lion">Home</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="about">About Me</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="education">Education</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="experience">Professional Experience</button></li>
+                </ul>
+            </div>
+    
+            <h2> Mathematician </h2>
+            <p> I am a researcher in Discrete and Computational Geometry.</p> 
+            <div class="wrapper">
+                <ul class="menu">
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="papers">Publications</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="slides">Presentation and Slides</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="teaching">Teaching</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="olympiad">Olympiad</button></li>
+                </ul>
+            </div>
+            <h2> Programmer</h2>
+            <p> I am a versatile programmer. My main programming language is Python.</p> 
+            <div class="wrapper">
+                <ul class="menu">
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="pythonp">Python</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="webp">Web Development</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="datascp">Data Science</button></li>
+                </ul>
+            </div>
+            <h2> And more</h2>
+            <div>
+                <ul class="menu">
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="drawings">Drawings</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="music">Music</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="blog">Personal Blog</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="links">Interesting Links</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bigblock" id="data">
+            {{ rcontent|safe }}
+        </div>
+    </div>
+
+    <div id="footer">
+        <a href="https://www.facebook.com/leoimartinez" target="_blank"><img class="social-icon" alt="Facebook" src="/static/facebook.png"></img></a>
+        <a href="https://www.youtube.com/c/ssbmplayer" target="_blank"><img class="social-icon" alt="YouTube" src="/static/youtube.png"></img></a>
+        <a href="https://www.instagram.com/leoimartinez" target="_blank"><img class="social-icon" alt="Instagram" src="/static/instagram.png"></img></a>
+        <a href="https://www.linkedin.com/in/leoimartinez" target="_blank"><img class="social-icon" alt="LinkedIn" src="/static/linked-in.png"></img></a>
+        <a href="https://www.github.com/leomtz" target="_blank"><img class="social-icon" alt="GitHub" src="/static/github.png"></img></a>
+        <a href="https://www.twitter.com/leoimartinez" target="_blank"><img class="social-icon" alt="Twitter" src="/static/twitter.png"></img></a>
+    <p>&copy; Leonardo Ignacio Martínez Sandoval, 2018</p>
+
+    </div>
+
+    
+    </body>
+</html>
