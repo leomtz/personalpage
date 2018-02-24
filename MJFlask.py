@@ -16,15 +16,17 @@ from appclasses import Job, Paper
 ### FUNCTIONS ###
 # Some functions for dealing with data from xls databases with curriculum info
 
-def fetch_papers():
-    papers_DB = openpyxl.load_workbook(
-        r'data\Publications.xlsx',
+def fetch_CV():
+    return openpyxl.load_workbook(
+        r'data\CV.xlsx',
         data_only=True
         )
-    papers = papers_DB['Papers']
+
+def fetch_papers():
+    CV= fetch_CV()
+    papers = CV['Papers']
     papers_array = []
     j=3
-    # for j in range(3,10):
     while papers.cell(row=j,column=1).value is not None:
         new_paper=Paper(
             *[papers.cell(row=j,column=k).value for k in range(2,10)]
@@ -32,6 +34,19 @@ def fetch_papers():
         papers_array+=[new_paper]
         j+=1
     return papers_array
+
+def fetch_jobs():
+    CV = fetch_CV()
+    jobs = CV['Jobs']
+    jobs_array = []
+    j=3
+    while jobs.cell(row=j,column=1).value is not None:
+        new_job=Job(
+            *[jobs.cell(row=j,column=k).value for k in range(2,6)]
+            )
+        jobs_array+=[new_job]
+        j+=1
+    return jobs_array
 
 ### FLASK APP STARTS HERE $$$
 
@@ -70,6 +85,9 @@ def request_section(section):
     if section=="papers":
         papers_array=fetch_papers()
         return render_template("papers.html",papers_array=papers_array)
+    if section=="experience":
+        jobs_array=fetch_jobs()
+        return render_template("experience.html",jobs_array=jobs_array)
     return render_template("%s.html" % section)
 
 @app.route("/user/<username>")

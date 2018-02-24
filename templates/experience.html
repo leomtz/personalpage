@@ -1,14 +1,9 @@
 <h3>Professional experience</h3>
 
+{% for job in jobs_array %}
 <div class="blockitem">
-    <h3>ERC Postdoctoral Research Fellow<br>2016 - Now</h3>
-    <h4>Department of Computer Science, Ben Gurion University of the Negev</h4>
-    <p>ERC Project: "Combinatorial Aspects of Computational Geometry"</p>
+    <h3>{{ job.position }}<br>{{ job.period }}</h3>
+    <h4>{{ job.employer }}</h4>
+    <p> {{ job.description }}</p>
 </div>
-
-<div class="blockitem">
-    <h3>BSc in Mathematics<br>2007 - 2011</h3>
-    <h4>Universidad Nacional Autónoma de México</h4>
-    <p>BSc Thesis: "El problema del Ángel de Conway y gráficas angelicales.</p>
-    <p>Supervisor: Dr. Javier Bracho Carpizo</p>
-</div>
+{% endfor %}
