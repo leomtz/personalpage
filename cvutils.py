@@ -107,18 +107,23 @@ def fetch_from_CV(cv,class_):
 
 def papers_timeline(cv):
     paper_array = fetch_from_CV(cv,Paper)
-    values=[y for y in range(2013,2019)]
     years=[paper.year for paper in paper_array]
+    values=[y for y in range(min(years),max(years)+1)]
     count=[years.count(value) for value in values]
     labels=tuple([str(value) for value in values])
 
     y_pos = np.arange(len(values))
     plt.rcdefaults()
+    for k in ["axes.edgecolor", "axes.labelcolor", "xtick.color", "ytick.color"]:
+        plt.rcParams[k]=[0,0,43/255]
+    plt.rcParams["figure.figsize"]=[6,2]
+    plt.axes()
 
-    plt.bar(y_pos, count, align='center', alpha=0.5)
+    # plt.xkcd() #Fun!
+    plt.bar(y_pos, count, align='center', width=0.4, linewidth=0,color=[200/255,55/255,113/255])
     plt.xticks(y_pos, labels)
-    plt.ylabel('Number of papers')
-    plt.title('Papers per year')
-
-    plt.savefig(r'static/papers.png')
+    plt.yticks(list(range(0,max(count)+2)))
+    plt.ylabel('Publications')
+    plt.savefig(r'static/papers.png', transparent=True)
     plt.clf()
+

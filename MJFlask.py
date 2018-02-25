@@ -1,8 +1,7 @@
 
 ### IMPORTS ###
 # Necessary Flask imports
-from flask import Flask, url_for,render_template,request
-
+from flask import Flask, url_for,render_template,request,redirect
 # openpyxl helps to work with MSExcel databases
 import openpyxl
 
@@ -14,6 +13,11 @@ from cvutils import fetch_CV, fetch_from_CV
 
 app = Flask(__name__)
 CV_LOCATION=r'data\CV.xlsx'
+
+SECTIONS=["papers", "jobs", "awards", "drawings", "education",
+            "home", "links", "lion", "music", "olympiad", "papers",
+            "pythonp", "slides", "teaching", "webp", "about",
+            "notfound","datascp"]
 
 # OLD CODE
 #
@@ -36,22 +40,33 @@ CV_LOCATION=r'data\CV.xlsx'
 def personal():
     return personal_page("home")
 
+@app.route("/notfound")
+def notfound():
+    return personal_page("notfound")
+
 @app.route("/<section>")
 def personal_page(section):
     rcontent=request(section)
     print(type(rcontent))
     return render_template("personal.html", rcontent=rcontent)
 
+@app.route("/request/")
+def blankrequest():
+    return redirect("/")
+
 @app.route("/request/<section>")
 def request(section):
     fetch_classes={"papers":Paper, "jobs":Job, "awards":Award}
-    if section=="home":
-        return render_template("lion.html")
-    if section in fetch_classes:
-        CV=fetch_CV(CV_LOCATION)
-        items_array=fetch_from_CV(CV,fetch_classes[section])
-        return render_template(section+".html",items=items_array)
-    return render_template("%s.html" % section)
+    if section in SECTIONS:
+        if section=="home":
+            return render_template("lion.html")
+        if section in fetch_classes:
+            cv=fetch_CV(CV_LOCATION)
+            items_array=fetch_from_CV(cv,fetch_classes[section])
+            return render_template(section+".html",items=items_array)
+        return render_template(section+".html")
+    else:
+        return render_template("notfound.html")
 
 @app.route("/user/<username>")
 def show_profile(username):
