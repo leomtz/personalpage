@@ -82,6 +82,11 @@ div.thirdLabel.T{
     width:30%;
 }
 
+div.thirdLabel.L{
+    width:90%;
+    border-left:0pt;
+}
+
 div.thirdLabel.Y{
     width:10%;
 }

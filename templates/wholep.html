@@ -1,7 +1,8 @@
-<h3>Python Portfolio</h3>
+<h3>Programming Portfolio</h3>
+
+<img src="static/programming.png" alt="Timeline of programming projects" class="timeline" </img>
 
 {% for project in items %}
-{% if project.kind=="python" %}
 <div class="paperitem wrapper">
     <div class="PInfo">
         <strong> {{ project.title }}</strong><br>
@@ -16,5 +17,4 @@
         <div class="thirdLabel L">{{ project.technologies }}</div>
     </div>
 </div>
-{% endif %}
 {% endfor %}

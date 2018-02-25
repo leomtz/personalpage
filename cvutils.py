@@ -3,9 +3,6 @@
 # openpyxl helps to work with MSExcel databases
 import openpyxl
 
-# Some utilities to create goodies for the page
-from shutil import copyfile
-
 # We import the following to create plots
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,12 +73,13 @@ class Presentation:
 
 
 class ProgrammingItem:
-    num_attr = 5
+    num_attr = 6
     sheet = "Programming"
-    def __init__(self, title, year, technology, link, description):
+    def __init__(self, title, year, kind, technologies, description, link):
         self.title=title
         self.year=year
-        self.technology=technology
+        self.kind=kind
+        self.technologies=technologies
         self.description=description
         self.link=link
 
@@ -105,7 +103,7 @@ def fetch_from_CV(cv,class_):
         j+=1
     return item_array
 
-def papers_timeline(cv):
+def papers_timeline(cv,xkcd=False):
     paper_array = fetch_from_CV(cv,Paper)
     years=[paper.year for paper in paper_array]
     values=[y for y in range(min(years),max(years)+1)]
@@ -119,7 +117,9 @@ def papers_timeline(cv):
     plt.rcParams["figure.figsize"]=[6,2]
     plt.axes()
 
-    # plt.xkcd() #Fun!
+    if xkcd is True:
+        plt.xkcd() #Fun!
+
     plt.bar(y_pos, count, align='center', width=0.4, linewidth=0,color=[200/255,55/255,113/255])
     plt.xticks(y_pos, labels)
     plt.yticks(list(range(0,max(count)+2)))
@@ -127,3 +127,26 @@ def papers_timeline(cv):
     plt.savefig(r'static/papers.png', transparent=True)
     plt.clf()
 
+def python_timeline(cv,xkcd=False):
+    data_array = fetch_from_CV(cv,ProgrammingItem)
+    years=[item.year for item in data_array]
+    values=[y for y in range(min(years),max(years)+1)]
+    count=[years.count(value) for value in values]
+    labels=tuple([str(value) for value in values])
+
+    y_pos = np.arange(len(values))
+    plt.rcdefaults()
+    for k in ["axes.edgecolor", "axes.labelcolor", "xtick.color", "ytick.color"]:
+        plt.rcParams[k]=[0,0,43/255]
+    plt.rcParams["figure.figsize"]=[6,2]
+    plt.axes()
+
+    if xkcd is True:
+        plt.xkcd() #Fun!
+        
+    plt.bar(y_pos, count, align='center', width=0.4, linewidth=0,color=[200/255,55/255,113/255])
+    plt.xticks(y_pos, labels)
+    plt.yticks(list(range(0,max(count)+2)))
+    plt.ylabel('Projects')
+    plt.savefig(r'static/programming.png', transparent=True)
+    plt.clf()

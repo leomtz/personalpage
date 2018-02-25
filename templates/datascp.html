@@ -1,0 +1,20 @@
+<h3>Data Science Portfolio</h3>
+
+{% for project in items %}
+{% if project.kind=="datasc" %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ project.title }}</strong><br>
+        {{ project.description | safe }}<br>
+        {% if project.link!=None %}
+        <a href="{{ project.link }}"> Link to project </a>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel Y">{{ project.year }}</div>
+        <div class="thirdLabel L">{{ project.technologies }}</div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}

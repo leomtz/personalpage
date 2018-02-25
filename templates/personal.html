@@ -9,7 +9,8 @@
             xhttp.open("GET","/request/" + section, false);
             xhttp.send();
             document.getElementById("data").innerHTML = xhttp.responseText;
-            window.history.pushState("wow data", "Title", "/"+section)
+            window.history.pushState("wow data", "Title", "/"+section);
+            // window.scrollTo(0,0)
         }
         </script>
     </head>
@@ -39,27 +40,27 @@
             <div class="wrapper">
                 <ul class="menu">
                     <li class="menuItem"><button onclick="updateData(this.name)" name="papers">Publications</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="slides">Presentation and Slides</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="presentations">Presentations and Slides</button></li>
                     <li class="menuItem"><button onclick="updateData(this.name)" name="teaching">Teaching</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="olympiad">Math Olympiad</button></li>
                 </ul>
             </div>
             <h2> Programmer</h2>
             <p> I am a versatile programmer. My main programming language is Python.</p> 
             <div class="wrapper">
                 <ul class="menu">
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="pythonp">Python</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="wholep">All Projects</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="pythonp">Python Projects</button></li>
                     <li class="menuItem"><button onclick="updateData(this.name)" name="webp">Web Development</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="datascp">Data Science</button></li>
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="datascp">Data Science Projects</button></li>
                 </ul>
             </div>
             <h2> And more</h2>
             <p> Some hobbies and misc </p> 
             <div>
                 <ul class="menu">
+                    <li class="menuItem"><button onclick="updateData(this.name)" name="olympiad">Math Olympiad</button></li>
                     <li class="menuItem"><button onclick="updateData(this.name)" name="drawings">Drawings</button></li>
                     <li class="menuItem"><button onclick="updateData(this.name)" name="music">Music</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="blog">Personal Blog</button></li>
                     <li class="menuItem"><button onclick="updateData(this.name)" name="links">Interesting Links</button></li>
                 </ul>
             </div>
@@ -78,6 +79,7 @@
             <a href="https://www.linkedin.com/in/leoimartinez" target="_blank"><img class="social-icon" alt="LinkedIn" src="/static/linked-in.png"></img></a>
             <a href="https://www.github.com/leomtz" target="_blank"><img class="social-icon" alt="GitHub" src="/static/github.png"></img></a>
             <a href="https://www.twitter.com/leoimartinez" target="_blank"><img class="social-icon" alt="Twitter" src="/static/twitter.png"></img></a>
+            <a href="http://blog.nekomath.com" target="_blank"><img class="social-icon" alt="Blog" src="/static/wordpress.png"></img></a>
         </div>
         <p>&copy; Leonardo Ignacio Martínez Sandoval, 2018</p>
     </div>

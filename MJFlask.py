@@ -6,7 +6,7 @@ from flask import Flask, url_for,render_template,request,redirect
 import openpyxl
 
 # Local imports to work with CV
-from cvutils import Job, Paper, Award
+from cvutils import Job, Paper, Award, ProgrammingItem, Presentation
 from cvutils import fetch_CV, fetch_from_CV
 
 ### FLASK APP STARTS HERE $$$
@@ -16,8 +16,8 @@ CV_LOCATION=r'data\CV.xlsx'
 
 SECTIONS=["papers", "jobs", "awards", "drawings", "education",
             "home", "links", "lion", "music", "olympiad", "papers",
-            "pythonp", "slides", "teaching", "webp", "about",
-            "notfound","datascp"]
+            "pythonp", "presentations", "teaching", "webp", "about",
+            "notfound","datascp", "wholep"]
 
 # OLD CODE
 #
@@ -56,7 +56,11 @@ def blankrequest():
 
 @app.route("/request/<section>")
 def request(section):
-    fetch_classes={"papers":Paper, "jobs":Job, "awards":Award}
+    fetch_classes={"papers":Paper, "jobs":Job, "awards":Award, 
+        "wholep":ProgrammingItem, "pythonp":ProgrammingItem,
+        "datascp":ProgrammingItem, "webp":ProgrammingItem,
+        "presentations": Presentation
+        }
     if section in SECTIONS:
         if section=="home":
             return render_template("lion.html")
