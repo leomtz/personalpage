@@ -5,37 +5,15 @@ from flask import Flask, url_for,render_template,request
 
 # openpyxl helps to work with MSExcel databases
 import openpyxl
-from shutil import copyfile
-# We may need the following for statistics
-import numpy as np
-import matplotlib.pyplot as plt
 
-# Local imports
-from appclasses import Job, Paper, Award
-
-### FUNCTIONS ###
-# Functions to load the items from the CV
-
-def fetch_CV():
-    return openpyxl.load_workbook(r'data\CV.xlsx', data_only=True)
-
-def fetch_from_CV(section,class_):
-    CV = fetch_CV()
-    data_ws = CV[section.title()]
-    item_array = []
-    num_attr = class_.num_attr
-    j = 3 #Compensate for DB column titles
-    while data_ws.cell(row=j,column=1).value is not None:
-        new_item=class_(
-            *[data_ws.cell(row=j,column=k).value for k in range(2,2+num_attr)]
-            )
-        item_array+=[new_item]
-        j+=1
-    return item_array
+# Local imports to work with CV
+from cvutils import Job, Paper, Award
+from cvutils import fetch_CV, fetch_from_CV
 
 ### FLASK APP STARTS HERE $$$
 
 app = Flask(__name__)
+CV_LOCATION=r'data\CV.xlsx'
 
 # OLD CODE
 #
@@ -70,7 +48,8 @@ def request(section):
     if section=="home":
         return render_template("lion.html")
     if section in fetch_classes:
-        items_array=fetch_from_CV(section,fetch_classes[section])
+        CV=fetch_CV(CV_LOCATION)
+        items_array=fetch_from_CV(CV,fetch_classes[section])
         return render_template(section+".html",items=items_array)
     return render_template("%s.html" % section)
 
