@@ -114,7 +114,7 @@ def papers_timeline(cv,xkcd=False):
     plt.rcdefaults()
     for k in ["axes.edgecolor", "axes.labelcolor", "xtick.color", "ytick.color"]:
         plt.rcParams[k]=[0,0,43/255]
-    plt.rcParams["figure.figsize"]=[6,2]
+    plt.rcParams["figure.figsize"]=[8,2]
     plt.axes()
 
     if xkcd is True:
@@ -138,7 +138,7 @@ def python_timeline(cv,xkcd=False):
     plt.rcdefaults()
     for k in ["axes.edgecolor", "axes.labelcolor", "xtick.color", "ytick.color"]:
         plt.rcParams[k]=[0,0,43/255]
-    plt.rcParams["figure.figsize"]=[6,2]
+    plt.rcParams["figure.figsize"]=[8,2]
     plt.axes()
 
     if xkcd is True:
@@ -150,3 +150,4 @@ def python_timeline(cv,xkcd=False):
     plt.ylabel('Projects')
     plt.savefig(r'static/programming.png', transparent=True)
     plt.clf()
+    print("Exito")

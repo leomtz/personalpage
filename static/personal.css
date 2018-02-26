@@ -38,7 +38,8 @@ div.blockitem{
     border-color: rgb(200,55,113);
     text-align: center;
     padding:5pt;
-    margin-bottom:10pt;
+    margin-bottom:15pt;
+    background-color: white;
 }
 
 div#data{
@@ -52,11 +53,12 @@ div#menu{
 div.paperitem{
     text-align: center;
     margin-top: 15pt;
+    background-color: white;
 }
 
 div.PInfo{
     background-color:transparent;
-    padding:5px;
+    padding:10px;
     border-style: solid;
     border-color: rgb(0,0,43);
     border-width: 1px;
@@ -68,7 +70,7 @@ div.thirdLabel{
     padding:2px;
     border-style: solid;
     float: left;
-    border-color: rgb(200,55,113);
+    border-color: rgb(0,0,43);
     border-width: 1px;
     border-top: 0pt;
     color:rgb(200,55,113);
@@ -140,7 +142,7 @@ img.rightImage{
 
 img.timeline{
     display:block;
-    width:80%;
+    width:100%;
     margin-top:10pt;
     margin-left:auto;
     margin-right:auto;

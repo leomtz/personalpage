@@ -1,9 +1,9 @@
-<h3>Awards</h3>
+<h3>Awards and Distinctions</h3>
 
 {% for award in items %}
 <div class="blockitem">
-    <h3>{{ award.award }}<br>{{ award.year }}</h3>
-    <h4>{{ award.institution }}, {{ award.location }}</h4>
-    <p> {{ award.description | safe}}</p>
+    <h3>{{ award.award }}</h3>
+    <strong>{{ award.institution }}</strong>
+    <p> {{ award.description | safe}}<br><br>  {{ award.location }}, {{ award.year }} </p>
 </div>
 {% endfor %}

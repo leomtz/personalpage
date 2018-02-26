@@ -17,7 +17,9 @@ CV_LOCATION=r'data\CV.xlsx'
 SECTIONS=["papers", "jobs", "awards", "drawings", "education",
             "home", "links", "lion", "music", "olympiad", "papers",
             "pythonp", "presentations", "teaching", "webp", "about",
-            "notfound","datascp", "wholep"]
+            "notfound","datascp", "wholep", "service","fairs",
+            "prompub", "media", "stories", "random"
+            ] 
 
 # OLD CODE
 #
