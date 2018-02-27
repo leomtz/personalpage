@@ -80,14 +80,14 @@ class Job(Certificate):
 
 class Contest(Event):
     sheet="Contest"
-    def __init__(self, *, audience, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *, start_date, end_date,audience, **kwargs):
+        super().__init__(links=None, date=[start_date,end_date], **kwargs)
         self.audience=audience
 
 class Course(Event):
     sheet="Course"
     def __init__(self, *, institution, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(description="", links=None, **kwargs)
         self.institution=institution
 
 class Talk(Event):
@@ -100,7 +100,7 @@ class Talk(Event):
 class ScienceFair(Event):
     sheet="ScienceFair"
     def __init__(self, *, audience, institution, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(links=None, **kwargs)
         self.audience=audience
         self.institution=institution
 

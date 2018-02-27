@@ -120,6 +120,11 @@ h1{
     margin-bottom: 5px;
 }
 
+h1 a{
+    color:white;
+    text-decoration-line: none;
+}
+
 #header{
     margin-top: 15pt;
     margin-bottom:15pt;
@@ -130,6 +135,14 @@ h1{
 
 h2{
     color: rgb(200,55,113);
+}
+
+img.portfolio{
+    display:block;
+    width:80%;
+    margin-top:20pt;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 img.rightImage{

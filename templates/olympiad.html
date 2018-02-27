@@ -1,1 +1,17 @@
-Cosa que he hecho en la Olimpiada
+<h3>Involvement in Mathematical Olympiads</h3>
+
+{% for item in items %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <h3>{{ item.title }}<br></h3>
+        <p> {{ item.description }} </p>
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel Y">{{ item.date[0] }} - {{ item.date[1] }}</div>
+        <div class="thirdLabel T">{{ item.role }}</div>
+        <div class="thirdLabel J">{{ item.location }}</div>
+    </div>
+
+</div>
+{% endfor %}

@@ -1,2 +1,9 @@
-Partituras
-Videos de música
+<h3>Music</h3>
+
+{% for item in items %}
+<div class="blockitem">
+    <p> <strong>{{ item.title }}</strong>, {{ item.date }}</p>
+    (**Implement loading story from file or youtube video**)
+    {{ item.links['file'] }}
+</div>
+{% endfor %}
