@@ -3,7 +3,11 @@
 # Necessary Flask imports
 from flask import Flask, url_for,render_template,request,redirect
 # openpyxl helps to work with MSExcel databases
-import openpyxl
+import os
+import sys
+
+CURRENT_FILE = os.path.abspath(__file__)
+CURRENT_DIR = os.path.dirname(CURRENT_FILE)
 
 # Local imports to work with CV
 from cvutils_dev import *
@@ -12,9 +16,8 @@ cvu=__import__("cvutils_dev")
 ### FLASK APP STARTS HERE $$$
 
 app = Flask(__name__)
-CV_LOCATION=r'data\CV.xlsx'
-SECTIONS_DB=openpyxl.load_workbook(r'data\Sections.xlsx')
-
+CV_LOCATION= CURRENT_DIR + '/data/CV.xlsx'
+SECTIONS_DB=openpyxl.load_workbook(CURRENT_DIR + '/data/Sections.xlsx')
 sections_ws=SECTIONS_DB["SectionManager"]
 subsections_ws=SECTIONS_DB["SubsectionManager"]
 sections=[]
