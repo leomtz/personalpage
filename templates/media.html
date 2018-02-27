@@ -1,0 +1,21 @@
+<h3>Publications in mainstream media</h3>
+
+{% for item in items %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ item.title }}</strong><br>
+        {% if item.description!=None %}
+        <p> {{ item.description }}</p>
+        {% endif %}
+        {% if item.links['file']!=None %}
+        <a href="http://dx.doi.org/{{ item.links['file'] }}"> Download Link</a>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel Y">{{ item.date }}</div>
+        <div class="thirdLabel T">{{ item.media_type }}</div>
+        <div class="thirdLabel J">{{ item.media_name }}</div>
+    </div>
+</div>
+{% endfor %}

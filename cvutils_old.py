@@ -86,6 +86,8 @@ class ProgrammingItem:
 
 ### FUNCTIONS ###
 # Functions to load the items from the CV
+# Deprecated. Now the classes are handled differently via child
+# classes.
 
 def fetch_CV(location):
     return openpyxl.load_workbook(location, data_only=True)

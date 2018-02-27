@@ -1,7 +1,6 @@
 <h3>Python Portfolio</h3>
 
 {% for project in items %}
-{% if project.kind=="python" %}
 <div class="paperitem wrapper">
     <div class="PInfo">
         <strong> {{ project.title }}</strong><br>
@@ -12,9 +11,8 @@
     </div>
 
     <div class="wrapper">
-        <div class="thirdLabel Y">{{ project.year }}</div>
+        <div class="thirdLabel Y">{{ project.date }}</div>
         <div class="thirdLabel L">{{ project.technologies }}</div>
     </div>
 </div>
-{% endif %}
 {% endfor %}

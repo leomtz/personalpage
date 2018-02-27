@@ -6,20 +6,39 @@ from flask import Flask, url_for,render_template,request,redirect
 import openpyxl
 
 # Local imports to work with CV
-from cvutils import Job, Paper, Award, ProgrammingItem, Presentation
-from cvutils import fetch_CV, fetch_from_CV
+from cvutils_dev import *
+cvu=__import__("cvutils_dev")
 
 ### FLASK APP STARTS HERE $$$
 
 app = Flask(__name__)
 CV_LOCATION=r'data\CV.xlsx'
+SECTIONS_DB=openpyxl.load_workbook(r'data\Sections.xlsx')
 
-SECTIONS=["papers", "jobs", "awards", "drawings", "education",
-            "home", "links", "lion", "music", "olympiad", "papers",
-            "pythonp", "presentations", "teaching", "webp", "about",
-            "notfound","datascp", "wholep", "service","fairs",
-            "prompub", "media", "stories", "random"
-            ] 
+sections_ws=SECTIONS_DB["SectionManager"]
+subsections_ws=SECTIONS_DB["SubsectionManager"]
+sections=[]
+subsections=[]
+
+# Fetch sections. Probably want it as part os cvutils module
+y = 3
+while sections_ws.cell(row=y,column=1).value is not None:
+    new_section=[sections_ws.cell(row=y,column=x).value for x in range(1,5)]
+    sections+=[new_section]
+    y+=1
+
+# Fetch subsections. Probably want it as part os cvutils module
+y=3
+while subsections_ws.cell(row=y,column=1).value is not None:
+    new_subsection=[subsections_ws.cell(row=y,column=x).value for x in range(1,7)]
+    subsections+=[new_subsection]
+    y+=1
+
+SUBSECTIONS=[s[1] for s in subsections]
+TITLES_SS=[s[2] for s in subsections]
+FETCH_SS=[s[3] for s in subsections]
+CLASS_SS=[s[4] for s in subsections]
+TAGS_SS=[s[5] for s in subsections]
 
 # OLD CODE
 #
@@ -56,23 +75,23 @@ def personal_page(section):
 def blankrequest():
     return redirect("/")
 
-@app.route("/request/<section>")
-def request(section):
-    fetch_classes={"papers":Paper, "jobs":Job, "awards":Award, 
-        "wholep":ProgrammingItem, "pythonp":ProgrammingItem,
-        "datascp":ProgrammingItem, "webp":ProgrammingItem,
-        "presentations": Presentation
-        }
-    if section in SECTIONS:
-        if section=="home":
+@app.route("/request/<subsection>")
+def request(subsection):
+    if subsection in SUBSECTIONS:
+        ss_props=list(filter(lambda ss: ss[1]==subsection, subsections))[0]
+        if subsection=="home":
             return render_template("lion.html")
-        if section in fetch_classes:
+        if ss_props[3]=="True":
             cv=fetch_CV(CV_LOCATION)
-            items_array=fetch_from_CV(cv,fetch_classes[section])
-            return render_template(section+".html",items=items_array)
-        return render_template(section+".html")
+            tag_filter=None
+            if ss_props[5] is not None:
+                tag_filter=ss_props[5].split(", ")
+            items_array=fetch_from_CV(cv,getattr(cvu,ss_props[4]) ,tag_filter)
+            return render_template(subsection+".html",items=items_array)
+        return render_template(subsection+".html")
     else:
         return render_template("notfound.html")
+
 
 @app.route("/user/<username>")
 def show_profile(username):

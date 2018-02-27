@@ -1,0 +1,6 @@
+1. Programming projects should link to both git and link where applicable
+2. CV_utils needs Section and Subsection objects and methods
+3. Implement Link
+4. Implement Service
+5. Implement Language
+5. Implement automatic creation of CVItem subclasses via a configuration file

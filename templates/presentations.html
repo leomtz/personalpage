@@ -1,0 +1,20 @@
+<h3>Presentations and slides</h3>
+
+{% for presentation in items %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ presentation.title }}</strong><br>
+        {{ presentation.audience }}<br>
+        {% if presentation.file!=None %}
+        <a href="{{ presentation.file }}"> Get slides </a>
+        {% endif %}
+    </div>
+    
+    <div class="wrapper">
+            <div class="thirdLabel Y">{{ presentation.date }}</div>
+            <div class="thirdLabel T">{{ presentation.tags }}</div>
+            <div class="thirdLabel J">{{ presentation.location }}</div>
+        </div>
+
+</div>
+{% endfor %}

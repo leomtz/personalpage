@@ -1,0 +1,9 @@
+“Bounding a global red-blue proportion using local conditions”, EuroCG, Malmö, Sweden, 2017
+“Depth with respect to a family of convex sets”, Transversal, Helly and Tverberg type Theorems in Geometry, Combinatorics and Topology III, Oaxaca, México, 2016
+“A Hall-type theorem for points in general position” – A New Era of Discrete and Computational Geometry, 30 Years Later, Ascona, Switzerland, 2016
+“Stabbing all the k-convex hulls of points in a cyclic polytope using Kneser transversals” – Mathematics of Jiri Matousek, Prague, Czech Republic, 2016
+“Fractional Turan’s theorem and bounds for the chromatic number” - VIII Latin-American Algorithms, Graphs and Optimization Symposium (LAGOS), Praia das Fontes, Brazil, 2015
+“Points defining triangles with distinct circumradii”
+Research seminar of the group Algèbre et Géométrie Combinatoires, Université de Montpellier 2, France, 2014
+Kaleidoscope (poster), Ixtapa, 2014
+“Geometric variants of Hall's theorem through Sperner's Lemma” - VII Latin-American Algorithms, Graphs and Optimization Symposium (LAGOS), Playa del Carmen, 2013

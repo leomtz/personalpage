@@ -1,0 +1,25 @@
+<h3>Publications on promotion of math</h3>
+
+{% for paper in items %}
+<div class="paperitem wrapper">
+    <div class="PInfo">
+        <strong> {{ paper.title }}</strong><br>
+        {{ paper.authors }}<br>
+        {% if paper.links['arxiv']!=None %}
+        <a href="http://arxiv.org/{{ paper.links['arxiv'] }}">Preprint via arXiv</a>
+        {% endif %}
+        {% if paper.links['doi']!=None %}
+        <a href="http://dx.doi.org/{{ paper.links['doi'] }}">Paper via DOI</a>
+        {% endif %}
+        {% if paper.links['web']!=None %}
+        <a href="http://dx.doi.org/{{ paper.links['doi'] }}">Paper via Link</a>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="thirdLabel Y">{{ paper.date }}</div>
+        <div class="thirdLabel T">{{ paper.tags }}</div>
+        <div class="thirdLabel J">{{ paper.journal }}</div>
+    </div>
+</div>
+{% endfor %}

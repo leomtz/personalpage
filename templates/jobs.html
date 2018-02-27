@@ -2,8 +2,8 @@
 
 {% for job in items %}
 <div class="blockitem">
-    <h3>{{ job.position }}<br>{{ job.period }}</h3>
-    <h4>{{ job.employer }}</h4>
+    <h3>{{ job.title }}<br>{{ job.date[0] }} - {{ job.date[1] }}</h3>
+    <h4>{{ job.institution }}</h4>
     <p> {{ job.description | safe}}</p>
 </div>
 {% endfor %}
