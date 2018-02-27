@@ -71,7 +71,6 @@ def notfound():
 @app.route("/<section>")
 def personal_page(section):
     rcontent=request(section)
-    print(type(rcontent))
     return render_template("personal.html", rcontent=rcontent)
 
 @app.route("/request/")

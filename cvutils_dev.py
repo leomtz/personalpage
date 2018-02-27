@@ -106,14 +106,14 @@ class ScienceFair(Event):
 
 class ArtItem(PortfolioItem):
     sheet="ArtItem"
-    def __init__(self, *, technique, file, **kwargs):
-        super().__init__(links={"file":file}, **kwargs)
+    def __init__(self, *, technique, youtube, file, **kwargs):
+        super().__init__(links={"file":file, "youtube":youtube}, **kwargs)
         self.technique=technique
 
 class CodingItem(PortfolioItem):
     sheet="CodingItem"
-    def __init__(self, *, technologies, github, **kwargs):
-        super().__init__(links={"github":github},**kwargs)
+    def __init__(self, *, technologies, github, web, **kwargs):
+        super().__init__(links={"github":github, "web":web},**kwargs)
         self.technologies=technologies
 
 class Book(Publication):

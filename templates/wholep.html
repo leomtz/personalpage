@@ -7,8 +7,11 @@
     <div class="PInfo">
         <strong> {{ project.title }}</strong><br>
         {{ project.description | safe }}<br>
-        {% if project.link!=None %}
-        <a href="{{ project.link }}"> Link to project </a>
+        {% if project.links['github']!=None %}
+        <a href="https://github.com/{{ project.links['github'] }} " target="_blank">GitHub Link</a>
+        {% endif %}
+        {% if project.links['web']!=None %}
+        <a href="{{ project.links['web'] }}" target="_blank">Project Link</a>
         {% endif %}
     </div>
 

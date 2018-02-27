@@ -1,9 +1,9 @@
 <h3>Short Stories (in Spanish)</h3>
 
 {% for item in items %}
-<div class="blockitem">
+<div class="blockitem story">
     <p> <strong>{{ item.title }}</strong>, {{ item.date }}</p>
-    (**Implement loading story from file**)
-    {{ item.links['file'] }}
+    <!-- <img src="{{ item.links['file'] }}" class="portfolio" alt="{{ item.title }}"></img> -->
+    {{ item.description | safe }}
 </div>
 {% endfor %}

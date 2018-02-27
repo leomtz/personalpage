@@ -42,6 +42,12 @@ div.blockitem{
     background-color: white;
 }
 
+div.blockitem.story{
+    text-align: justify;
+    padding:15pt;
+}
+
+
 div#data{
     width:50%;
 }

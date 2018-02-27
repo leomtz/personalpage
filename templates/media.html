@@ -1,4 +1,4 @@
-<h3>Publications in mainstream media</h3>
+<h3>Publications in Mainstream Media</h3>
 
 {% for item in items %}
 <div class="paperitem wrapper">
@@ -8,7 +8,7 @@
         <p> {{ item.description }}</p>
         {% endif %}
         {% if item.links['file']!=None %}
-        <a href="http://dx.doi.org/{{ item.links['file'] }}"> Download Link</a>
+        <a href="{{ item.links['file'] }}" target="_blank"> Download Link</a>
         {% endif %}
     </div>
 

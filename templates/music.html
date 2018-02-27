@@ -3,7 +3,13 @@
 {% for item in items %}
 <div class="blockitem">
     <p> <strong>{{ item.title }}</strong>, {{ item.date }}</p>
-    (**Implement loading story from file or youtube video**)
-    {{ item.links['file'] }}
+    {% if item.links['youtube']!=None %}
+    <iframe width="380" height="240" src="https://www.youtube.com/embed/{{ item.links['youtube'] }}?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p>{{ item.description }}</p>
+    {% endif %}
+    {% if item.links['file']!=None %}
+    <a href="{{ item.links['file'] }}" target="_blank"> Get Score</a>
+    {% endif %}
 </div>
 {% endfor %}
+
