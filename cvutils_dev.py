@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 # ---- Course
 # ---- Talk
 # ---- ScienceFair
+# ---- Service
 # -- PortfolioItem
 # ---- ArtItem
 # ---- CodingItem
@@ -102,6 +103,12 @@ class ScienceFair(Event):
     def __init__(self, *, audience, institution, **kwargs):
         super().__init__(links=None, **kwargs)
         self.audience=audience
+        self.institution=institution
+
+class Service(Event):
+    sheet="ScienceFair"
+    def __init__(self, *, institution, **kwargs):
+        super().__init__(links=None, **kwargs)
         self.institution=institution
 
 class ArtItem(PortfolioItem):
