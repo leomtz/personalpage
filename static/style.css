@@ -2,11 +2,11 @@ body {
     text-align: center;
 }
 
-div{
+/* div{
     width:50%;
     margin:auto;
     background-color: rgb(206, 221, 248);
-}
+} */
 
 div#footer{
     background-color: rgb(156, 186, 243);

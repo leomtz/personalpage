@@ -1,8 +1,8 @@
-<h3>Awards and Distinctions</h3>
+<h4>Awards and Distinctions</h4>
 
 {% for award in items %}
 <div class="blockitem">
-    <h3>{{ award.title }}</h3>
+    <h4>{{ award.title }}</h4>
     <strong>{{ award.institution }}</strong>
     <p> {{ award.description | safe}}<br><br>  {{ award.location }}, {{ award.date }} </p>
 </div>

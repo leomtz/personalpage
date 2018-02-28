@@ -1,8 +1,8 @@
-<h3>Web Development and Web Administration Portfolio</h3>
+<h4>Web Development and Web Administration Portfolio</h4>
 
 {% for project in items %}
 <div class="paperitem wrapper">
-    <div class="PInfo">
+    <div class="prob-info">
         <strong> {{ project.title }}</strong><br>
         {{ project.description | safe }}<br>
         {% if project.links['github']!=None %}

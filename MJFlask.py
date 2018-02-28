@@ -68,6 +68,10 @@ def personal():
 def notfound():
     return personal_page("notfound")
 
+@app.route("/bootstrap")
+def bootstrap():
+    return render_template("bootstrap.html")
+
 @app.route("/<section>")
 def personal_page(section):
     rcontent=request(section)

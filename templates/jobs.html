@@ -1,8 +1,8 @@
-<h3>Professional experience</h3>
+<h4>Professional experience</h4>
 
 {% for job in items %}
 <div class="blockitem">
-    <h3>{{ job.title }}<br>{{ job.date[0] }} - {{ job.date[1] }}</h3>
+    <h4>{{ job.title }}<br>{{ job.date[0] }} - {{ job.date[1] }}</h4>
     <h4>{{ job.institution }}</h4>
     <p> {{ job.description | safe}}</p>
 </div>

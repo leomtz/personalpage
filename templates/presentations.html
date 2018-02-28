@@ -1,8 +1,8 @@
-<h3>Presentations and slides</h3>
+<h4>Presentations and slides</h4>
 
 {% for presentation in items %}
 <div class="paperitem wrapper">
-    <div class="PInfo">
+    <div class="prob-info">
         <strong> {{ presentation.title }}</strong><br>
         {{ presentation.audience }}<br>
         {% if presentation.links['file']!=None %}

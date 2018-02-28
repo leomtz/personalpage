@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" itemscope itemtype="http://schema.org/Person">
     <head>
-        <link rel="stylesheet" href="/static/personal.css"/>
         <title>Leonardo Martínez - Mathematics and Programming</title>
         <script>
             function updateData(section){
@@ -13,6 +12,11 @@
             // window.scrollTo(0,0)
         }
         </script>
+
+        <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/personal.css"/>
+        <script type="text/javascript" src="static/bootstrap/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114923591-1"></script>
@@ -53,76 +57,78 @@
         <meta property="fb:admins" content="502849689" />
     </head>
     <body>
-    <div id="header">
-        <h1><a href="/">
+    
+    <div class="container" id="header">
+        <h1>
+            <a href="/">
             Leonardo Ignacio Martínez Sandoval
             </a>
         </h1>
         <p> Mathematical Researcher - Python Coder - Advocate of Problem-Solving <br> leomtz[at]im.unam.mx</p>
     </div>
-    
-    <div class="outter wrapper">
-        <div class="bigblock" id="menu">
 
-            <h2> General</h2>
-            <div class="wrapper">
-                <ul class="menu">
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="lion">Home</button></li> -->
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="about">About Me</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="education">Education</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="jobs">Professional Experience</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="awards">Awards</button></li>
-                </ul>
-            </div>
-    
-            <h2> Mathematical Research </h2>
-            <div class="wrapper">
-                <ul class="menu">
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="papers">Scientific Publications</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="presentations">Talks and Slides</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="teaching">Teaching</button></li>
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="service">Academic Service</button></li> -->
-                </ul>
+    <div class="container">
+        <div class="row">
+        <div class="col-sm padded">
+            <div class="row menu">
+                <h4> General</h4>
+                <p>
+                    <button class="app" onclick="updateData(this.name)" name="about">About Me</button>
+                    <button class="app" onclick="updateData(this.name)" name="education">Education</button>
+                    <button class="app" onclick="updateData(this.name)" name="jobs">Professional Experience</button>
+                    <button class="app" onclick="updateData(this.name)" name="awards">Awards</button>
+                </p>
             </div>
 
-            <h2> Coding Portfolio</h2>
-            <div class="wrapper">
-                <ul class="menu">
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="wholep">All Projects</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="pythonp">Python Projects</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="webp">Web Projects</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="datascp">Data Science Projects</button></li>
-                </ul>
+            <div class="row menu">
+                <h4> Mathematical Research </h4>
+                <p>
+                    <button class="app" onclick="updateData(this.name)" name="papers">Scientific Publications</button>
+                    <button class="app" onclick="updateData(this.name)" name="presentations">Talks and Slides</button>
+                    <button class="app" onclick="updateData(this.name)" name="teaching">Teaching</button>
+                    <!-- <button class="app" onclick="updateData(this.name)" name="service">Academic Service</button> -->
+                </p>
             </div>
 
-            <h2> Promotion of Math and Problem-Solving </h2>
-            <div class="wrapper">
-                <ul class="menu">
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="olympiad">Math Contests</button></li> -->
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="fairs">Math Fairs</button></li> -->
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="prompub">Publications</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="media">In Media</button></li>
-                </ul>
+            <div class="row menu">
+                <h4> Coding Portfolio</h4>
+                <p>
+                    <button class="app" onclick="updateData(this.name)" name="wholep">All Projects</button>
+                    <button class="app" onclick="updateData(this.name)" name="pythonp">Python Projects</button>
+                    <button class="app" onclick="updateData(this.name)" name="webp">Web Projects</button>
+                    <button class="app" onclick="updateData(this.name)" name="datascp">Data Science Projects</button>
+                </p>
             </div>
 
-            <h2> Hobbies and more</h2>
-            <div>
-                <ul class="menu">
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="drawings">Drawings</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="music">Music</button></li>
-                    <li class="menuItem"><button onclick="updateData(this.name)" name="stories">Short Stories</button></li>
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="random">Random Hobbies</button></li> -->
-                    <!-- <li class="menuItem"><button onclick="updateData(this.name)" name="links">Interesting Links</button></li> -->
-                </ul>
+            <div class="row menu">
+                <h4> Promotion of Math and Problem-Solving </h4>
+                <p>
+                    <!-- <button class="app" onclick="updateData(this.name)" name="olympiad">Math Contests</button> -->
+                    <!-- <button class="app" onclick="updateData(this.name)" name="fairs">Math Fairs</button> -->
+                    <button class="app" onclick="updateData(this.name)" name="prompub">Publications</button>
+                    <button class="app" onclick="updateData(this.name)" name="media">In Media</button>
+                </p>
             </div>
-        </div>
 
-        <div class="bigblock" id="data">
+            <div class="row">
+                <h4> Hobbies and more </h4>
+                <p> 
+                    <button class="app" onclick="updateData(this.name)" name="drawings">Drawings</button>
+                    <button class="app" onclick="updateData(this.name)" name="music">Music</button>
+                    <button class="app" onclick="updateData(this.name)" name="stories">Short Stories</button>
+                    <!-- <button class="app" onclick="updateData(this.name)" name="random">Random Hobbies</button> -->
+                    <!-- <button class="app" onclick="updateData(this.name)" name="links">Interesting Links</button> -->
+                </p>
+            </div>
+        </div>    
+
+        <div class="col-sm padded" id="data">
             {{ rcontent|safe }}
         </div>
+      </div>
     </div>
 
-    <div id="footer">
+    <div class=container id="footer">
         <div id="social">
             <a href="https://www.facebook.com/leoimartinez" target="_blank"><img class="social-icon" alt="Facebook" src="/static/facebook.png"></img></a>
             <a href="http://blog.nekomath.com" target="_blank"><img class="social-icon" alt="Blog" src="/static/wordpress.png"></img></a>
@@ -132,6 +138,7 @@
             <a href="https://www.github.com/leomtz" target="_blank"><img class="social-icon" alt="GitHub" src="/static/github.png"></img></a>
             <a href="https://www.twitter.com/leoimartinez" target="_blank"><img class="social-icon" alt="Twitter" src="/static/twitter.png"></img></a>
         </div>
+        <br>
         <p>&copy; Leonardo Ignacio Martínez Sandoval, 2018</p>
     </div>
 

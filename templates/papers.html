@@ -1,10 +1,10 @@
-<h3>Scientific Publications</h3>
+<h4>Scientific Publications</h4>
 
-<img src="static/papers.png" alt="Timeline of publications" class="timeline" </img>
+<img src="static/papers.png" alt="Timeline of publications" class="img-fluid" </img>
 
 {% for paper in items %}
 <div class="paperitem wrapper">
-    <div class="PInfo">
+    <div class="prob-info">
         <strong> {{ paper.title }}</strong><br>
         {{ paper.authors }}<br>
         {% if paper.links['arxiv']!=None %}
