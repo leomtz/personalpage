@@ -106,7 +106,7 @@ class ScienceFair(Event):
         self.institution=institution
 
 class Service(Event):
-    sheet="ScienceFair"
+    sheet="Service"
     def __init__(self, *, institution, **kwargs):
         super().__init__(links=None, **kwargs)
         self.institution=institution
