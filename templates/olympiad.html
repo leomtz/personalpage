@@ -7,10 +7,12 @@
         <p> {{ item.description }} </p>
     </div>
 
-    <div class="wrapper">
-        <div class="thirdLabel Y">{{ item.date[0] }} - {{ item.date[1] }}</div>
-        <div class="thirdLabel T">{{ item.role }}</div>
-        <div class="thirdLabel J">{{ item.location }}</div>
+    <div class="container">
+        <div class="row sidepadded">
+            <div class="col-md-5 col-lg-3 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-7 col-lg-4 thirdLabel">{{ item.role }}</div>
+            <div class="col-md-12 col-lg-5 thirdLabel">{{ item.location }}</div>
+        </div>
     </div>
 
 </div>

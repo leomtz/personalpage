@@ -1,22 +1,22 @@
 <h4>Python Portfolio</h4>
 
-{% for project in items %}
+{% for item in items %}
 <div class="paperitem wrapper">
     <div class="prob-info">
-        <strong> {{ project.title }}</strong><br>
-        {{ project.description | safe }}<br>
-        {% if project.links['github']!=None %}
-        <a href="https://github.com/{{ project.links['github'] }} " target="_blank">GitHub Link</a>
-        {% endif %}
-        {% if project.links['web']!=None %}
-        <a href="{{ project.links['web'] }}" target="_blank">Project Link</a>
+        <strong> {{ item.title }}</strong>
+        <p>{{ item.description | safe }}</p>
+        {% if item.links['github']!=None %}
+        <a href="https://github.com/{{ item.links['github'] }} " class="goodie" target="_blank">GitHub</a>
+        {% endif %} {% if item.links['web']!=None %}
+        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Project Link</a>
         {% endif %}
     </div>
 
-    <div class="wrapper">
-        <div class="thirdLabel Y">{{ project.date }}</div>
-        <div class="thirdLabel L">{{ project.technologies }}</div>
+    <div class="container">
+        <div class="row sidepadded">
+            <div class="col-md-12 col-lg-3 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-12 col-lg-9 thirdLabel">{{ item.technologies }}</div>
+        </div>
     </div>
 </div>
 {% endfor %}
-

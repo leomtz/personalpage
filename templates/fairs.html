@@ -8,10 +8,11 @@
         <p> {{ item.description }} </p>
     </div>
 
-    <div class="wrapper">
-        <div class="thirdLabel Y">{{ item.date }}</div>
-        <div class="thirdLabel T">{{ item.role }}</div>
-        <div class="thirdLabel J">{{ item.location }}</div>
-    </div>
+    <div class="container">
+            <div class="row padded">
+                <div class="col-md-6 thirdLabel">{{ item.role }}</div>
+                <div class="col-md-6 thirdLabel">{{ item.date }}</div>
+            </div>
+        </div>
 </div>
 {% endfor %}

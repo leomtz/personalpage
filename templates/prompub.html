@@ -1,25 +1,27 @@
 <h4>Publications on Math Awareness</h4>
 
-{% for paper in items %}
+{% for item in items %}
 <div class="paperitem wrapper">
     <div class="prob-info">
-            <strong> {{ paper.title }}</strong><br>
-            {{ paper.authors }}<br>
-            {% if paper.links['arxiv']!=None %}
-            <a href="https://arxiv.org/abs/{{ paper.links['arxiv'] }}" target="_blank">Preprint via arXiv</a>
+            <strong> {{ item.title }}</strong><br>
+            <p>{{ item.authors }}</p>
+            {% if item.links['arxiv']!=None %}
+            <a href="https://arxiv.org/abs/{{ item.links['arxiv'] }}" class="goodie" target="_blank">Preprint via arXiv</a>
             {% endif %}
-            {% if paper.links['doi']!=None %}
-            <a href="http://dx.doi.org/{{ paper.links['doi'] }}" target="_blank">Paper via DOI</a>
+            {% if item.links['doi']!=None %}
+            <a href="http://dx.doi.org/{{ item.links['doi'] }}" class="goodie" target="_blank">Text via DOI</a>
             {% endif %}
-            {% if paper.links['web']!=None %}
-            <a href="{{ paper.links['web'] }}" target="_blank">Link</a>
+            {% if item.links['web']!=None %}
+            <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Link</a>
             {% endif %}
         </div>
 
-    <div class="wrapper">
-        <div class="thirdLabel Y">{{ paper.date }}</div>
-        <div class="thirdLabel T">{{ paper.tags }}</div>
-        <div class="thirdLabel J">{{ paper.journal }}</div>
+    <div class="container">
+        <div class="row sidepadded">
+            <div class="col-md-6 col-lg-1 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-6 col-lg-5 thirdLabel">{{ item.tags }}</div>
+            <div class="col-md-12 col-lg-6 thirdLabel">{{ item.journal }}</div>
+        </div>
     </div>
 </div>
 {% endfor %}

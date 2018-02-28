@@ -3,13 +3,14 @@
 {% for item in items %}
 <div class="paperitem wrapper">
     <div class="prob-info">
-        <strong> {{ item.title }}</strong>, {{ item.institution }}
+        <strong> {{ item.title }}</strong><br>{{ item.institution }}
     </div>
-
-    <div class="wrapper">
-        <div class="thirdLabel Y">{{ item.date }}</div>
-        <div class="thirdLabel T">{{ item.role }}</div>
-        <div class="thirdLabel J">{{ item.location }}</div>
+    <div class="container">
+        <div class="row sidepadded">
+            <div class="col-md-6 col-lg-3 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-6 col-lg-4 thirdLabel">{{ item.role }}</div>
+            <div class="col-md-12 col-lg-5 thirdLabel">{{ item.location }}</div>
+        </div>
     </div>
 </div>
 {% endfor %}

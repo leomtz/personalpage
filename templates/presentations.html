@@ -1,20 +1,22 @@
 <h4>Presentations and slides</h4>
 
-{% for presentation in items %}
+{% for item in items %}
 <div class="paperitem wrapper">
     <div class="prob-info">
-        <strong> {{ presentation.title }}</strong><br>
-        {{ presentation.audience }}<br>
-        {% if presentation.links['file']!=None %}
-        <a href="{{ presentation.links['file'] }}" target="_blank"> Get slides</a>
+        <strong> {{ item.title }}</strong><br>
+        <p>{{ item.audience }}</p>
+        {% if item.links['file']!=None %}
+        <a href="{{ item.links['file'] }}" class="goodie" target="_blank"> Get slides</a>
         {% endif %}
     </div>
-    
-    <div class="wrapper">
-            <div class="thirdLabel Y">{{ presentation.date }}</div>
-            <div class="thirdLabel T">{{ presentation.tags }}</div>
-            <div class="thirdLabel J">{{ presentation.location }}</div>
+
+    <div class="container">
+        <div class="row sidepadded">
+            <div class="col-md-6 col-lg-1 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-6 col-lg-3 thirdLabel">{{ item.tags }}</div>
+            <div class="col-md-12 col-lg-7 thirdLabel">{{ item.journal }}</div>
         </div>
+    </div>
 
 </div>
 {% endfor %}

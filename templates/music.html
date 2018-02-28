@@ -4,11 +4,13 @@
 <div class="blockitem">
     <p> <strong>{{ item.title }}</strong>, {{ item.date }}</p>
     {% if item.links['youtube']!=None %}
-    <iframe width="380" height="240" src="https://www.youtube.com/embed/{{ item.links['youtube'] }}?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="embed-responsive embed-responsive-4by3">
+    <iframe src="https://www.youtube.com/embed/{{ item.links['youtube'] }}?controls=0" allowfullscreen></iframe>
+    </div>
     <p>{{ item.description }}</p>
     {% endif %}
     {% if item.links['file']!=None %}
-    <a href="{{ item.links['file'] }}" target="_blank"> Get Score</a>
+    <a href="{{ item.links['file'] }}" class="goodie" target="_blank"> Get Score</a>
     {% endif %}
 </div>
 {% endfor %}

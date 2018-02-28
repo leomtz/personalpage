@@ -1,9 +1,12 @@
 <h4>Professional experience</h4>
 
-{% for job in items %}
+{% for item in items %}
 <div class="blockitem">
-    <h4>{{ job.title }}<br>{{ job.date[0] }} - {{ job.date[1] }}</h4>
-    <h4>{{ job.institution }}</h4>
-    <p> {{ job.description | safe}}</p>
+    {{ item.date[0] }} - {{ item.date[1] }}
+    <h4>{{ item.title }}</h4>
+    <strong>{{ item.institution }}</strong>
+    {% if item.description!=None %}
+    <p>{{ item. description | safe  }}</p>
+    {% endif %}
 </div>
 {% endfor %}

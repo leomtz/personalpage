@@ -2,8 +2,9 @@
 
 {% for item in items %}
 <div class="blockitem">
-    <h4>{{ item.title }}<br>{{ item.date[0] }} - {{ item.date[1] }}</h4>
-    <h4>{{ item.institution }}</h4>
+    {{ item.date[0] }} - {{ item.date[1] }}
+    <h4>{{ item.title }}</h4>
+    <strong>{{ item.institution }}</strong>
     {% if item.description!=None %}
     <p>{{ item. description | safe  }}</p>
     {% endif %}

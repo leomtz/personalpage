@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" itemscope itemtype="http://schema.org/Person">
+<html lang="en" itemscope itemtype="http://schema.org/Person">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no>">
         <title>Leonardo Martínez - Mathematics and Programming</title>
+
+        <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/personal.css"/>
+        <script type="text/javascript" src="static/bootstrap/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             function updateData(section){
             var xhttp = new XMLHttpRequest();
@@ -9,14 +16,12 @@
             xhttp.send();
             document.getElementById("data").innerHTML = xhttp.responseText;
             window.history.pushState("wow data", "Title", "/"+section);
+            $('html,body').animate({
+                scrollTop: $("#data").offset().top
+            },800);
             // window.scrollTo(0,0)
         }
         </script>
-
-        <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/personal.css"/>
-        <script type="text/javascript" src="static/bootstrap/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114923591-1"></script>
@@ -67,10 +72,10 @@
         <p> Mathematical Researcher - Python Coder - Advocate of Problem-Solving <br> leomtz[at]im.unam.mx</p>
     </div>
 
-    <div class="container">
+    <div class="container outter">
         <div class="row">
-        <div class="col-sm padded">
-            <div class="row menu">
+        <div class="col-md-4 col-lg-6 padded">
+            <div class="sidepadded">
                 <h4> General</h4>
                 <p>
                     <button class="app" onclick="updateData(this.name)" name="about">About Me</button>
@@ -80,7 +85,7 @@
                 </p>
             </div>
 
-            <div class="row menu">
+            <div class="sidepadded">
                 <h4> Mathematical Research </h4>
                 <p>
                     <button class="app" onclick="updateData(this.name)" name="papers">Scientific Publications</button>
@@ -90,7 +95,7 @@
                 </p>
             </div>
 
-            <div class="row menu">
+            <div class="sidepadded">
                 <h4> Coding Portfolio</h4>
                 <p>
                     <button class="app" onclick="updateData(this.name)" name="wholep">All Projects</button>
@@ -100,29 +105,29 @@
                 </p>
             </div>
 
-            <div class="row menu">
+            <div class="sidepadded">
                 <h4> Promotion of Math and Problem-Solving </h4>
                 <p>
-                    <!-- <button class="app" onclick="updateData(this.name)" name="olympiad">Math Contests</button> -->
-                    <!-- <button class="app" onclick="updateData(this.name)" name="fairs">Math Fairs</button> -->
+                    <button class="app" onclick="updateData(this.name)" name="olympiad">Math Contests</button>
+                    <button class="app" onclick="updateData(this.name)" name="fairs">Math Fairs</button>
                     <button class="app" onclick="updateData(this.name)" name="prompub">Publications</button>
                     <button class="app" onclick="updateData(this.name)" name="media">In Media</button>
                 </p>
             </div>
 
-            <div class="row">
+            <div class="sidepadded">
                 <h4> Hobbies and more </h4>
                 <p> 
                     <button class="app" onclick="updateData(this.name)" name="drawings">Drawings</button>
                     <button class="app" onclick="updateData(this.name)" name="music">Music</button>
                     <button class="app" onclick="updateData(this.name)" name="stories">Short Stories</button>
-                    <!-- <button class="app" onclick="updateData(this.name)" name="random">Random Hobbies</button> -->
-                    <!-- <button class="app" onclick="updateData(this.name)" name="links">Interesting Links</button> -->
+                    <button class="app" onclick="updateData(this.name)" name="random">Random Hobbies</button>
+                    <button class="app" onclick="updateData(this.name)" name="links">Interesting Links</button>
                 </p>
             </div>
         </div>    
 
-        <div class="col-sm padded" id="data">
+        <div class="col-md-8 col-lg-6 padded" id="data">
             {{ rcontent|safe }}
         </div>
       </div>
