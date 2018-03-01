@@ -1,0 +1,17 @@
+
+# OLD CODE
+#
+# @app.route("/")
+# def hello():
+#     return render_template("home.html")
+# @app.route("/math", methods=['POST', 'GET'])
+# def math():
+#     try:
+#         coolmath=request.args['mathjax']
+#     except:
+#         coolmath="En esta página puedes poner código 
+#                   $\LaTeX$ como $\\frac{1}{d+1}$."
+#     return render_template('math.html',coolmath=coolmath)
+# @app.route("/math2")
+# def math2():
+#     return render_template('math2.html')

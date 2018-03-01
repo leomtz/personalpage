@@ -80,6 +80,8 @@ class CurriculumVitae(object):
 
     def fetch_by_section(self, section):
         result=[]
+        if section.filter_tags_set==set():
+            return self.all_items[section._class]
         items_class_list = self.all_items[section._class]
         filter_tag_set = section.filter_tags_set
         for item in items_class_list:

@@ -5,8 +5,8 @@
 9. Content for Drawings (done)
 10. Content for Music (done)
 11. Content for Short Stories (done)
-12. Content for Random hobbies
-17. Responsiveness (done Bootstrap yay!)
+12. Content for Random hobbies (removed section)
+17. Responsiveness (Bootstrap yay!) (done)
 3. Implement Link
 6. Implement automatic creation of CVItem subclasses via a configuration file
 5. Implement Language
@@ -16,3 +16,5 @@
 15. Image Gallery or load by slide
 16. Short story loading
 18. Move JS to files
+19. Ask around for interesting links
+20. Update timeline creation functions

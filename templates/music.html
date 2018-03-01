@@ -10,7 +10,7 @@
     <p>{{ item.description }}</p>
     {% endif %}
     {% if item.links['file']!=None %}
-    <a href="{{ item.links['file'] }}" class="goodie" target="_blank"> Get Score</a>
+    <a href="/static/scores/{{ item.links['file'] }}" class="goodie" target="_blank"> Get Score</a>
     {% endif %}
 </div>
 {% endfor %}
