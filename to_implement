@@ -1,18 +1,18 @@
-1. Programming projects should link to both git and link where applicable
-2. CV_utils needs Section and Subsection objects and methods
-3. Implement Link
-4. Implement Service
-5. Implement Language
-6. Implement automatic creation of CVItem subclasses via a configuration file
-7. Content for Math Contests
-8. Content for Math Fairs
-9. Content for Drawings
-10.Content for Music
-11. Content for Short Stories
+1. Programming projects should link to both git and link where applicable (done)
+4. Implement Service (done)
+7. Content for Math Contests (done)
+8. Content for Math Fairs (done)
+9. Content for Drawings (done)
+10. Content for Music (done)
+11. Content for Short Stories (done)
 12. Content for Random hobbies
+17. Responsiveness (done Bootstrap yay!)
+3. Implement Link
+6. Implement automatic creation of CVItem subclasses via a configuration file
+5. Implement Language
+2. CV_utils needs Subsection objects and methods
 13. Content for Interesting links
 14. Implement menu creation
 15. Image Gallery or load by slide
 16. Short story loading
-17. Responsiveness
 18. Move JS to files

@@ -2,7 +2,7 @@
 
 {% for item in items %}
 <div class="blockitem">
-    <img src="{{ item.links['file'] }}" class="img-fluid" alt="{{ item.title }}"></img>
+    <img src="/static/drawings/{{ item.links['file'] }}" class="img-fluid" alt="{{ item.title }}"></img>
     <p> <strong>{{ item.title }}</strong>, {{ item.technique }}, {{ item.date }}</p>
 </div>
 {% endfor %}
