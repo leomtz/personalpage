@@ -29,6 +29,14 @@ class CVItem(object):
     def __init__(self, *, id, title, date, description, links, tags):
         self.id = id
         self.title = title
+        if type(date) is list:
+            if date[0]==date[1]:
+                date=date[0]
+
+        if type(date) is list:
+            self.fdate=str(date[0]) + ' - ' + str(date[1])
+        else:
+            self.fdate=str(date)
         self.date = date
         self.description = description
         self.links = links
@@ -173,9 +181,10 @@ class MainstreamMedia(Publication):
 class ScientificPublication(Publication):
     sheet = "ScientificPublication"
 
-    def __init__(self, *, journal, volume, pages, doi, arxiv, web, **kwargs):
+    def __init__(self, *, status, journal, volume, pages, doi, arxiv, web, **kwargs):
         super().__init__(links={"arxiv": arxiv,
                                 "doi": doi, "web": web}, **kwargs)
         self.journal = journal
         self.volume = volume
         self.pages = pages
+        self.status = status

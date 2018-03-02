@@ -33,12 +33,28 @@ button.app{
     width:49%;
 }
 
+button.mjx{
+    width:27px;
+    background-color:rgb(200,55,113);
+    color:white;
+    margin: 5px 3px 5px 0px;
+    border:none
+}
+
+button.tex{
+    width:100%;
+}
+
+textarea{
+    width:100%;
+    height:200px;
+}
+
 @media screen and (max-width:1023px){
     button.app{
         width:100%;
     }
 }
-
 
 div.container.outter{
     background-color: rgb(235,235,235);
@@ -126,7 +142,7 @@ div.sidepadded{
     padding: 1% 4%;
 }
 
-h2{
+h4{
     color: rgb(200,55,113);
 }
 
@@ -135,6 +151,7 @@ h2{
         font-size:2rem;
     }
 }
+
 h1 a{
     color:white;
     text-decoration-line: none;
@@ -144,3 +161,29 @@ img.social-icon{
     height:40px;
     margin-right: 15px;
 }
+
+.smallhead{
+    visibility: hidden;
+    display: none;
+    }
+
+@media screen and (max-width:426px){
+    .smallhead{
+        visibility: initial;
+        display: initial;
+    }
+}
+
+@media screen and (max-width:767px){
+    img.social-icon{
+        height:30px;
+        margin-right: 5px;
+    }
+
+    div.container#footer{
+        margin-bottom:0px;
+        text-align: center;
+        padding: 30px 20px 4px 20px;
+    }
+}
+

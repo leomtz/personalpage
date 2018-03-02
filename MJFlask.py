@@ -20,11 +20,19 @@ CURRENT_DIR = os.path.dirname(CURRENT_FILE)
 CV=cvutils.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
 DATA_SECTIONS=CV.sections
 
+## Template setting
+
+def template_chooser(section):
+    if section in ['webp', 'pythonp', 'datascp']:
+        return "coding_port.html"
+    else:
+        return section+".html"
+
 ## Routing    
 
 @app.route("/")
 def personal():
-    return personal_page("home")
+    return personal_page("lion")
 
 @app.route("/notfound")
 def notfound():
@@ -45,13 +53,13 @@ def blankrequest():
 
 @app.route("/request/<section>")
 def request(section):
-    if section=="home":
-        return render_template("lion.html")
-    if section in ["about","links"]:
-        return render_template(section+".html")
+    template=template_chooser(section)
+    if section in ["about","links","lion", "convertex"]:
+        return render_template(template)
     if section in DATA_SECTIONS:
         items_array = CV.fetch_by_section_name(section)
-        return render_template(section+".html",items=items_array)
+        title=DATA_SECTIONS[section].title
+        return render_template(template, items=items_array, title=title)
     else:
         return render_template("notfound.html")
 

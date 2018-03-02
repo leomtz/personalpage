@@ -95,9 +95,6 @@ class CurriculumVitae(object):
 
 ### Functions ###
 
-# def sec_from_xlsx(location,worksheet,filters)
-#     CV_ws = cv_from_xlsx(location)
-
 def cv_from_xlsx(location):
     cv_db = opx.load_workbook(location, data_only=True)
 

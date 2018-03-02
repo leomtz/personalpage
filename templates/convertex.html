@@ -1,0 +1,45 @@
+<script>
+    function update() {
+        document.getElementById("textMJ").innerHTML = document.getElementById("datamj").value.substring(0,750)
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        $('html,body').animate({
+            scrollTop: $("#textMJ").offset().top
+        }, 800);
+    }
+    function dls(a) {
+            document.getElementById("datamj").value = document.getElementById("datamj").value + a;
+            document.getElementById("datamj").focus();
+            count();
+        }
+    function count() {
+        document.getElementById("charcount").innerHTML = String(750 - document.getElementById("datamj").value.length);
+    }
+</script>
+
+<h4> ConverTex<span class="smallhead"> Mobile</span></h4>
+
+<p>
+Discussing math using $\LaTeX$ on the go does not have to be awkward! 
+Use the editor and handy buttons to get math formulas using MathJax. 
+Click the button and see the magic!
+</p>
+
+
+<button class="mjx" onclick="dls('$')"> $</button>
+<button class="mjx" onclick="dls('\\')"> \</button>
+<button class="mjx" onclick="dls('{')">{</button>
+<button class="mjx" onclick="dls('}')">}</button>
+<button class="mjx" onclick="dls('+')">+</button>
+<button class="mjx" onclick="dls('-')">-</button>
+<button class="mjx" onclick="dls('=')">=</button>
+<button class="mjx" onclick="dls('^')">^</button>
+<span id="charcount"> 710 </span><br>
+<textarea id="datamj" name="mathjax" oninput="count()">Some cool $\LaTeX$ like $\frac{1}{d+1}$.</textarea><br>
+<button class="mjx tex" onclick="update()"> Convert to LaTeX <br> www.nekomath.com/convertex</button>
+
+<b>Take a screenshot and share your formula!</b><br><br>
+
+<p id="textMJ">
+    Some cool $\LaTeX$ like $\frac{1}{d+1}$.
+</p>
+

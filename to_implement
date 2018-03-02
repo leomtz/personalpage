@@ -7,10 +7,12 @@
 11. Content for Short Stories (done)
 12. Content for Random hobbies (removed section)
 17. Responsiveness (Bootstrap yay!) (done)
+2. CV_utils needs Subsection objects and methods (nah, not really, this is frontend issue)
+22. MathJax (done)
+21. Asyncronous respnonsiveness (done)
 3. Implement Link
 6. Implement automatic creation of CVItem subclasses via a configuration file
 5. Implement Language
-2. CV_utils needs Subsection objects and methods
 13. Content for Interesting links
 14. Implement menu creation
 15. Image Gallery or load by slide
@@ -18,3 +20,5 @@
 18. Move JS to files
 19. Ask around for interesting links
 20. Update timeline creation functions
+23. ConvierTex
+24. Spanish Version (should be easy)

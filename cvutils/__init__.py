@@ -1,3 +1,6 @@
+# Tool to handle CVs
+# Created by Leonardo Ignacio Martínez Sandoval
+
 # openpyxl helps to work with MSExcel databases
 import openpyxl as opx
 
@@ -7,9 +10,3 @@ import matplotlib.pyplot as plt
 
 from cvutils.primaryclasses import *
 from cvutils.itemclasses import * 
-
-# The test
-def test():
-    cv = cv_from_xlsx(r'data/CV.xlsx')
-    print("Success")
-    return cv

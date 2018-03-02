@@ -3,24 +3,48 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no>">
-        <title>Leonardo Martínez - Mathematics and Programming</title>
+        <title> Leonardo Martínez - Mathematics and Programming</title>
 
+        <!-- Styles and Bootstrap -->
         <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/personal.css"/>
         <script type="text/javascript" src="static/bootstrap/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- MathJax -->
+        <script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    extensions: ["tex2jax.js"],
+                    jax: ["input/TeX", "output/HTML-CSS"],
+                    tex2jax: {
+                      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                      processEscapes: true
+                    },
+                    "HTML-CSS": { availableFonts: ["TeX"] }
+                  });
+        </script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js'></script>
+
+        <!-- Right side loader -->
         <script>
             function updateData(section){
             var xhttp = new XMLHttpRequest();
-            xhttp.open("GET","/request/" + section, false);
+            xhttp.onreadystatechange = function(){
+                if (xhttp.readyState === 4) {
+                    if (xhttp.status === 200){
+                        document.getElementById("data").innerHTML = xhttp.responseText;
+                        window.history.pushState("wow data", "Title", "/"+section);
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    }
+                }
+            }
+            xhttp.open("GET", "/request/" + section, true);
             xhttp.send();
-            document.getElementById("data").innerHTML = xhttp.responseText;
-            window.history.pushState("wow data", "Title", "/"+section);
             $('html,body').animate({
                 scrollTop: $("#data").offset().top
-            },800);
-            // window.scrollTo(0,0)
-        }
+            }, 800);
+            }
         </script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -69,7 +93,9 @@
             Leonardo Ignacio Martínez Sandoval
             </a>
         </h1>
-        <p> Mathematical Researcher - Python Coder - Advocate of Problem-Solving <br> leomtz[at]im.unam.mx</p>
+        <p> <span class="smallhead">- </span> Mathematical Researcher<br class="smallhead"> 
+            - Python Coder <br class="smallhead"> - Advocate of Problem-Solving <br> 
+            leomtz[at]im.unam.mx</p>
     </div>
 
     <div class="container outter">
@@ -110,7 +136,7 @@
                 <p>
                     <button class="app" onclick="updateData(this.name)" name="olympiad">Math Contests</button>
                     <button class="app" onclick="updateData(this.name)" name="fairs">Math Fairs</button>
-                    <button class="app" onclick="updateData(this.name)" name="prompub">Publications</button>
+                    <button class="app" onclick="updateData(this.name)" name="prompub">Writings</button>
                     <button class="app" onclick="updateData(this.name)" name="media">In Media</button>
                 </p>
             </div>
@@ -121,7 +147,7 @@
                     <button class="app" onclick="updateData(this.name)" name="drawings">Drawings</button>
                     <button class="app" onclick="updateData(this.name)" name="music">Music</button>
                     <button class="app" onclick="updateData(this.name)" name="stories">Short Stories</button>
-                    <!-- <button class="app" onclick="updateData(this.name)" name="links">Interesting Links</button> -->
+                    <button class="app" onclick="updateData(this.name)" name="convertex">ConverTex</button>
                 </p>
             </div>
         </div>    
