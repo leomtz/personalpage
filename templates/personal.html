@@ -26,26 +26,8 @@
         </script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js'></script>
 
-        <!-- Right side loader -->
-        <script>
-            function updateData(section){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if (xhttp.readyState === 4) {
-                    if (xhttp.status === 200){
-                        document.getElementById("data").innerHTML = xhttp.responseText;
-                        window.history.pushState("wow data", "Title", "/"+section);
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                    }
-                }
-            }
-            xhttp.open("GET", "/request/" + section, true);
-            xhttp.send();
-            $('html,body').animate({
-                scrollTop: $("#data").offset().top
-            }, 800);
-            }
-        </script>
+        <!-- Local scripts -->
+        <script type="text/javascript" src="static/js/scripts.js"></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114923591-1"></script>

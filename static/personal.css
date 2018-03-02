@@ -34,7 +34,7 @@ button.app{
 }
 
 button.mjx{
-    width:27px;
+    width:32px;
     background-color:rgb(200,55,113);
     color:white;
     margin: 5px 3px 5px 0px;
@@ -171,6 +171,13 @@ img.social-icon{
     .smallhead{
         visibility: initial;
         display: initial;
+    }
+}
+
+@media screen and (min-width:800px){
+    .smallctx{
+        visibility: none;
+        display: none;
     }
 }
 
