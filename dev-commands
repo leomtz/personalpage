@@ -1,9 +1,0 @@
-$env:FLASK_APP="MJFlask.py"
-$env:FLASK_DEBUG=1
-python -m flask run
-
-
-home	Home	False
-lion	Lion	False
-about	About Me	False
-notfound	Not Found	False
