@@ -11,7 +11,7 @@ sys.path.append(PROJECT_DIR + '/src/')
 # Location of the virtualenv.
 sys.path.append(PROJECT_DIR + '/per-page/lib/python3.5/site-packages/')
 
-from MJFlask import app as application
+from personalpage import app as application
 
 # import sys
 
