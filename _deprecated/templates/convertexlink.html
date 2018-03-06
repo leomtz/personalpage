@@ -1,0 +1,40 @@
+<h4> ConverTex<span class="smallctx"> Mobile</span></h4>
+
+<p>
+This text with formulas was shared with you:
+</p>
+<p id="loadedcont">
+    {{ content }}
+</p>
+
+<p>
+Discussing math using $\LaTeX$ on the go does not have to be awkward!. You can also use the editor below <span class="smallctx">and handy buttons </span>to get math formulas 
+using MathJax. Click "Convert" and see the magic!
+</p>
+
+<span class="smallctx">
+<button class="mjx" onclick="dls('$')"> $</button>
+<button class="mjx" onclick="dls('\\')"> \</button>
+<button class="mjx" onclick="dls('{')">{</button>
+<button class="mjx" onclick="dls('}')">}</button>
+<button class="mjx" onclick="dls('+')">+</button>
+<button class="mjx" onclick="dls('-')">-</button>
+<button class="mjx" onclick="dls('=')">=</button>
+<button class="mjx" onclick="dls('^')">^</button>
+</span>
+<span id="charcount"> 750 </span><br>
+<textarea id="datamj" name="mathjax" oninput="count()">
+{{ content }}</textarea><br>
+<script>count();</script>
+<button class="mjx tex" onclick="update()"> Convert to LaTeX <br> www.nekomath.com/convertex</button>
+
+<b>Here is your formula:</b>
+<br>
+<br>
+
+<p id="textMJ">
+    {{content }}
+</p>
+
+<button class="mjx tex" onclick="save()"> Get Share Link </button>
+<input class="form-control" type="text" id="linktex"></input>

@@ -15,7 +15,7 @@ a.goodie{
 body {
     background-image: url("/static/background.png");
     background-repeat: repeat;
-    background-size: 50px;
+    background-size: 30px;
     color: rgb(0,0,43);
     font-family: 'Calibri Light', Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 }
@@ -31,18 +31,6 @@ button.app{
     margin-left:auto;
     margin-bottom: 5px;
     width:49%;
-}
-
-button.mjx{
-    width:32px;
-    background-color:rgb(200,55,113);
-    color:white;
-    margin: 5px 2px 5px 0px;
-    border:none
-}
-
-button.tex{
-    width:100%;
 }
 
 #ldr {
@@ -63,11 +51,6 @@ button.tex{
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-textarea{
-    width:100%;
-    height:200px;
 }
 
 @media screen and (max-width:1023px){
@@ -91,7 +74,7 @@ div.container#header,div.container#footer{
 div.container#footer{
     margin-bottom:0px;
     text-align: center;
-    padding-bottom:10px;
+    padding-bottom:5px;
 }
 
 div.blockitem{
@@ -142,6 +125,10 @@ div.thirdLabel.Y{
 
 div.thirdLabel.J{
     width: 60%;
+}
+
+div#createcard{
+    display:none;
 }
 
 div.wrapper{
@@ -213,4 +200,3 @@ img.social-icon{
         padding: 30px 20px 4px 20px;
     }
 }
-

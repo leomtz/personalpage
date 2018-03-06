@@ -1,0 +1,18 @@
+Helly's theorem on intersecting convex sets gave birth to a very fruitful area of discrete geometry called Geometric Transversal Theory. This area has rich interactions with computational geometry, topology and combinatorics. Although the progress throughout the years has been substantial, there are still many interesting and deep open questions to solve.
+
+This mini-course is a research-oriented introduction to the topic. It is based on the diagram at http://www.nekomath.com/gtt. We will overview some interrelated theorems and give a sketch of their proofs. A wide variety of open problems will be presented.
+
+Part I: Three amazing theorems on convexity
+- Helly, Carathéodory and Radon
+- Variations and generalizations
+- Some bad news for hyperplanes
+
+Part II: Computational Geometry kicks in
+- Strong and weak epsilon-nets
+- The cutting lemma
+- The proof of the (p,q)-theorem
+- The proof of the (p,q)-theorem for hyperplanes
+
+Part III: Misc. topics
+- The Haunted Lands: Transversal lines
+- Topological tools

@@ -16,13 +16,18 @@ Click "Convert" and see the magic!
 <button class="mjx" onclick="dls('=')">=</button>
 <button class="mjx" onclick="dls('^')">^</button>
 </span>
-<span id="charcount"> 710 </span><br>
-<textarea id="datamj" name="mathjax" oninput="count()">Some cool $\LaTeX$ like $\frac{1}{d+1}$.</textarea><br>
+<span id="charcount"> 539 </span><br>
+<textarea id="datamj" name="mathjax" onload="count()" oninput="count()">
+You can share from very basic $\LaTeX$ formulas like the area of a triangle \[A=\frac{b\cdot h}{2},\] to beautiful statements
+like the Gaussian integral \[\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}.\]</textarea><br>
 <button class="mjx tex" onclick="update()"> Convert to LaTeX <br> www.nekomath.com/convertex</button>
 
-<b>Take a screenshot and share your formula!</b><br><br>
+<b>Here is your formula:</b><br><br>
 
 <p id="textMJ">
-    Some cool $\LaTeX$ like $\frac{1}{d+1}$.
+     You can share from very basic $\LaTeX$ formulas like the area of a triangle \[A=\frac{b\cdot h}{2},\] to beautiful statements
+    like the Gaussian integral \[\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}.\]
 </p>
 
+<button class="mjx tex" onclick="save()"> Get Share Link </button>
+<input class="form-control" type="text" id="linktex"></input>

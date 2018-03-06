@@ -1,0 +1,30 @@
+button.mjx{
+    width:28px;
+    background-color:rgb(200,55,113);
+    color:white;
+    margin: 5px 2px 5px 0px;
+    border:none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+button.tex{
+    width:100%;
+    padding:5px;
+}
+
+div.texcard{
+    border-style: solid;
+    border-color: rgb(200,55,113);
+    border-radius: 6px;
+    text-align: justify;
+    padding:5%;
+    margin-bottom:15pt;
+    margin-top:15pt;
+    background-color: white;
+}
+
+textarea{
+    width:100%;
+    height:250px;
+}

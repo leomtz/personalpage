@@ -1,0 +1,67 @@
+{% extends "body_template.html" %}
+{% block content %}
+<div class="container outter">
+    <div class="row">
+        <div class="col-md-6 sidepadded" id="data">
+            <h3>ConverTex <span class="smallctx"> Mobile</span></h3>
+            <h4>¡Bienvenido!</h4>
+
+            {% if link==True %}
+            Recibiste la siguiente $\TeX$-card:
+            <div class="texcard">
+                <span>
+                    {{ content }}
+                </span>
+            </div>
+            {% else %}
+            Creemos que platicar de matemáticas en línea usando $\LaTeX$ no debería ser incómodo. Por esto creamos las $\TeX$-cards. Esta es una:
+            <div class="texcard">
+            
+                <span>
+                    {{ content }}
+                </span>
+            </div>
+            {% endif %}
+            
+            <p>
+                {% if link==True %}Creemos que platicar de matemáticas en línea usando $\LaTeX$ no debería ser incómodo. Por esto creamos las $\TeX$-cards.{% endif %} 
+                Tú también puedes crear tu tarjeta y compartirla. Usa el editor <span class="smallctx">y los botones</span>para escribir tus fórmulas.
+                Luego da clic en el botón "Crear $\TeX$-card". ConverTex y MathJax harán la magia.
+            </p>
+        </div>
+
+        <div class="col-md-6 sidepadded">
+            <h3> Editor</h3>
+            <h4>Escribe tu texto aquí abajo</h4>
+            <span class="smallctx">
+                <button class="mjx" onclick="dls('$')"> $</button>
+                <button class="mjx" onclick="dls('\\')"> \</button>
+                <button class="mjx" onclick="dls('{')">{</button>
+                <button class="mjx" onclick="dls('}')">}</button>
+                <button class="mjx" onclick="dls('+')">+</button>
+                <button class="mjx" onclick="dls('-')">-</button>
+                <button class="mjx" onclick="dls('=')">=</button>
+                <button class="mjx" onclick="dls('^')">^</button>
+            </span>
+            <span id="charcount"> 750 </span>
+            <br>
+            <textarea id="newinput" name="mathjax" onload="count()" oninput="count()">{{ content }}</textarea>
+            <br>
+            <script>count();</script>
+            <button class="mjx tex" onclick="newcard()"> Crear TeX-card</button>
+            
+            <div id="createcard">
+                <br>
+                <h4>Aquí está tu TeX-card</h4>
+                <div class="texcard" id="newcard">
+                    
+                </div>
+                
+                <button class="mjx tex" onclick="save()"> ¡Obtener enlace para compartir! </button>
+                <input class="form-control" type="text" id="linktex"></input>
+            </div>
+
+        </div>
+    </div>
+</div>
+ {% endblock %}
