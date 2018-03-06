@@ -1,0 +1,5 @@
+This is the beautiful Gaussian integral: \[I=\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}.\]
+
+It is also known as the Euler-Poisson integral. A cool way to prove the validity of the formula is considering $I^2$ and then doing a change of variables to polar coordinates.
+
+The integral appears in probability (in relation to normal random variables) and physics (for example, in quantum mechanics).

@@ -20,6 +20,7 @@ CURRENT_DIR = os.path.dirname(CURRENT_FILE)
 ## Data loading
 
 CV=cvutils.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
+CTEX_DATA = CURRENT_DIR + '/cthash/'
 DATA_SECTIONS=CV.sections
 
 ## Template setting
@@ -48,7 +49,7 @@ def gttmap():
 
 @app.route("/ct")
 def convertex():
-    f = open("cthash/default", "r", encoding="utf-8")
+    f = open(CTEX_DATA + "default", "r", encoding="utf-8")
     content=f.read()
     f.close()
     return render_template("ct.html",link=False,content=content)
@@ -56,7 +57,7 @@ def convertex():
 @app.route("/ct/<hash>")
 def convertexlink(hash):
     try:
-        f=open("cthash/"+str(hash),"r",encoding="utf-8")
+        f=open(CTEX_DATA + str(hash),"r",encoding="utf-8")
         content=f.read()
         f.close()
     except (OSError,IOError):
@@ -67,7 +68,7 @@ def convertexlink(hash):
 
 @app.route("/es/ct")
 def convertexes():
-    f = open("cthash/default-es", "r", encoding="utf-8")
+    f = open(CTEX_DATA + "default-es", "r", encoding="utf-8")
     content = f.read()
     f.close()
     return render_template("ct-es.html", link=False, content=content)
@@ -75,7 +76,7 @@ def convertexes():
 @app.route("/es/ct/<hash>")
 def convertexlinkes(hash):
     try:
-        f = open("cthash/"+str(hash), "r",encoding="utf-8")
+        f = open(CTEX_DATA + str(hash), "r", encoding="utf-8")
         content = f.read()
         f.close()
     except (OSError, IOError):
@@ -91,7 +92,7 @@ def pconvertex():
         return "Bad request: Text too long",400 
     hash = hashlib.sha1(content.encode("UTF-8")).hexdigest()
     filename = hash[0:5]
-    f=open("cthash/"+filename,"w",encoding="utf-8")
+    f = open(CTEX_DATA + filename, "w", encoding="utf-8")
     content=f.write(content)
     f.close()
     lang='/'
