@@ -13,6 +13,11 @@ button.tex{
     padding:5px;
 }
 
+h1.convertex{
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+}
+
 div.texcard{
     border-style: solid;
     border-color: rgb(200,55,113);
