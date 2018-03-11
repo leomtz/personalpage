@@ -73,6 +73,7 @@
 
 <body onload="gosection();">
 
+     {% block header %} 
     <div class="container" id="header">
         <h1>
             <a href="/">
@@ -86,10 +87,12 @@
             <br> leomtz[at]im.unam.mx
         </p>
     </div>
+     {% endblock %}
 
     {% block content %}
     {% endblock %}
 
+     {% block footer %}
     <div class=container id="footer">
         <div id="social">
             <a href="https://www.facebook.com/leoimartinez" target="_blank">
@@ -117,7 +120,7 @@
         <br>
         <p>&copy; Leonardo Ignacio Martínez Sandoval, 2018</p>
     </div>
-
+     {% endblock %}
 
 </body>
 

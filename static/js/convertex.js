@@ -46,8 +46,13 @@ function newcard() {
 }
 
 function dls(a) {
-    document.getElementById("newinput").value = document.getElementById("newinput").value + a;
-    document.getElementById("newinput").focus();
+    var cursorPos = $('#newinput').prop('selectionStart');
+    var v = $('#newinput').val();
+    var textBefore = v.substring(0,cursorPos);
+    var textAfter = v.substring(cursorPos,v.length);
+    $('#newinput').val(textBefore+a+textAfter);
+    $('#newinput').focus();
+    $('#newinput')[0].selectionStart = $('#newinput')[0].selectionEnd = cursorPos+1
     count();
 }
 
