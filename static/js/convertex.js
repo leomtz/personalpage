@@ -29,14 +29,14 @@ function buildElement(obj) {
 }
 
 function newcard() {
-    newcard = document.getElementById("newcard");
+    newCard = document.getElementById("newcard");
     value = document.getElementById("newinput").value.substring(0, 750);
-    newcard.innerHTML = '';
+    newCard.innerHTML = '';
     childElement = buildElement({
         tagName: 'span',
         text: value
     })
-    newcard.appendChild(childElement);
+    newCard.appendChild(childElement);
     document.getElementById("createcard").style.display = "block";
 
     $('html,body').animate({
