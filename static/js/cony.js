@@ -5578,8 +5578,7 @@ var height = 480;
 var svg$1 = select('#data')
     .append("svg")
     .attr("id", "canvas")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("viewBox", "0,0,1000,480")
     .attr("fill", "grey");
 var colors$1 = ["hsl(0,100%,60%)", "hsl(52,100%,60%)", "hsl(104,100%,60%)", "hsl(156,100%,60%)", "hsl(208,100%,60%)", "hsl(260,100%,60%)", "hsl(312,100%,60%)"];
 // var color_scale=d3.scaleLinear()

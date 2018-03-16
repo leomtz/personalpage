@@ -6,6 +6,15 @@ h1{
     font-weight: 600;
 }
 
+@media screen and (max-width:1023px){
+    div#data{
+        padding:0 0;
+    }
+}
+
+div#data{
+    padding:0 7%;
+}
 
 div.intro{
     width: 150px;
