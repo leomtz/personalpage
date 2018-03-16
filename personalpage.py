@@ -45,6 +45,10 @@ def notfound():
 def gttmap():
     return render_template("gtt.html")
 
+@app.route("/cony")
+def cony():
+    return render_template("cony.html")
+
 # Convertex
 
 @app.route("/ct")
