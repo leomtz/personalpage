@@ -1,5 +1,5 @@
 {% extends "body_template.html" %}
-{% block header %}<div class="container" id="header">
+{% block header %}<header>
     <h1 class="convertex">
         <a href="/ct">
             ConverTex <span class="smallctx"> Mobile</span>
@@ -8,7 +8,7 @@
     <p>
         Share mathematics on the go
     </p>
-</div>
+</header>
 {% endblock %}
 {% block content %}
 <div class="container outter">
@@ -76,7 +76,7 @@
  {% endblock %}
 
  {% block footer %}
-<div class=container id="footer">
+<footer>
     <div id="social">
         <a href="https://www.facebook.com/leoimartinez" target="_blank">
             <img class="social-icon" alt="Facebook" src="/static/icons/facebook.png"></img>
@@ -102,5 +102,5 @@
     </div>
     <br>
     <p>&copy;  By <a href="/"> NekoMath </a>, Leonardo Ignacio Martínez Sandoval, 2018</p>
-</div>
+</footer>
  {% endblock %}

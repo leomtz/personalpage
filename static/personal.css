@@ -63,7 +63,8 @@ div.container.outter{
     background-color: rgb(235,235,235);
 }
 
-div.container#header,div.container#footer{
+
+header,footer{
     margin-top: 10pt;
     margin-bottom:15pt;
     padding: 30px 35px 30px 35px;
@@ -71,7 +72,7 @@ div.container#header,div.container#footer{
     background-color: rgb(0,0,43);
 }
 
-div.container#footer{
+footer{
     margin-bottom:0px;
     text-align: center;
     padding-bottom:5px;
@@ -194,7 +195,7 @@ img.social-icon{
         margin-right: 5px;
     }
 
-    div.container#footer{
+    footer{
         margin-bottom:0px;
         text-align: center;
         padding: 30px 20px 4px 20px;

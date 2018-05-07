@@ -4,6 +4,7 @@
     <div class="row">
     <div class="col-md-4 col-lg-6 padded">
         <div class="sidepadded">
+            <nav>
             <h4> General</h4>
             <p>
                 <button class="app" onclick="updateData(this.name)" name="about">About Me</button>
@@ -11,9 +12,11 @@
                 <button class="app" onclick="updateData(this.name)" name="jobs">Professional Experience</button>
                 <button class="app" onclick="updateData(this.name)" name="awards">Awards</button>
             </p>
+            </nav>
         </div>
 
         <div class="sidepadded">
+            <nav>
             <h4> Mathematical Research </h4>
             <p>
                 <button class="app" onclick="updateData(this.name)" name="papers">Scientific Publications</button>
@@ -21,9 +24,11 @@
                 <button class="app" onclick="updateData(this.name)" name="teaching">Teaching</button>
                 <button class="app" onclick="updateData(this.name)" name="service">Academic Service</button>
             </p>
+            </nav>
         </div>
 
         <div class="sidepadded">
+            <nav>
             <h4> Coding Portfolio</h4>
             <p>
                 <button class="app" onclick="updateData(this.name)" name="wholep">All Projects</button>
@@ -31,9 +36,11 @@
                 <button class="app" onclick="updateData(this.name)" name="webp">Web Projects</button>
                 <button class="app" onclick="updateData(this.name)" name="datascp">Data Science Projects</button>
             </p>
+            </nav>
         </div>
 
         <div class="sidepadded">
+            <nav>
             <h4> Promotion of Math and Problem-Solving </h4>
             <p>
                 <button class="app" onclick="updateData(this.name)" name="olympiad">Math Contests</button>
@@ -41,9 +48,11 @@
                 <button class="app" onclick="updateData(this.name)" name="prompub">Writings</button>
                 <button class="app" onclick="updateData(this.name)" name="media">In Media</button>
             </p>
+            </nav>
         </div>
 
         <div class="sidepadded">
+            <nav>
             <h4> Hobbies and more </h4>
             <p> 
                 <button class="app" onclick="updateData(this.name)" name="drawings">Drawings</button>
@@ -51,11 +60,14 @@
                 <button class="app" onclick="updateData(this.name)" name="stories">Short Stories</button>
                 <button class="app" onclick="window.location.href = '/convertex'" name="convertex">ConverTex</button>
             </p>
+            </nav>
         </div>
     </div>    
 
     <div class="col-md-8 col-lg-6 padded" id="data">
+        <section>
         {{ rcontent|safe }}
+        </section>
     </div>
 
     <div class="col-md-8 col-lg-6 padded" id="ldr">

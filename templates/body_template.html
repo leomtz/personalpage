@@ -74,7 +74,7 @@
 <body onload="gosection();">
 
      {% block header %} 
-    <div class="container" id="header">
+    <header>
         <h1>
             <a href="/">
                 Leonardo Ignacio Martínez Sandoval
@@ -86,14 +86,14 @@
             <br class="smallhead"> - Advocate of Problem-Solving
             <br> leomtz[at]im.unam.mx
         </p>
-    </div>
+    </header>
      {% endblock %}
 
     {% block content %}
     {% endblock %}
 
      {% block footer %}
-    <div class=container id="footer">
+    <footer class="container">
         <div id="social">
             <a href="https://www.facebook.com/leoimartinez" target="_blank">
                 <img class="social-icon" alt="Facebook" src="/static/icons/facebook.png"></img>
@@ -118,9 +118,8 @@
             </a>
         </div>
         <br>
-        <p>&copy; Leonardo Ignacio Martínez Sandoval, 2018</p>
-    </div>
-     {% endblock %}
+        <p>&copy; Leonardo Ignacio Martínez Sandoval, <time datetime="2018"> 2018 </time></p>
+    </footer>
 
 </body>
 

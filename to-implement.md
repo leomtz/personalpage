@@ -6,8 +6,8 @@
 16. Short story loading
 19. Ask around for interesting links
 20. Update timeline creation functions
-
 24. Spanish Version (should be easy)
+
 18. Move JS to files (done)
 13. Content for Interesting links (no interesting links for now)
 1. Programming projects should link to both git and link where applicable (done)
