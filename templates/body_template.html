@@ -72,9 +72,8 @@
 </head>
 
 <body onload="gosection();">
-
-     {% block header %} 
-    <header>
+     {% block header %}
+    <header class="container">
         <h1>
             <a href="/">
                 Leonardo Ignacio Martínez Sandoval
@@ -92,7 +91,7 @@
     {% block content %}
     {% endblock %}
 
-     {% block footer %}
+    {% block footer %}
     <footer class="container">
         <div id="social">
             <a href="https://www.facebook.com/leoimartinez" target="_blank">
@@ -120,6 +119,7 @@
         <br>
         <p>&copy; Leonardo Ignacio Martínez Sandoval, <time datetime="2018"> 2018 </time></p>
     </footer>
+    {% endblock %}
 
 </body>
 
