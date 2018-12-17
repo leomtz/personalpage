@@ -49,6 +49,14 @@ def gttmap():
 def cony():
     return render_template("cony.html")
 
+@app.route("/cony2017")
+def cony2017():
+    return render_template("cony2017.html")
+
+@app.route("/cony2018")
+def cony2018():
+    return render_template("cony2018.html")
+
 # Convertex
 
 @app.route("/ct")
