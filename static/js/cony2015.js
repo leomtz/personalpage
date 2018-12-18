@@ -1252,9 +1252,6 @@ define(Color, color, {
   displayable: function() {
     return this.rgb().displayable();
   },
-  hex: function() {
-    return this.rgb().hex();
-  },
   toString: function() {
     return this.rgb() + "";
   }
@@ -1321,9 +1318,6 @@ define(Rgb, rgb, extend(Color, {
         && (0 <= this.b && this.b <= 255)
         && (0 <= this.opacity && this.opacity <= 1);
   },
-  hex: function() {
-    return "#" + hex(this.r) + hex(this.g) + hex(this.b);
-  },
   toString: function() {
     var a = this.opacity; a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
     return (a === 1 ? "rgb(" : "rgba(")
@@ -1333,11 +1327,6 @@ define(Rgb, rgb, extend(Color, {
         + (a === 1 ? ")" : ", " + a + ")");
   }
 }));
-
-function hex(value) {
-  value = Math.max(0, Math.min(255, Math.round(value) || 0));
-  return (value < 16 ? "0" : "") + value.toString(16);
-}
 
 function hsla(h, s, l, a) {
   if (a <= 0) h = s = l = NaN;
@@ -1423,11 +1412,10 @@ function hsl2rgb(h, m1, m2) {
 var deg2rad = Math.PI / 180;
 var rad2deg = 180 / Math.PI;
 
-// https://beta.observablehq.com/@mbostock/lab-and-rgb
-var K = 18,
-    Xn = 0.96422,
+var Kn = 18,
+    Xn = 0.950470, // D65 standard referent
     Yn = 1,
-    Zn = 0.82521,
+    Zn = 1.088830,
     t0 = 4 / 29,
     t1 = 6 / 29,
     t2 = 3 * t1 * t1,
@@ -1436,19 +1424,16 @@ var K = 18,
 function labConvert(o) {
   if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
   if (o instanceof Hcl) {
-    if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
     var h = o.h * deg2rad;
     return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
   }
   if (!(o instanceof Rgb)) o = rgbConvert(o);
-  var r = rgb2lrgb(o.r),
-      g = rgb2lrgb(o.g),
-      b = rgb2lrgb(o.b),
-      y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
-  if (r === g && g === b) x = z = y; else {
-    x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
-    z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
-  }
+  var b = rgb2xyz(o.r),
+      a = rgb2xyz(o.g),
+      l = rgb2xyz(o.b),
+      x = xyz2lab((0.4124564 * b + 0.3575761 * a + 0.1804375 * l) / Xn),
+      y = xyz2lab((0.2126729 * b + 0.7151522 * a + 0.0721750 * l) / Yn),
+      z = xyz2lab((0.0193339 * b + 0.1191920 * a + 0.9503041 * l) / Zn);
   return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
 }
 
@@ -1465,22 +1450,22 @@ function Lab(l, a, b, opacity) {
 
 define(Lab, lab, extend(Color, {
   brighter: function(k) {
-    return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    return new Lab(this.l + Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
   },
   darker: function(k) {
-    return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    return new Lab(this.l - Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
   },
   rgb: function() {
     var y = (this.l + 16) / 116,
         x = isNaN(this.a) ? y : y + this.a / 500,
         z = isNaN(this.b) ? y : y - this.b / 200;
-    x = Xn * lab2xyz(x);
     y = Yn * lab2xyz(y);
+    x = Xn * lab2xyz(x);
     z = Zn * lab2xyz(z);
     return new Rgb(
-      lrgb2rgb( 3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
-      lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.0334540 * z),
-      lrgb2rgb( 0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
+      xyz2rgb( 3.2404542 * x - 1.5371385 * y - 0.4985314 * z), // D65 -> sRGB
+      xyz2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
+      xyz2rgb( 0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
       this.opacity
     );
   }
@@ -1494,18 +1479,17 @@ function lab2xyz(t) {
   return t > t1 ? t * t * t : t2 * (t - t0);
 }
 
-function lrgb2rgb(x) {
+function xyz2rgb(x) {
   return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
 }
 
-function rgb2lrgb(x) {
+function rgb2xyz(x) {
   return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
 }
 
 function hclConvert(o) {
   if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
   if (!(o instanceof Lab)) o = labConvert(o);
-  if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0, o.l, o.opacity);
   var h = Math.atan2(o.b, o.a) * rad2deg;
   return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
 }
@@ -1523,10 +1507,10 @@ function Hcl(h, c, l, opacity) {
 
 define(Hcl, hcl, extend(Color, {
   brighter: function(k) {
-    return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
+    return new Hcl(this.h, this.c, this.l + Kn * (k == null ? 1 : k), this.opacity);
   },
   darker: function(k) {
-    return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
+    return new Hcl(this.h, this.c, this.l - Kn * (k == null ? 1 : k), this.opacity);
   },
   rgb: function() {
     return labConvert(this).rgb();
@@ -3598,53 +3582,19 @@ function formatNumerals(numerals) {
   };
 }
 
-// [[fill]align][sign][symbol][0][width][,][.precision][~][type]
-var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
+function formatDefault(x, p) {
+  x = x.toPrecision(p);
 
-function formatSpecifier(specifier) {
-  return new FormatSpecifier(specifier);
-}
-
-formatSpecifier.prototype = FormatSpecifier.prototype; // instanceof
-
-function FormatSpecifier(specifier) {
-  if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
-  var match;
-  this.fill = match[1] || " ";
-  this.align = match[2] || ">";
-  this.sign = match[3] || "-";
-  this.symbol = match[4] || "";
-  this.zero = !!match[5];
-  this.width = match[6] && +match[6];
-  this.comma = !!match[7];
-  this.precision = match[8] && +match[8].slice(1);
-  this.trim = !!match[9];
-  this.type = match[10] || "";
-}
-
-FormatSpecifier.prototype.toString = function() {
-  return this.fill
-      + this.align
-      + this.sign
-      + this.symbol
-      + (this.zero ? "0" : "")
-      + (this.width == null ? "" : Math.max(1, this.width | 0))
-      + (this.comma ? "," : "")
-      + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
-      + (this.trim ? "~" : "")
-      + this.type;
-};
-
-// Trims insignificant zeros, e.g., replaces 1.2000k with 1.2k.
-function formatTrim(s) {
-  out: for (var n = s.length, i = 1, i0 = -1, i1; i < n; ++i) {
-    switch (s[i]) {
+  out: for (var n = x.length, i = 1, i0 = -1, i1; i < n; ++i) {
+    switch (x[i]) {
       case ".": i0 = i1 = i; break;
       case "0": if (i0 === 0) i0 = i; i1 = i; break;
-      default: if (i0 > 0) { if (!+s[i]) break out; i0 = 0; } break;
+      case "e": break out;
+      default: if (i0 > 0) i0 = 0; break;
     }
   }
-  return i0 > 0 ? s.slice(0, i0) + s.slice(i1 + 1) : s;
+
+  return i0 > 0 ? x.slice(0, i0) + x.slice(i1 + 1) : x;
 }
 
 var prefixExponent;
@@ -3673,6 +3623,7 @@ function formatRounded(x, p) {
 }
 
 var formatTypes = {
+  "": formatDefault,
   "%": function(x, p) { return (x * 100).toFixed(p); },
   "b": function(x) { return Math.round(x).toString(2); },
   "c": function(x) { return x + ""; },
@@ -3686,6 +3637,61 @@ var formatTypes = {
   "s": formatPrefixAuto,
   "X": function(x) { return Math.round(x).toString(16).toUpperCase(); },
   "x": function(x) { return Math.round(x).toString(16); }
+};
+
+// [[fill]align][sign][symbol][0][width][,][.precision][type]
+var re = /^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$/i;
+
+function formatSpecifier(specifier) {
+  return new FormatSpecifier(specifier);
+}
+
+formatSpecifier.prototype = FormatSpecifier.prototype; // instanceof
+
+function FormatSpecifier(specifier) {
+  if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
+
+  var match,
+      fill = match[1] || " ",
+      align = match[2] || ">",
+      sign = match[3] || "-",
+      symbol = match[4] || "",
+      zero = !!match[5],
+      width = match[6] && +match[6],
+      comma = !!match[7],
+      precision = match[8] && +match[8].slice(1),
+      type = match[9] || "";
+
+  // The "n" type is an alias for ",g".
+  if (type === "n") comma = true, type = "g";
+
+  // Map invalid types to the default format.
+  else if (!formatTypes[type]) type = "";
+
+  // If zero fill is specified, padding goes after sign and before digits.
+  if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
+
+  this.fill = fill;
+  this.align = align;
+  this.sign = sign;
+  this.symbol = symbol;
+  this.zero = zero;
+  this.width = width;
+  this.comma = comma;
+  this.precision = precision;
+  this.type = type;
+}
+
+FormatSpecifier.prototype.toString = function() {
+  return this.fill
+      + this.align
+      + this.sign
+      + this.symbol
+      + (this.zero ? "0" : "")
+      + (this.width == null ? "" : Math.max(1, this.width | 0))
+      + (this.comma ? "," : "")
+      + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
+      + this.type;
 };
 
 function identity$3(x) {
@@ -3712,17 +3718,7 @@ function formatLocale(locale) {
         width = specifier.width,
         comma = specifier.comma,
         precision = specifier.precision,
-        trim = specifier.trim,
         type = specifier.type;
-
-    // The "n" type is an alias for ",g".
-    if (type === "n") comma = true, type = "g";
-
-    // The "" type, and any invalid type, is an alias for ".12~g".
-    else if (!formatTypes[type]) precision == null && (precision = 12), trim = true, type = "g";
-
-    // If zero fill is specified, padding goes after sign and before digits.
-    if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
 
     // Compute the prefix and suffix.
     // For SI-prefix, the suffix is lazily computed.
@@ -3733,13 +3729,13 @@ function formatLocale(locale) {
     // Is this an integer type?
     // Can this type generate exponential notation?
     var formatType = formatTypes[type],
-        maybeSuffix = /[defgprs%]/.test(type);
+        maybeSuffix = !type || /[defgprs%]/.test(type);
 
     // Set the default precision if not specified,
     // or clamp the specified precision to the supported range.
     // For significant precision, it must be in [1, 21].
     // For fixed precision, it must be in [0, 20].
-    precision = precision == null ? 6
+    precision = precision == null ? (type ? 6 : 12)
         : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision))
         : Math.max(0, Math.min(20, precision));
 
@@ -3757,9 +3753,6 @@ function formatLocale(locale) {
         // Perform the initial formatting.
         var valueNegative = value < 0;
         value = formatType(Math.abs(value), precision);
-
-        // Trim insignificant zeros.
-        if (trim) value = formatTrim(value);
 
         // If a negative value rounds to zero during formatting, treat as positive.
         if (valueNegative && +value === 0) valueNegative = false;
@@ -3999,22 +3992,22 @@ function continuous(deinterpolate, reinterpolate$$1) {
       range = unit,
       interpolate$$1 = interpolateValue,
       clamp = false,
-      piecewise$$1,
+      piecewise,
       output,
       input;
 
   function rescale() {
-    piecewise$$1 = Math.min(domain.length, range.length) > 2 ? polymap : bimap;
+    piecewise = Math.min(domain.length, range.length) > 2 ? polymap : bimap;
     output = input = null;
     return scale;
   }
 
   function scale(x) {
-    return (output || (output = piecewise$$1(domain, range, clamp ? deinterpolateClamp(deinterpolate) : deinterpolate, interpolate$$1)))(+x);
+    return (output || (output = piecewise(domain, range, clamp ? deinterpolateClamp(deinterpolate) : deinterpolate, interpolate$$1)))(+x);
   }
 
   scale.invert = function(y) {
-    return (input || (input = piecewise$$1(range, domain, deinterpolateLinear, clamp ? reinterpolateClamp(reinterpolate$$1) : reinterpolate$$1)))(+y);
+    return (input || (input = piecewise(range, domain, deinterpolateLinear, clamp ? reinterpolateClamp(reinterpolate$$1) : reinterpolate$$1)))(+y);
   };
 
   scale.domain = function(_) {
@@ -5456,11 +5449,7 @@ var warm = cubehelixLong(cubehelix(-100, 0.75, 0.35), cubehelix(80, 1.50, 0.8));
 
 var cool = cubehelixLong(cubehelix(260, 0.75, 0.35), cubehelix(80, 1.50, 0.8));
 
-var c = cubehelix();
-
-var c$1 = rgb(),
-    pi_1_3 = Math.PI / 3,
-    pi_2_3 = Math.PI * 2 / 3;
+var rainbow = cubehelix();
 
 function ramp$1(range) {
   var n = range.length;
@@ -5577,8 +5566,8 @@ ReflectContext.prototype = {
 };
 
 // We begin by fetching the data
-var promisePoints = json("/static/pairs2018.json");
-var promiseStateInfo = json("/static/estados2018.json");
+var promisePoints = json("/static/pairs2015.json");
+var promiseStateInfo = json("/static/estados2015.json");
 var promiseMap = xml("/static/mxalph.svg");
 var promiseAll = Promise.all([promisePoints, promiseStateInfo, promiseMap]);
 // Initial canvas and plot configuration
@@ -5963,37 +5952,37 @@ promiseAll.then(function (values$$1) {
     }
     // function updateBec(){
     // }
-    var legendsIndex = [{ x: 20, leg: "~ 80 becarios" }];
+    var legendsIndex = [{ x: 20, leg: "~ 96 becarios" }];
     var legendsGrado = [
         { x: -250, leg: "Maestría" },
-        { x: 40, leg: "Doctorado" },
+        { x: 45, leg: "Doctorado" },
         { x: 210, leg: "Especialización" },
         { x: 370, leg: "Estancia" }
     ];
     var legendsInicio = [
-        { x: -350, leg: "2013 -" },
-        { x: -260, leg: "2014" },
-        { x: -165, leg: "2015" },
-        { x: -55, leg: "2016" },
-        { x: 160, leg: "2017" },
-        { x: 385, leg: "2018 +" }
+        { x: -350, leg: "2011 -" },
+        { x: -260, leg: "2012" },
+        { x: -165, leg: "2013" },
+        { x: -70, leg: "2014" },
+        { x: 115, leg: "2015" },
+        { x: 315, leg: "2016 +" }
     ];
     var legendsFin = [
-        { x: -350, leg: "2017 -" },
-        { x: -260, leg: "2018" },
-        { x: -45, leg: "2019" },
-        { x: 180, leg: "2020" },
-        { x: 335, leg: "2021" },
-        { x: 445, leg: "2022 +" }
+        { x: -350, leg: "2015 -" },
+        { x: -260, leg: "2016" },
+        { x: -60, leg: "2017" },
+        { x: 140, leg: "2018" },
+        { x: 320, leg: "2019" },
+        { x: 430, leg: "2020 +" }
     ];
     var legendsArea = [
         { x: -340, leg: "Físico-Matemática" },
         { x: -240, leg: "Biología y Química" },
         { x: -125, leg: "Medicina y C. Salud" },
-        { x: -15, leg: "Humanidades y C. Conducta" },
-        { x: 115, leg: "Ciencias Sociales" },
+        { x: -30, leg: "Humanidades y C. Conducta" },
+        { x: 100, leg: "Ciencias Sociales" },
         { x: 255, leg: "Biotecnología y C. Agropecuarias" },
-        { x: 380, leg: "Ingenierías" }
+        { x: 370, leg: "Ingenierías" }
     ];
     //Button listening
     select('#todos').on("click", function (r) { return updateSquare("x", legendsIndex); });
