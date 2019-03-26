@@ -49,6 +49,13 @@ def gttmap():
 def cony():
     return render_template("cony.html")
 
+@app.route("/cony<year>")
+def conyyear(year): 
+    if year in ["2015","2016","2017","2018"]:
+        return render_template("cony{}.html".format(year))
+    else:
+        return render_template("notfound.html")
+
 # Convertex
 
 @app.route("/ct")
