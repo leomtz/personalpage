@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "/home/leonardo/anaconda3/bin/python",
     "python.linting.enabled": false,
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true
