@@ -11,9 +11,15 @@ h1, h2{
     color: rgb(0, 51, 145);
 }
 
+img{
+    padding: 10px;
+    width: 350px;
+}
+
 header{
     background-color: aliceblue;
-    padding: 15 pt 0pt;
+    padding: 15pt 0pt;
+
 }
 
 .container{
@@ -21,9 +27,9 @@ header{
 }
 
 .bgcss{
-    background-color: bisque;
     box-model: border-box;
-    border: 10px solid transparent;
+    background-color: bisque;
     background-clip:padding-box;
+    border: 10px solid transparent;
     padding:10px;
 }
