@@ -25,4 +25,5 @@ header{
     box-model: border-box;
     border: 10px solid transparent;
     background-clip:padding-box;
+    padding:10px;
 }
