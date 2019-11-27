@@ -104,3 +104,8 @@ ENV/
 
 # Visual Studio
 .vscode/
+myenv/Scripts/deactivate.bat
+myenv/Scripts/activate.bat
+myenv/Scripts/Activate.ps1
+myenv/pyvenv.cfg
+myenv/Scripts/activate

@@ -124,6 +124,10 @@ def personal_page(section):
 def blankrequest():
     return redirect("/")
 
+@app.route("/poly2019/")
+def polytopes():
+    return render_template("hdrarnau.html")
+
 @app.route("/request/<section>")
 def request(section):
     template=template_chooser(section)

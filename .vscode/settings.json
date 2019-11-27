@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "c:\\Users\\pktgc\\Documents\\Coding\\personalpage\\venv\\Scripts\\python.exe",
     "python.linting.enabled": false,
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true
