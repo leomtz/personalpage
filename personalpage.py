@@ -128,6 +128,10 @@ def blankrequest():
 def polytopes():
     return render_template("hdrarnau.html")
 
+@app.route("/descartes/")
+def descartes():
+    return render_template("descartes.html")
+
 @app.route("/request/<section>")
 def request(section):
     template=template_chooser(section)
