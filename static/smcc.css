@@ -1,0 +1,40 @@
+body {
+    background-color: #4b778d; 
+    color: rgb(0,0,43);
+    font-family: 'Calibri Light', Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+h1, h2{
+    color: rgb(50, 50, 50);
+}
+
+header{
+    text-align: center;
+    background-color: #75c1e4;
+    padding: 15pt 0pt;
+
+}
+
+.container{
+    background-color: white;
+}
+
+.bgcss{
+    box-model: border-box;
+    background-color: rgb(248,237,191); 
+    background-clip:padding-box;
+    border: 10px solid transparent;
+    padding:10px;
+}
+nav[data-toggle="toc"] {
+    top: 42px;
+  }
+  
+  /* small screens */
+@media (max-width: 768px) {
+    /* override stickyness so that the navigation does not follow scrolling */
+    nav[data-toggle="toc"] {
+      margin-bottom: 42px;
+      position: static;
+    }
+}

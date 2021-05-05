@@ -132,6 +132,10 @@ def polytopes():
 def descartes():
     return render_template("descartes.html")
 
+@app.route("/smccgdc/")
+def smcc():
+    return render_template("smcc.html")
+
 @app.route("/request/<section>")
 def request(section):
     template=template_chooser(section)
