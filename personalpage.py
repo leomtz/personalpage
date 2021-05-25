@@ -3,6 +3,7 @@
 # Necessary Flask imports
 from flask import Flask, url_for,render_template,redirect
 from flask import request as request_obj
+from flask_mail import Mail
 # openpyxl helps to work with MSExcel databases
 import os
 import sys
