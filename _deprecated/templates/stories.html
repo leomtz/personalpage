@@ -1,0 +1,13 @@
+<h4>Short Stories (in Spanish)</h4>
+
+{% for item in items %}
+<div class="blockitem story">
+    <details>
+        <summary>
+            <strong>{{ item.title }}</strong>, {{ item.date }} <br> (Read...)
+        </summary>
+        <!-- <img src="{{ item.links['file'] }}" class="img-fluid" alt="{{ item.title }}"></img> -->
+        {{ item.description | safe }}
+    </details>
+</div>
+{% endfor %}

@@ -187,4 +187,4 @@ def fetch_from_CV(cv,class_,querytags=None):
                     items+=[new_item]
                     break
         y+=1
-    return items
+    return items[::-1]

@@ -28,10 +28,11 @@ proc=df[proc_mask]
 preprints=df[preprint_mask]
 
 #Count per year
-years=range(2013,2020,1)
+years=range(2013,2022,1)
 papers_peryear=papers.groupby('date').count().reindex(years, fill_value=0)
 proc_peryear=proc.groupby('date').count().reindex(years, fill_value=0)
 preprint_peryear=preprints.groupby('date').count().reindex(years, fill_value=0)
+
 
 #Create the plot
 plt.bar(years,papers_peryear['id'], label='Journal Papers', color="#C83771")
@@ -42,6 +43,6 @@ plt.xticks(years)
 plt.xlabel('Year')
 plt.ylabel('Count')
 plt.legend(loc='best',facecolor="white")
-plt.gca().set_aspect(0.8)
+plt.tight_layout()
 plt.savefig('papers{}.png'.format(years),dpi=120,transparent=True)
 plt.show()

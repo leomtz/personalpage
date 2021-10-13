@@ -1,0 +1,90 @@
+{% extends "body_template.html" %}
+    {% block content %}
+    <div class="container outter pt-3 pl-3 pr-3">
+        <h3>About Me</h3>
+        <div class="row pt-3">
+            <div class="col-md-6 col-lg-6 text-justify">
+
+            <p> I am a full-time professor and researcher in mathematics at the <a
+                href="http://www.fciencias.unam.mx/" target="_blank"> Faculty of Sciences </a> of the <a
+                href="https://www.unam.mx/"> National Autonomous University of Mexico </a> (FC-UNAM). </p>
+
+        <p>My main areas of research interest are discrete and computational geometry. I have strong programming skills in Python and
+            web development. I keep on learning continuously and I like to share with others what I have learnt. I am open to
+            research collaborations and interactions with industry.</p>
+
+        <p> I am particularly fond of mathematical problem solving. When possible, I contribute to various
+            mathematical competitions around the world, including the <a href="http://www.imo-official.org" target="_blank">
+                International Mathematical Olympiad</a>, the <a href="http://www.apmo-official.org" target="_blank"> Asian
+                Pacific Mathematics Olympiad </a> and the <a href="http://www.ommenlinea.org" target="_blank"
+                rel="noopener noreferrer">Mexican Mathematical Olympiad.</a> </p>
+
+        <p> I have various hobbies. I like painting, playing music, reading and the occasional
+            writing of short stories or blog entries. I love cooking, specially mexican food and desserts. I have run some 10k
+            races and a half-marathon. </p>
+        </div>    
+    
+        <div class="col-md-6 col-lg-6" id="data">
+        
+            <div class="blockitem">
+                <img class="img-fluid" src="/static/perfil.jpg"></img>
+            </div>            
+
+            
+        </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-lg-4">
+                <h4> Education </h4>
+
+                {% for item in education %}
+                <div class="blockitem">
+                    <h4>{{ item.title }}</h4>
+                    
+                    <strong>{{ item.institution }}</strong> <br>({{ item.date[0] }}{% if item.date[1]!=None %} - {{ item.date[1] }}{% endif %}) <br>
+                    {% if item.description!=None %}
+                    <details>
+                        <summary> See more...</summary>
+                        <p>{{ item. description | safe  }}</p>
+                    </details>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="col-lg-4">
+                <h4>Professional Experience</h4>
+                {% for item in jobs %}
+                <div class="blockitem">
+                    <h4>{{ item.title }}</h4>
+                    <strong>{{ item.institution }}</strong> <br>({{ item.date[0] }} - {{ item.date[1] }})
+                    <details>
+                        <summary>See more...</summary>
+                        {% if item.description!=None %}
+                        <p>{{ item. description | safe  }}</p>
+                    </details>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-4">
+
+                <h4> Awards and Funding</h4>
+
+                {% for item in awards %}
+                <div class="blockitem">
+                    <h4>{{ item.title }}</h4><strong>{{ item.institution }}</strong>
+                    <details>
+                        <summary>See more...</summary>
+                        <p> {{ item.description | safe}}<br><br>  {{ item.location }}, {{ item.date }} </p>
+                    </details>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+    {% endblock %}

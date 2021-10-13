@@ -1,0 +1,103 @@
+{% extends "body_template.html" %}
+    {% block content %}
+    <div class="container outter pr-3 pl-3 pt-3">
+        <h3>Coding Portfolio</h3>
+        <div class="row pt-3">
+            <div class="col-md-4 col-lg-6">
+
+        <p> Here you can find a list of some Python projects I have developed.</p>
+        </div>    
+    
+        <div class="col-md-8 col-lg-6" id="data">        
+            <div class="blockitem">
+                <img class="img-fluid" src="/static/rate30.png"></img>
+            </div>           
+        </div>
+            
+        </div>
+
+        <div class="row pt-3">
+
+            <div class="col-lg-4">
+                <h4> Data Science </h4>
+
+                {% for item in coding %}
+                {% if item.tags[0] == "datasc" %}
+                <div class="paperitem wrapper">
+                    <div class="prob-info">
+                        <strong> {{ item.title }}</strong>
+                        <p>{{ item.description | safe }}</p>
+                        {% if item.links['github']!=None %}
+                        <a href="https://github.com/{{ item.links['github'] }} " class="goodie" target="_blank">GitHub Link</a>
+                        {% endif %}
+                        {% if item.links['web']!=None %}
+                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Project Link</a>
+                        {% endif %}
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3 thirdLabel">{{ item.date }}</div>
+                            <div class="col-sm-12 col-md-12 col-lg-9 thirdLabel">{{ item.technologies }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-4">
+                <h4> Web Development </h4>
+                {% for item in coding %}
+                {% if item.tags[0] == "webdev" %}
+                <div class="paperitem wrapper">
+                    <div class="prob-info">
+                        <strong> {{ item.title }}</strong>
+                        <p>{{ item.description | safe }}</p>
+                        {% if item.links['github']!=None %}
+                        <a href="https://github.com/{{ item.links['github'] }} " class="goodie" target="_blank">GitHub Link</a>
+                        {% endif %}
+                        {% if item.links['web']!=None %}
+                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Project Link</a>
+                        {% endif %}
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3 thirdLabel">{{ item.date }}</div>
+                            <div class="col-sm-12 col-md-12 col-lg-9 thirdLabel">{{ item.technologies }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-4">
+                <h4> Python - Other </h4>
+
+                {% for item in coding %}
+                {% if item.tags[0] == "python" %}
+                <div class="paperitem wrapper">
+                    <div class="prob-info">
+                        <strong> {{ item.title }}</strong>
+                        <p>{{ item.description | safe }}</p>
+                        {% if item.links['github']!=None %}
+                        <a href="https://github.com/{{ item.links['github'] }} " class="goodie" target="_blank">GitHub Link</a>
+                        {% endif %}
+                        {% if item.links['web']!=None %}
+                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Project Link</a>
+                        {% endif %}
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3 thirdLabel">{{ item.date }}</div>
+                            <div class="col-sm-12 col-md-12 col-lg-9 thirdLabel">{{ item.technologies }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

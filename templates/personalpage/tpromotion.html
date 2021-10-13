@@ -1,0 +1,56 @@
+{% extends "body_template.html" %}
+    {% block content %}
+    <div class="container outter pl-3 pr-3 pt-3">
+        <h3>Math Promotion Talks and Slides</h3>
+        <div class="row pt-3">
+            <div class="col-md-4 col-lg-6 padded">
+
+            <p style="text-align: justify"> Here you can find a list of my mathematical promotion talks. For some of them you can
+                download the slides. </p>
+        </div>    
+    
+        <div class="col-md-8 col-lg-6 padded" id="data">
+            <div class="blockitem">
+                <img class="img-fluid" src="/static/small-angles.png"></img>
+            </div>           
+        </div>            
+
+            
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-lg-6 padded">
+                <h4> Undergraduate Topics </h4>
+                    {% for item in presentations %}
+                    {% if item.tags[0] == "upromotion" %}
+                    <div class="paperitem wrapper mb-3 mt-3">
+                        <div class="prob-info">
+                            <p><strong> {{ item.title }}</strong> ({{item.date}}). {{ item.audience }}. {{ item.institution + '.' if item.institution}}
+                            {% if item.links['file']!=None %}</p>
+                            <p><a href="/static/slides/{{ item.links['file'] }}" class="goodie" target="_blank"> Get slides</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+            </div>
+
+            <div class="col-lg-6 padded">
+                <h4> High-school Topics </h4>
+                {% for item in presentations %}
+                {% if item.tags[0] == "hpromotion" %}
+                <div class="paperitem wrapper mb-3 mt-3">
+                    <div class="prob-info">
+                        <p><strong> {{ item.title }}</strong> ({{item.date}}). {{ item.audience }}. {{ item.institution + '.' if item.institution}}
+                        {% if item.links['file']!=None %}</p>
+                        <p><a href="/static/slides/{{ item.links['file'] }}" class="goodie" target="_blank"> Get slides</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

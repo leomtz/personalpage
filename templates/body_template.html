@@ -87,8 +87,93 @@
             <span class="smallhead">- </span> Mathematical Researcher
             <br class="smallhead"> - Python Coder
             <br class="smallhead"> - Advocate of Problem-Solving
-            <br> leomtz[at]ciencias.unam.mx
         </p>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>   
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Info
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href='{{ url_for("about") }}'>About Me</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href='https://www.facebook.com/leoimartinez'>Facebook Profile 🔗</a>
+                    <a class="dropdown-item" href='https://www.linkedin.com/in/leoimartinez'>Linkedin Profile 🔗</a>
+                    <a class="dropdown-item" href='https://www.twitter.com/leoimartinez'>Twitter Profile 🔗</a>
+                    <a class="dropdown-item" href='https://www.instagram.com/leoimartinez'>Instagram Profile 🔗</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Research
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href='{{ url_for("papers") }}'>Scientific Publications</a>
+                      <a class="dropdown-item" href='{{ url_for("tresearch") }}'>Talks and Slides</a>
+                      <a class="dropdown-item" href='{{ url_for("sresearch") }}'>Research Service</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" target="_blank" href="https://scholar.google.com/citations?user=hUjL-FwAAAAJ&hl=es">Google Scholar Profile 🔗</a>
+                      <a class="dropdown-item" target="_blank" href="https://www.zbmath.org/authors/?q=leonardo+mart%C3%ADnez-sandoval">zbMATH Profile 🔗</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Teaching
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href='{{ url_for("courses") }}'>Courses</a>
+                      <a class="dropdown-item" href='{{ url_for("students") }}'>Students</a>
+                      <a class="dropdown-item" href='{{ url_for("steaching") }}'>Academic Service</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" target="_blank" href="https://moodle.nekomath.com">NekoMath Learn (Spanish) 🔗</a>
+                      <a class="dropdown-item" target="_blank" href="https://blog.nekomath.com/docencia">Notes in Blog (Spanish) 🔗</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Math Promotion
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href='{{ url_for("contests") }}'>Math Contests</a>
+                      <a class="dropdown-item" href='{{ url_for("events") }}'>Math Events</a>
+                      <a class="dropdown-item" href='{{ url_for("writings") }}'>Writings</a>
+                      <a class="dropdown-item" href='{{ url_for("tpromotion") }}'>Talks and Slides</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" target="_blank" href="https://blog.nekomath.com">Personal Blog (Spanish) 🔗</a>
+                      <a class="dropdown-item" target="_blank" href="https://www.youtube.com/channel/UCE5xZapml0LpCcUso6_hMOQ">YouTube Channel 🔗</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Coding
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href='{{ url_for("coding") }}'>Coding Portfolio</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" target="_blank" href='{{ url_for("convertex") }}'>ConverTex 🔗</a>
+                      <a class="dropdown-item" target="_blank" href='{{ url_for("convertexes") }}'>ConverTex (Spanish) 🔗</a>
+                      <a class="dropdown-item" target="_blank" href="https://github.com/leomtz">GitHub Profile 🔗</a>
+                    </div>
+                  </li>
+                  <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Hobbies
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Drawings</a>
+                      <a class="dropdown-item" href="#">Music</a>
+                      <a class="dropdown-item" href="#">Short Stories</a>
+                    </div> -->
+                  </li>
+              </ul>
+            </div>
+          </nav>
     </header>
      {% endblock %}
 
@@ -97,31 +182,7 @@
 
     <footer class="container">
     {% block footer %}
-        <div id="social">
-            <a href="https://www.facebook.com/leoimartinez" target="_blank">
-                <img class="social-icon" alt="Facebook" src="/static/icons/facebook.png"></img>
-            </a>
-            <a href="http://blog.nekomath.com" target="_blank">
-                <img class="social-icon" alt="Blog" src="/static/icons/wordpress.png"></img>
-            </a>
-            <a href="https://www.youtube.com/c/ssbmplayer" target="_blank">
-                <img class="social-icon" alt="YouTube" src="/static/icons/youtube.png"></img>
-            </a>
-            <a href="https://www.linkedin.com/in/leoimartinez" target="_blank">
-                <img class="social-icon" alt="LinkedIn" src="/static/icons/linked-in.png"></img>
-            </a>
-            <a href="https://www.instagram.com/leoimartinez" target="_blank">
-                <img class="social-icon" alt="Instagram" src="/static/icons/instagram.png"></img>
-            </a>
-            <a href="https://www.github.com/leomtz" target="_blank">
-                <img class="social-icon" alt="GitHub" src="/static/icons/github.png"></img>
-            </a>
-            <a href="https://www.twitter.com/leoimartinez" target="_blank">
-                <img class="social-icon" alt="Twitter" src="/static/icons/twitter.png"></img>
-            </a>
-        </div>
-        <br>
-        <p>&copy; Leonardo Ignacio Martínez Sandoval, <time datetime="2019"> 2019 </time></p>
+        <p>&copy; Leonardo Ignacio Martínez Sandoval, <time datetime="2021"> 2021 </time></p>
     {% endblock %}
     </footer>
 

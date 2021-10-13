@@ -1,0 +1,50 @@
+{% extends "body_template.html" %}
+    {% block content %}
+    <div class="container outter pl-3 pr-3 pt-3">
+        <h3>Students</h3>
+        <div class="row pt-3">
+            <div class="col-md-4 col-lg-6">
+
+        <p>List of the students that I supervise either as thesis supervisor or social service supervisor.</p>
+        </div>    
+    
+        <div class="col-md-8 col-lg-6" id="data">        
+            <div class="blockitem">
+                <img src="static/angel.png" class="img-fluid"></img>
+            </div>
+            </div>            
+
+            
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-lg-6">
+                <h4> Thesis Supervisor </h4>
+                {% for item in service %}
+                {% if item.tags[0] == "ut_supervisor" %}
+                <div class="paperitem wrapper">
+                    <div class="prob-info">
+                        <strong> {{ item.title }}</strong><br>
+                        <p>{{ item.description }} ({{item.date}}).</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="col-lg-6">
+                <h4> Social Service Supervisor </h4>
+                {% for item in service %}
+                {% if item.tags[0] == "ss_supervisor" %}
+                <div class="paperitem wrapper">
+                    <div class="prob-info">
+                        <p> {{ item.title }}</strong> ({{item.date}})</p><br>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

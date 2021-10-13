@@ -1,0 +1,51 @@
+{% extends "body_template.html" %}
+    {% block content %}
+    <div class="container outter pt-3 pl-3 pr-3">
+        <h3>Courses</h3>
+        <div class="row pt-3">
+            <div class="col-md-4 col-lg-6 text-justify">
+
+        <p>I mostly teach undergraduate courses for the Mathematics program at Faculty of Sciences, UNAM (FC-UNAM).
+            Sometimes, I also teach some undergraduate courses for the Data Science program at IIMAS, UNAM.  
+            From time to time I teach mini-courses for undergraduate students and courses for high-school teachers.</p>
+
+        </div>
+    
+        <div class="col-md-8 col-lg-6" id="data">
+
+            <div class="blockitem">
+                <img class="img-fluid" src="/static/invertible.png"></img>
+            </div>           
+            </div>            
+
+            
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-lg-6">
+                <h4> For Undergraduates </h4>
+                <ul>
+
+                    {% for item in courses %}
+                    {% if item.tags[0] == "undergraduate" %}
+                    <li> <strong> {{ item.title }}</strong> ({{ item.date }}) - {{ item.institution }}. </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-lg-6">
+                <h4> For Teachers </h4>
+                <ul>
+
+                    {% for item in courses %}
+                    {% if item.tags[0] == "teachers" %}
+                    <li> <strong> {{ item.title }}</strong> ({{ item.date }}) - {{ item.institution }}. </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}
