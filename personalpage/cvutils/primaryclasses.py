@@ -1,9 +1,8 @@
 # openpyxl helps to work with MSExcel databases
 import openpyxl as opx
+import importlib
 
-# We import the following to create plots
-import numpy as npy
-import matplotlib.pyplot as plt
+class_lib = importlib.import_module('personalpage.cvutils.itemclasses')
 
 # class ItemList(object):
 #     # This is just a collection (dict) of items . We may use it to collect all the 
@@ -98,13 +97,12 @@ class CurriculumVitae(object):
 def cv_from_xlsx(location):
     cv_db = opx.load_workbook(location, data_only=True)
 
-    section_ws = cv_db["SECTION"]    
+    section_ws = cv_db["SECTION"] 
     seclist_ws = cv_db["SECLIST"]
     config_ws= cv_db["CONFIG"]
     link_ws= cv_db["LINK"]
 
     # The following line is needed for  str -> class
-    class_lib = __import__('cvutils.primaryclasses')
 
     id_name = config_ws.cell(row=2,column=1).value
     item_classes_names=[]

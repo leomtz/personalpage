@@ -38,12 +38,16 @@
             <div class="col-lg-4">
                 <h4> Education </h4>
 
-                {% for item in education %}
+                {% for item in education | sort(attribute='Education.start_date', reverse = True ) %}
                 <div class="blockitem">
-                    <h4>{{ item.title }}</h4>
-                    
-                    <strong>{{ item.institution }}</strong> <br>({{ item.date[0] }}{% if item.date[1]!=None %} - {{ item.date[1] }}{% endif %}) <br>
-                    {% if item.description!=None %}
+                    <h4>{{ item.Education.title }}</h4>
+                    <strong>{{ item.Institution.name }}</strong> <br>
+                    {% if item.Education.end_date %}
+                    ({{ item.Education.start_date.strftime('%Y') }}-{{ item.Education.end_date.strftime('%Y') }})
+                    {% else %}
+                    ({{ item.Education.start_date.strftime('%Y') }})
+                    {% endif %}
+                    {% if item.Education.description != "NA" %}
                     <details>
                         <summary> See more...</summary>
                         <p>{{ item. description | safe  }}</p>
@@ -55,14 +59,18 @@
             </div>
             <div class="col-lg-4">
                 <h4>Professional Experience</h4>
-                {% for item in jobs %}
+                {% for item in jobs | sort(attribute='Job.start_date', reverse = True ) %}
                 <div class="blockitem">
-                    <h4>{{ item.title }}</h4>
-                    <strong>{{ item.institution }}</strong> <br>({{ item.date[0] }} - {{ item.date[1] }})
+                    <h4>{{ item.Job.title }}</h4>
+                    {% if item.Job.end_date %}
+                    <strong>{{ item.Institution.name }}</strong> <br>({{ item.Job.start_date.strftime('%Y')  }}-{{ item.Job.end_date.strftime('%Y')}})
+                    {% else %}
+                    <strong>{{ item.Institution.name }}</strong> <br>({{ item.Job.start_date.strftime('%Y')  }}-Now)
+                    {% endif %}
+                    {% if item.Job.description!=None %}
                     <details>
                         <summary>See more...</summary>
-                        {% if item.description!=None %}
-                        <p>{{ item. description | safe  }}</p>
+                        <p>{{ item.Job.description }}</p>
                     </details>
                     {% endif %}
                 </div>
@@ -73,12 +81,15 @@
 
                 <h4> Awards and Funding</h4>
 
-                {% for item in awards %}
+                {% for item in awards|sort(attribute='Award.date', reverse = True )  %}
                 <div class="blockitem">
-                    <h4>{{ item.title }}</h4><strong>{{ item.institution }}</strong>
+                    <h4>{{ item.Award.title }}</h4>
+                    <strong>{{ item.Institution.name }}</strong>
+                    <br>
+                    ({{ item.Award.date.strftime('%Y') }})
                     <details>
                         <summary>See more...</summary>
-                        <p> {{ item.description | safe}}<br><br>  {{ item.location }}, {{ item.date }} </p>
+                        <p> {{ item.Award.description }}, {{ item.Location.name }} </p>
                     </details>
                 </div>
                 {% endfor %}
