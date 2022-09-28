@@ -4,6 +4,7 @@ import hashlib
 
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 
 # Tools to work with curriculum vitaes
 from personalpage import app
@@ -18,14 +19,6 @@ CURRENT_DIR = os.path.dirname(CURRENT_FILE)
 
 CV=cvutils.primaryclasses.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
 DATA_SECTIONS=CV.sections
-
-## Template setting
-
-def template_chooser(section):
-    if section in ['webp', 'pythonp', 'datascp']:
-        return "coding_port.html"
-    else:
-        return section+".html"
 
 #####################################
 # Routing    
@@ -51,27 +44,61 @@ def notfound():
 
 @app.route("/about")
 def about():
-    education = Education.query.join(Institution).join(Location,Education.location==Location.id).add_entity(Institution).add_entity(Location).all()
-    jobs = Job.query.join(Institution).join(Location,Job.location==Location.id).add_entity(Institution).add_entity(Location).all()
-    awards = Award.query.join(Institution).join(Location, Award.location==Location.id).add_entity(Institution).add_entity(Location).all()
+    education = Education.query\
+        .join(Institution)\
+        .join(Location,Education.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    jobs = Job.query\
+        .join(Institution)\
+        .join(Location,Job.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    awards = Award.query\
+        .join(Institution)\
+        .join(Location, Award.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
     return render_template("personalpage/about.html", education = education, jobs = jobs, awards = awards)
 
 ## Research
 
 @app.route("/papers")
 def papers():
-    papers = list(reversed(CV.fetch_by_section_name("papers")))
+    papers = ScientificPublication.query\
+        .all()
     return render_template("personalpage/papers.html", papers = papers)
 
 @app.route("/tresearch")
 def tresearch():
-    talks = Talk.query.join(Institution).join(Location,Talk.location==Location.id).add_entity(Institution).add_entity(Location).all()
+    talks = Talk.query\
+        .join(Institution)\
+        .join(Location,Talk.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
     return render_template("personalpage/tresearch.html", talks=talks)
 
 @app.route("/sresearch")
 def sresearch():
-    service = list(reversed(CV.fetch_by_section_name("service")))
-    return render_template("personalpage/sresearch.html", service = service)
+    r_journal = Service.query\
+        .filter(Service.service_type=='r_journal')\
+        .all()
+    r_conference = Service.query\
+        .filter(Service.service_type=='r_conference')\
+        .all()
+    service = Service.query\
+        .filter(Service.service_type=="o_event_research")\
+        .join(Institution)\
+        .join(Location, Service.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    print(service)
+    return render_template("personalpage/sresearch.html", r_journal=r_journal, r_conference=r_conference, service = service)
 
 ## Teaching
 
@@ -82,19 +109,37 @@ def courses():
 
 @app.route("/students")
 def students():
-    service = list(reversed(CV.fetch_by_section_name("service")))
-    return render_template("personalpage/students.html", service = service)
+    students = Service.query\
+        .join(Institution)\
+        .join(Location, Service.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .order_by(desc(Service.date))\
+        .all()
+    return render_template("personalpage/students.html", students = students)
 
 @app.route("/steaching")
 def steaching():
-    service = list(reversed(CV.fetch_by_section_name("service")))
+    service = Service.query\
+        .join(Institution)\
+        .join(Location, Service.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .order_by(desc(Service.date))\
+        .all()
     return render_template("personalpage/steaching.html", service=service)
 
 ## Promotion
 
 @app.route("/contests")
 def contests():
-    contests = list(reversed(CV.fetch_by_section_name("olympiad")))
+    contests=ContestRoleAssign.query\
+        .join(Contest)\
+        .join(RoleContest)\
+        .add_entity(Contest)\
+        .add_entity(RoleContest)\
+        .all()
+    # contests = list(reversed(CV.fetch_by_section_name("olympiad")))
     return render_template("personalpage/contests.html", contests = contests)
 
 @app.route("/events")
@@ -104,14 +149,22 @@ def events():
 
 @app.route("/writings")
 def writings():
-    papers = list(reversed(CV.fetch_by_section_name("prompub")))
-    media = list(reversed(CV.fetch_by_section_name("media")))
+    papers = ScientificPublication.query\
+        .all()
+    media = MainstreamMedia.query\
+        .all()
     return render_template("personalpage/writings.html", papers = papers, media=media)
 
 @app.route("/tpromotion")
 def tpromotion():
-    talks = Talk.query.join(Institution).join(Location,Talk.location==Location.id).add_entity(Institution).add_entity(Location).all()
-    return render_template("personalpage/tresearch.html", talks=talks)
+    talks = Talk.query\
+        .join(Institution)\
+        .join(Location,Talk.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    print(talks)
+    return render_template("personalpage/tpromotion.html", talks=talks)
 
 ## Coding
 

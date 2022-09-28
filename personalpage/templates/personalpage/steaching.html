@@ -4,12 +4,12 @@
         <h3>Academic Service</h3>
 
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6">
+            <div class="col-md-8">
 
             <p style="text-align: justify"> List of academic service activities. </p>
         </div>
 
-        <div class="col-md-8 col-lg-6" id="data">
+        <div class="col-md-4" id="data">
             <div class="blockitem">
                 <img src="static/pastels.jpg" class="img-fluid"></img>
             </div>
@@ -20,11 +20,11 @@
             <div class="col-lg-6">
                 <h4> Undegraduate Thesis Reviewer </h4>
                 {% for item in service %}
-                {% if item.tags[0] == "ut_reviewer" %}
+                {% if item.Service.service_type == "r_ug_thesis" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
-                        <strong> {{ item.title }}</strong><br>
-                        <p>{{ item.description }} ({{item.date}}).</p>
+                        <strong> {{ item.Service.title }}</strong><br>
+                        <p>{{ item.Service.description }} ({{ item.Service.date.strftime('%Y') }})</p>
                     </div>
                 </div>
                 {% endif %}
@@ -34,11 +34,11 @@
             <div class="col-lg-6">
                 <h4> Graduate Thesis Reviewer </h4>
                 {% for item in service %}
-                {% if item.tags[0] == "gt_reviewer" %}
+                {% if item.Service.service_type == "r_master_thesis" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
-                        <strong> {{ item.title }}</strong><br>
-                        <p>{{ item.description }} ({{item.date}}).</p>
+                        <strong> {{ item.Service.title }}</strong><br>
+                        <p>{{ item.Service.description }} ({{ item.Service.date.strftime('%Y') }})</p>
                     </div>
                 </div>
                 {% endif %}

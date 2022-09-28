@@ -3,12 +3,12 @@
     <div class="container outter pl-3 pr-3 pt-3">
         <h3>Mathematical Contests</h3>
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6 padded">
+            <div class="col-md-8 padded">
 
         <p>Some mathematical contests I have been involved with.</p>
         </div>    
     
-        <div class="col-md-8 col-lg-6 padded" id="data">
+        <div class="col-md-4 padded" id="data">
 
             <div class="blockitem">
                 <img class="img-fluid" src="/static/contests.png"></img>
@@ -21,12 +21,18 @@
         <div class="row pt-3">
             <div class="col-lg-6 padded">
                 <h4> As Organizer or Grader </h4>
-                {% for item in contests %}
-                {% if item.tags[0] in  ["organizer", "grader"]  %}
+                {% for item in contests | sort(attribute='ContestRoleAssign.start_date', reverse = True)%}
+                {% if item.RoleContest.name in ['Organizing Committee','Coordinator', 'Chair Organizer', 'Chair', 'Founder and Organizing Committee']  %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
-                        <strong> {{ item.title }}</strong><br>
-                        {{item.role}} ({{ item.date[0]|string + " - " + item.date[1]|string if item.date[0] else item.date }})<br>
+                        <strong> {{ item.Contest.title }}</strong><br>
+                        {% if item.ContestRoleAssign.start_date == item.ContestRoleAssign.end_date %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }})<br>
+                        {% elif item.ContestRoleAssign.end_date %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }}-{{ item.ContestRoleAssign.end_date.strftime('%Y') }}) <br>
+                        {% else  %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }}-Now)<br>
+                        {% endif %}
                         <details>
                             <summary>See more...</summary>
                             <p>{{ item.description }}.</p>
@@ -39,12 +45,18 @@
 
             <div class="col-lg-6 padded">
                 <h4> As Coach or Leader </h4>
-                {% for item in contests %}
-                {% if item.tags[0] in  ["coach", "leader"]  %}
+                {% for item in contests | sort(attribute='ContestRoleAssign.start_date', reverse = True)%}
+                {% if item.RoleContest.name in ['Coach','Team Leader', 'Deputy Leader', 'UNAM Representative']  %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
-                        <strong> {{ item.title }}</strong><br>
-                        {{item.role}} ({{ item.date[0]|string + " - " + item.date[1]|string if item.date[0] else item.date }})<br>
+                        <strong> {{ item.Contest.title }}</strong><br>
+                        {% if item.ContestRoleAssign.start_date == item.ContestRoleAssign.end_date %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }})<br>
+                        {% elif item.ContestRoleAssign.end_date %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }}-{{ item.ContestRoleAssign.end_date.strftime('%Y') }}) <br>
+                        {% else  %}
+                        {{item.RoleContest.name}} ({{ item.ContestRoleAssign.start_date.strftime('%Y') }}-Now)<br>
+                        {% endif %}
                         <details>
                             <summary>See more...</summary>
                             <p>{{ item.description }}.</p>

@@ -93,7 +93,6 @@ class Contest(db.Model):
 class RoleContest(db.Model):
     __tablename__ = 'rolecontest'
     id = db.Column(db.Integer, primary_key=True)
-    shorthand = db.Column(db.String(80), unique=True, nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     name_spa = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.String(140), nullable=False)
@@ -107,6 +106,8 @@ class ContestRoleAssign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     contest_id = db.Column(db.Integer, db.ForeignKey('contest.id'))
     role_contest_id = db.Column(db.Integer, db.ForeignKey('rolecontest.id'))
+    start_date = db.Column(db.Date(), default=date.today())
+    end_date = db.Column(db.Date(), default=date.today())
 
 class Course(db.Model):
     __tablename__ = 'course'
@@ -130,28 +131,14 @@ class Service(db.Model):
     date = db.Column(db.Date(), default=date.today())
     
     description = db.Column(db.String(140), nullable=False)
-    description_spa = db.Column(db.String(140), nullable=False)
     title = db.Column(db.String(80), unique=True, nullable=False)
-    title_spa = db.Column(db.String(80), unique=True, nullable=False)
+    service_type = db.Column(db.String(20), nullable=False)
 
     institution = db.Column(db.Integer, db.ForeignKey('institution.id'))
     location = db.Column(db.Integer, db.ForeignKey('location.id'))
-    role = db.Column(db.Integer, db.ForeignKey('roleservice.id'))
 
     def __repr__(self):
         return '<Service %r>' % self.title
-
-class RoleService(db.Model):
-    __tablename__ = 'roleservice'
-    id = db.Column(db.Integer, primary_key=True)
-    shorthand = db.Column(db.String(80), unique=True, nullable=False)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    name_spa = db.Column(db.String(80), unique=True, nullable=False)
-    description = db.Column(db.String(140), nullable=False)
-    description_spa = db.Column(db.String(140), nullable=False)
-
-    def __repr__(self):
-        return '<RoleService %r>' % self.title
 
 class ScienceFair(db.Model):
     __tablename__ = 'sciencefair'

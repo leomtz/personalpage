@@ -3,12 +3,12 @@
     <div class="container outter pl-3 pr-3 pt-3">
         <h3>Research Service</h3>
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6">
+            <div class="col-md-8">
 
             <p style="text-align: justify"> List of research service activities. </p>
         </div>    
     
-        <div class="col-md-8 col-lg-6" id="data">
+        <div class="col-md-4" id="data">
             <div class="blockitem">
                 <img src="static/voronoi.png" class="img-fluid"></img>
             </div>
@@ -19,40 +19,34 @@
         <div class="row pt-3">
             <div class="col-lg-4">
                 <h4> Journal Reviewer </h4>
-                    {% for item in service %}
-                    {% if item.tags[0] == 'j_reviewer' %}
+                    {% for item in r_journal | sort(attribute='date', reverse = True ) %}
                     <div class="paperitem wrapper mb-3 mt-3">
                         <div class="prob-info">
-                            <p><strong> {{ item.title }}</strong> ({{item.date}})
+                            <p><strong> {{ item.title }}</strong> ({{item.date.strftime('%Y')}})
                         </div>
                     </div>
-                    {% endif %}
                     {% endfor %}
             </div>
 
             <div class="col-lg-4 padded">
                 <h4> Conference Reviewer </h4>
-                    {% for item in service %}
-                    {% if item.tags[0] == 'c_reviewer' %}
+                    {% for item in r_conference | sort(attribute='date', reverse = True ) %}
                     <div class="paperitem wrapper mb-3 mt-3">
                         <div class="prob-info">
-                            <p><strong> {{ item.title }}</strong> ({{item.date}})
+                            <p><strong> {{ item.title }}</strong> ({{item.date.strftime('%Y')}})
                         </div>
                     </div>
-                    {% endif %}
                     {% endfor %}
             </div>
 
             <div class="col-lg-4 padded">
                 <h4> Organizing Committee </h4>
-                {% for item in service %}
-                {% if item.tags[0] == "r_org" %}
+                {% for item in service | sort(attribute='date', reverse = True ) %}
                 <div class="paperitem wrapper mb-3 mt-3">
                     <div class="prob-info">
-                        <p><strong> {{ item.title }}</strong> ({{item.date}}). {{ item.institution + '.' if item.institution}}
+                        <p><strong> {{ item.Service.title }}</strong> ({{item.Service.date.strftime('%Y')}}). {{ item.Institution.name + '.' if item.Institution.name}}
                     </div>
                 </div>
-                {% endif %}
                 {% endfor %}
             </div>
 

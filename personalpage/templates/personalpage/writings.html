@@ -3,12 +3,12 @@
     <div class="container outter pl-3 pr-3 pt-3">
         <h3>Writings</h3>
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6">
+            <div class="col-md-8">
 
         <p>Some mathematical writings.</p>
         </div>    
     
-        <div class="col-md-8 col-lg-6" id="data">
+        <div class="col-md-4" id="data">
             <div class="blockitem">
                 <img class="img-fluid" src="/static/conway.png"></img>
             </div>           
@@ -21,27 +21,27 @@
             <div class="col-lg-6">
                 <h4> Math Promotion Papers </h4>
                 {% for item in papers %}
-                {% if item.tags[0] == "math_promotion" %}
+                {% if item.publication_type == "math_promotion" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
                         <strong> {{ item.title }}</strong><br>
-                        <p>{{ item.authors }}</p>
+                        <p>{{ item.author }}</p>
                         <p>
-                        {% if item.links['arxiv']!=None %}
-                        <a href="https://arxiv.org/abs/{{ item.links['arxiv'] }} " class="goodie" target="_blank">arXiv 🔗</a>
+                        {% if item.arxiv!=None %}
+                        <a href="https://arxiv.org/abs/{{ item.arxiv }} " class="goodie" target="_blank">arXiv 🔗</a>
                         {% endif %}
-                        {% if item.links['doi']!=None %}
-                        <a href="http://dx.doi.org/{{ item.links['doi'] }}" class="goodie" target="_blank">DOI 🔗</a>
+                        {% if item.doi!=None %}
+                        <a href="http://dx.doi.org/{{ item.doi }}" class="goodie" target="_blank">DOI 🔗</a>
                             {% endif %}
-                            {% if item.links['web']!=None %}
-                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Link </a>
+                            {% if item.link!=None %}
+                        <a href="{{ item.link }}" class="goodie" target="_blank">Link </a>
                             {% endif %}
                         </p>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date }}</div>
+                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date.strftime('%Y') }}</div>
                             <div class="col-md-12 col-lg-4 thirdLabel">{{ item.status }}</div>
                             <div class="col-md-12 col-lg-6 thirdLabel">{{ item.journal }}</div>
                         </div>
@@ -53,21 +53,15 @@
 
             <div class="col-lg-6">
                 <h4> Math Promotion in Media </h4>
-                {% for item in media %}
+                {% for item in media | sort(attribute='date', reverse = True) %}
 <div class="paperitem wrapper">
     <div class="prob-info">
         <strong> {{ item.title }}</strong><br>
-        {% if item.description!=None %}
-        <p> {{ item.description }}</p>
-        {% endif %}
-        {% if item.links['file']!=None %}
-        <a href="{{ item.links['file'] }}" class="goodie" target="_blank"> Download Link</a>
-        {% endif %}
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-1 thirdLabel">{{ item.date }}</div>
+            <div class="col-md-6 col-lg-1 thirdLabel">{{ item.date.strftime('%Y') }}</div>
             <div class="col-md-6 col-lg-3 thirdLabel">{{ item.media_type }}</div>
             <div class="col-md-12 col-lg-7 thirdLabel">{{ item.media_name }}</div>
         </div>

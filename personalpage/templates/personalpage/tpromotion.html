@@ -3,13 +3,13 @@
     <div class="container outter pl-3 pr-3 pt-3">
         <h3>Math Promotion Talks and Slides</h3>
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6 padded">
+            <div class="col-md-8 padded">
 
             <p style="text-align: justify"> Here you can find a list of my mathematical promotion talks. For some of them you can
                 download the slides. </p>
         </div>    
     
-        <div class="col-md-8 col-lg-6 padded" id="data">
+        <div class="col-md-4 padded" id="data">
             <div class="blockitem">
                 <img class="img-fluid" src="/static/small-angles.png"></img>
             </div>           
@@ -21,13 +21,13 @@
         <div class="row pt-3">
             <div class="col-lg-6 padded">
                 <h4> Undergraduate Topics </h4>
-                    {% for item in presentations %}
-                    {% if item.tags[0] == "upromotion" %}
+                    {% for item in talks | sort(attribute='Talk.date', reverse = True) %}
+                    {% if item.Talk.event_type == "p_ug" %}
                     <div class="paperitem wrapper mb-3 mt-3">
                         <div class="prob-info">
-                            <p><strong> {{ item.title }}</strong> ({{item.date}}). {{ item.audience }}. {{ item.institution + '.' if item.institution}}
-                            {% if item.links['file']!=None %}</p>
-                            <p><a href="/static/slides/{{ item.links['file'] }}" class="goodie" target="_blank"> Get slides</a></p>
+                            <p><strong> {{ item.Talk.title }}</strong> ({{item.Talk.date.strftime('%Y')}}). {{ item.Talk.event }}. {{ item.Institution.name + '.' if item.Institution.name }}
+                            {% if item.Talk.slides %}</p>
+                            <p><a href="/static/slides/{{ item.Talk.slides }}" class="goodie" target="_blank"> Get slides</a></p>
                             {% endif %}
                         </div>
                     </div>
@@ -37,14 +37,14 @@
 
             <div class="col-lg-6 padded">
                 <h4> High-school Topics </h4>
-                {% for item in presentations %}
-                {% if item.tags[0] == "hpromotion" %}
+                {% for item in talks | sort(attribute='Talk.date', reverse = True) %}
+                {% if item.Talk.event_type == "p_hs" %}
                 <div class="paperitem wrapper mb-3 mt-3">
                     <div class="prob-info">
-                        <p><strong> {{ item.title }}</strong> ({{item.date}}). {{ item.audience }}. {{ item.institution + '.' if item.institution}}
-                        {% if item.links['file']!=None %}</p>
-                        <p><a href="/static/slides/{{ item.links['file'] }}" class="goodie" target="_blank"> Get slides</a></p>
-                        {% endif %}
+                        <p><strong> {{ item.Talk.title }}</strong> ({{item.Talk.date.strftime('%Y')}}). {{ item.Talk.event }}. {{ item.Institution.name + '.' if item.Institution.name }}
+                            {% if item.Talk.slides %}</p>
+                            <p><a href="/static/slides/{{ item.Talk.slides }}" class="goodie" target="_blank"> Get slides</a></p>
+                            {% endif %}
                     </div>
                 </div>
                 {% endif %}

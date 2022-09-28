@@ -3,7 +3,7 @@
     <div class="container outter pt-3 pl-3 pr-3">
         <h3>Scientific Publications</h3>
         <div class="row pt-3">
-            <div class="col-md-4 col-lg-6 text-justify">
+            <div class="col-md-8 text-justify">
 
             <p> I am a researcher in mathematics at the <a
                 href="http://www.fciencias.unam.mx/" target="_blank"> Faculty of Sciences </a> of the <a
@@ -12,7 +12,7 @@
                </p>
         </div>    
     
-        <div class="col-md-8 col-lg-6" id="data">
+        <div class="col-md-4" id="data">
             <div class="blockitem">
                 <img src="static/papers.png" alt="Timeline of publications" class="img-fluid"></img>
             </div>
@@ -23,28 +23,28 @@
             <div class="col-lg-4">
                 <h4> Journal Papers</h4>
 
-                {% for item in papers %}
-                {% if item.status == "Journal" %}
+                {% for item in papers | sort(attribute='date', reverse = True)%}
+                {% if item.publication_type == "journal" %}
                 <div class="paperitem wrapper mb-3">
                     <div class="prob-info">
                         <strong> {{ item.title }}</strong><br>
                         <p>{{ item.authors }}</p>
                         <p>
-                        {% if item.links['arxiv']!=None %}
-                        <a href="https://arxiv.org/abs/{{ item.links['arxiv'] }} " class="goodie" target="_blank">arXiv 🔗</a>
+                        {% if item.arxiv!=None %}
+                        <a href="https://arxiv.org/abs/{{ item.arxiv }} " class="goodie" target="_blank">arXiv 🔗</a>
                         {% endif %}
-                        {% if item.links['doi']!=None %}
-                        <a href="http://dx.doi.org/{{ item.links['doi'] }}" class="goodie" target="_blank">DOI 🔗</a>
+                        {% if item.doi!=None %}
+                        <a href="http://dx.doi.org/{{ item.doi }}" class="goodie" target="_blank">DOI 🔗</a>
                             {% endif %}
-                            {% if item.links['web']!=None %}
-                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Link </a>
+                            {% if item.link!=None %}
+                        <a href="{{ item.link }}" class="goodie" target="_blank">Link </a>
                             {% endif %}
                         </p>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date }}</div>
+                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date.strftime('%Y') }}</div>
                             <div class="col-md-12 col-lg-10 thirdLabel">{{ item.journal }}</div>
                         </div>
                     </div>
@@ -56,28 +56,28 @@
             <div class="col-lg-4">
                 <h4> Proceedings </h4>
 
-                {% for item in papers %}
-                {% if item.status == "Proceedings" %}
+                {% for item in papers | sort(attribute='date', reverse = True) %}
+                {% if item.publication_type == "ext-abs" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
                         <strong> {{ item.title }}</strong><br>
                         <p>{{ item.authors }}</p>
                         <p>
-                        {% if item.links['arxiv']!=None %}
-                        <a href="https://arxiv.org/abs/{{ item.links['arxiv'] }} " class="goodie" target="_blank">arXiv 🔗</a>
-                        {% endif %}
-                        {% if item.links['doi']!=None %}
-                        <a href="http://dx.doi.org/{{ item.links['doi'] }}" class="goodie" target="_blank">DOI 🔗</a>
+                            {% if item.arxiv!=None %}
+                            <a href="https://arxiv.org/abs/{{ item.arxiv }} " class="goodie" target="_blank">arXiv 🔗</a>
                             {% endif %}
-                            {% if item.links['web']!=None %}
-                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Link </a>
-                            {% endif %}
+                            {% if item.doi!=None %}
+                            <a href="http://dx.doi.org/{{ item.doi }}" class="goodie" target="_blank">DOI 🔗</a>
+                                {% endif %}
+                                {% if item.link!=None %}
+                            <a href="{{ item.link}}" class="goodie" target="_blank">Link </a>
+                                {% endif %}
                         </p>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date }}</div>
+                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date.strftime('%Y') }}</div>
                             <div class="col-md-12 col-lg-10 thirdLabel">{{ item.journal }}</div>
                         </div>
                     </div>
@@ -88,28 +88,28 @@
 
             <div class="col-lg-4">
                 <h4> Preprints   </h4>
-                {% for item in papers %}
-                {% if item.status == "Preprint" %}
+                {% for item in papers | sort(attribute='date', reverse = True) %}
+                {% if item.publication_type == "preprint" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">
                         <strong> {{ item.title }}</strong><br>
                         <p>{{ item.authors }}</p>
                         <p>
-                        {% if item.links['arxiv']!=None %}
-                        <a href="https://arxiv.org/abs/{{ item.links['arxiv'] }} " class="goodie" target="_blank">arXiv 🔗</a>
-                        {% endif %}
-                        {% if item.links['doi']!=None %}
-                        <a href="http://dx.doi.org/{{ item.links['doi'] }}" class="goodie" target="_blank">DOI 🔗</a>
+                            {% if item.arxiv!=None %}
+                            <a href="https://arxiv.org/abs/{{ item.arxiv }} " class="goodie" target="_blank">arXiv 🔗</a>
                             {% endif %}
-                            {% if item.links['web']!=None %}
-                        <a href="{{ item.links['web'] }}" class="goodie" target="_blank">Link </a>
-                            {% endif %}
+                            {% if item.doi!=None %}
+                            <a href="http://dx.doi.org/{{ item.doi }}" class="goodie" target="_blank">DOI 🔗</a>
+                                {% endif %}
+                                {% if item.link!=None %}
+                            <a href="{{ item.link}}" class="goodie" target="_blank">Link </a>
+                                {% endif %}
                         </p>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date }}</div>
+                            <div class="col-md-12 col-lg-2 thirdLabel">{{ item.date.strftime('%Y') }}</div>
                             <div class="col-md-12 col-lg-10 thirdLabel">{{ item.journal }}</div>
                         </div>
                     </div>
