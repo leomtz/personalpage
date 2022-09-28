@@ -1,7 +1,7 @@
-cthash/
+personalpage/cthash/
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+personalpage/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -103,7 +103,7 @@ ENV/
 .mypy_cache/
 
 # Visual Studio
-.vscode/
+personalpage/.vscode/
 myenv/Scripts/deactivate.bat
 myenv/Scripts/activate.bat
 myenv/Scripts/Activate.ps1
