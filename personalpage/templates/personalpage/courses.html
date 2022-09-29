@@ -23,12 +23,19 @@
 
         <div class="row pt-3">
             <div class="col-lg-6">
+                <h4> For Graduates </h4>
+                <ul>
+                    {% for item in courses | sort(attribute='Course.date', reverse = True )%}
+                    {% if item.Course.course_type == "master" %}
+                    <li> <strong> {{ item.Course.title }}</strong> ({{ item.Course.start_date.strftime('%Y') }}) - {{ item.Institution.name }}. </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
                 <h4> For Undergraduates </h4>
                 <ul>
-
-                    {% for item in courses %}
-                    {% if item.tags[0] == "undergraduate" %}
-                    <li> <strong> {{ item.title }}</strong> ({{ item.date }}) - {{ item.institution }}. </li>
+                    {% for item in courses | sort(attribute='Course.date', reverse = True )%}
+                    {% if item.Course.course_type == "undergraduate" %}
+                    <li> <strong> {{ item.Course.title }}</strong> ({{ item.Course.start_date.strftime('%Y') }}) - {{ item.Institution.name }}. </li>
                     {% endif %}
                     {% endfor %}
                 </ul>
@@ -38,9 +45,19 @@
                 <h4> For Teachers </h4>
                 <ul>
 
-                    {% for item in courses %}
-                    {% if item.tags[0] == "teachers" %}
-                    <li> <strong> {{ item.title }}</strong> ({{ item.date }}) - {{ item.institution }}. </li>
+                    {% for item in courses | sort(attribute='Course.date', reverse = True ) %}
+                    {% if item.Course.course_type == "hs-teachers" %}
+                    <li> <strong> {{ item.Course.title }}</strong> ({{ item.Course.start_date.strftime('%Y') }}) - {{ item.Institution.name }}. </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <h4> Mini-courses </h4>
+                <ul>
+
+                    {% for item in courses | sort(attribute='Course.date', reverse = True )%}
+                    {% if item.Course.course_type == "ug-mini-course" %}
+                    <li> <strong> {{ item.Course.title }}</strong> ({{ item.Course.start_date.strftime  ('%Y') }}) - {{ item.Institution.name }}. </li>
                     {% endif %}
                     {% endfor %}
                 </ul>

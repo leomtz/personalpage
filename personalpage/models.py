@@ -112,12 +112,18 @@ class ContestRoleAssign(db.Model):
 class Course(db.Model):
     __tablename__ = 'course'
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date(), nullable=False,
+    start_date = db.Column(db.Date(), nullable=False,
         default=date.today())
+    end_date = db.Column(db.Date(),
+        default=date.today())
+    sem_unam = db.Column(db.String(20), unique=True, nullable=False)
+
     role = db.Column(db.String(20), unique=True, nullable=False)
     role_spa = db.Column(db.String(20), unique=True, nullable=False)
     title = db.Column(db.String(80), unique=True, nullable=False)
     title_spa = db.Column(db.String(80), unique=True, nullable=False)
+    course_type = db.Column(db.String(20), unique=True, nullable=False)
+
     institution = db.Column(db.Integer, db.ForeignKey('institution.id'))
     location = db.Column(db.Integer, db.ForeignKey('location.id'))
 
@@ -140,8 +146,8 @@ class Service(db.Model):
     def __repr__(self):
         return '<Service %r>' % self.title
 
-class ScienceFair(db.Model):
-    __tablename__ = 'sciencefair'
+class Awareness(db.Model):
+    __tablename__ = 'awareness'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date(), default=date.today())
 
@@ -158,7 +164,7 @@ class ScienceFair(db.Model):
     location = db.Column(db.Integer, db.ForeignKey('location.id'))
 
     def __repr__(self):
-        return '<ScienceFair %r>' % self.title
+        return '<Awareness %r>' % self.title
 
 class Talk(db.Model):
     __tablename__ = 'talk'
@@ -182,7 +188,8 @@ class Talk(db.Model):
 class CodingItem(db.Model):
     __tablename__ = 'codingitem'
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date(), default=date.today())
+    start_date = db.Column(db.Date(), default=date.today())
+    end_date = db.Column(db.Date(), default=date.today())
 
     title = db.Column(db.String(80), unique=True, nullable=False)
     title_spa = db.Column(db.String(80), unique=True, nullable=False)

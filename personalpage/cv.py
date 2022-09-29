@@ -8,7 +8,7 @@ from sqlalchemy import desc
 
 # Tools to work with curriculum vitaes
 from personalpage import app
-import personalpage.cvutils as cvutils
+# import personalpage.cvutils as cvutils
 from personalpage.models import *
 
 ### FLASK APP STARTS HERE $$$
@@ -17,8 +17,8 @@ from personalpage.models import *
 CURRENT_FILE = os.path.abspath(__file__)
 CURRENT_DIR = os.path.dirname(CURRENT_FILE)
 
-CV=cvutils.primaryclasses.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
-DATA_SECTIONS=CV.sections
+# CV=cvutils.primaryclasses.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
+# DATA_SECTIONS=CV.sections
 
 #####################################
 # Routing    
@@ -45,18 +45,21 @@ def notfound():
 @app.route("/about")
 def about():
     education = Education.query\
+        .select_from(Education)\
         .join(Institution)\
         .join(Location,Education.location==Location.id)\
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
     jobs = Job.query\
+        .select_from(Job)\
         .join(Institution)\
         .join(Location,Job.location==Location.id)\
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
     awards = Award.query\
+        .select_from(Award)\
         .join(Institution)\
         .join(Location, Award.location==Location.id)\
         .add_entity(Institution)\
@@ -75,6 +78,7 @@ def papers():
 @app.route("/tresearch")
 def tresearch():
     talks = Talk.query\
+        .select_from(Talk)\
         .join(Institution)\
         .join(Location,Talk.location==Location.id)\
         .add_entity(Institution)\
@@ -91,6 +95,7 @@ def sresearch():
         .filter(Service.service_type=='r_conference')\
         .all()
     service = Service.query\
+        .select_from(Service)\
         .filter(Service.service_type=="o_event_research")\
         .join(Institution)\
         .join(Location, Service.location==Location.id)\
@@ -104,12 +109,19 @@ def sresearch():
 
 @app.route("/courses")
 def courses():
-    courseslist = list(reversed(CV.fetch_by_section_name("courses")))
-    return render_template("personalpage/courses.html", courses = courseslist)
+    courses = Course.query\
+        .select_from(Course)\
+        .join(Institution)\
+        .join(Location, Course.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    return render_template("personalpage/courses.html", courses = courses)
 
 @app.route("/students")
 def students():
     students = Service.query\
+        .select_from(Service)\
         .join(Institution)\
         .join(Location, Service.location==Location.id)\
         .add_entity(Institution)\
@@ -121,6 +133,7 @@ def students():
 @app.route("/steaching")
 def steaching():
     service = Service.query\
+        .select_from(Service)\
         .join(Institution)\
         .join(Location, Service.location==Location.id)\
         .add_entity(Institution)\
@@ -139,13 +152,19 @@ def contests():
         .add_entity(Contest)\
         .add_entity(RoleContest)\
         .all()
-    # contests = list(reversed(CV.fetch_by_section_name("olympiad")))
     return render_template("personalpage/contests.html", contests = contests)
 
 @app.route("/events")
 def events():
-    fairs = list(reversed(CV.fetch_by_section_name("fairs")))
-    return render_template("personalpage/events.html", fairs = fairs)
+    events=Awareness.query\
+        .select_from(Awareness)\
+        .join(Institution)\
+        .join(Location, Awareness.location==Location.id)\
+        .add_entity(Institution)\
+        .add_entity(Location)\
+        .all()
+    print(events)
+    return render_template("personalpage/events.html", events = events)
 
 @app.route("/writings")
 def writings():
@@ -158,17 +177,18 @@ def writings():
 @app.route("/tpromotion")
 def tpromotion():
     talks = Talk.query\
+        .select_from(Talk)\
         .join(Institution)\
         .join(Location,Talk.location==Location.id)\
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
-    print(talks)
     return render_template("personalpage/tpromotion.html", talks=talks)
 
 ## Coding
 
 @app.route("/coding")
 def coding():
-    codinglist = list(reversed(CV.fetch_by_section_name("wholep")))
-    return render_template("personalpage/coding.html", coding = codinglist)
+    coding_list = CodingItem.query\
+        .all()
+    return render_template("personalpage/coding.html", coding_list = coding_list)

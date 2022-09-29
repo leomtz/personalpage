@@ -1,6 +1,7 @@
 import os
+from hashlib import sha1
 
-from flask import render_template
+from flask import render_template, request
 
 from personalpage import app
 
@@ -57,15 +58,17 @@ def convertexlinkes(hash):
 
 @app.route("/cts", methods=['POST'])
 def pconvertex():
-    content=request_obj.form["content"]
+    print(request.args)
+    content=request.form["content"]
+    print(content)
     if len(content)>2250:
         return "Bad request: Text too long",400 
-    hash = hashlib.sha1(content.encode("UTF-8")).hexdigest()
+    hash = sha1(content.encode("UTF-8")).hexdigest()
     filename = hash[0:5]
     f = open(CTEX_DATA + filename, "w", encoding="utf-8")
     content=f.write(content)
     f.close()
     lang='/'
-    if "es" in request_obj.form["path"]:
+    if "es" in request.url:
         lang+="es/"
     return lang + "ct/" + filename
