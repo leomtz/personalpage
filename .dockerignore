@@ -1,0 +1,10 @@
+Dockerfile
+README.md
+*.pyc
+*.pyo
+*.pyd
+personalpage/__pycache__
+personalpage/_deprecated
+.pytest_cache
+.vscode
+static/files

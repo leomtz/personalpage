@@ -5,6 +5,6 @@ setup(
     packages=['personalpage'],
     include_package_data=True,
     install_requires=[
-        'flask','openpyxl', 'numpy', 'matplotlib', 'pandas', 'Flask-SQLAlchemy'
+        'flask', 'Flask-SQLAlchemy'
     ],
 )

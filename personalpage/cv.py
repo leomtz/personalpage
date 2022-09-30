@@ -1,29 +1,11 @@
-import os
-import sys
-import hashlib
-
 from flask import render_template
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 
-# Tools to work with curriculum vitaes
 from personalpage import app
-# import personalpage.cvutils as cvutils
 from personalpage.models import *
-
-### FLASK APP STARTS HERE $$$
-# app = Flask(__name__)
-
-CURRENT_FILE = os.path.abspath(__file__)
-CURRENT_DIR = os.path.dirname(CURRENT_FILE)
-
-# CV=cvutils.primaryclasses.cv_from_xlsx(CURRENT_DIR + '/data/CV.xlsx')
-# DATA_SECTIONS=CV.sections
 
 #####################################
 # Routing    
-#####################################
-
 #####################################
 
 # Standard
