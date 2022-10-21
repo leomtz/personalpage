@@ -1,11 +1,11 @@
 {% extends "body_template.html" %}
     {% block content %}
     <div class="container outter pl-3 pr-3 pt-3">
-        <h3>Writings</h3>
+        <h3>Math in Media</h3>
         <div class="row pt-3">
             <div class="col-md-8">
 
-        <p>Some mathematical writings.</p>
+        <p> Some mathematical writings and participation in media for a general audience. </p>
         </div>    
     
         <div class="col-md-4" id="data">
@@ -20,7 +20,7 @@
         <div class="row pt-3">
             <div class="col-lg-6">
                 <h4> Math Promotion Papers </h4>
-                {% for item in papers %}
+                {% for item in papers | sort(attribute='date', reverse = True)  %}
                 {% if item.publication_type == "math_promotion" %}
                 <div class="paperitem wrapper">
                     <div class="prob-info">

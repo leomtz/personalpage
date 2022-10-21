@@ -19,7 +19,6 @@ class Location(db.Model):
     name = db.Column(db.String(80), unique=True, nullable=False)
     name_spa = db.Column(db.String(80), unique=True, nullable=False)
 
-
 class Institution(db.Model):
     __tablename__ = 'institution'
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +32,7 @@ class Institution(db.Model):
 class Award(db.Model):
     __tablename__ = 'award'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), nullable=False)
+    title = db.Column(db.String(120), nullable=False)
     title_spa = db.Column(db.String(80), nullable=False)
     date = db.Column(db.Date(), nullable=False,
         default=date.today())
