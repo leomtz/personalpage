@@ -84,7 +84,6 @@ def sresearch():
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
-    print(service)
     return render_template("personalpage/sresearch.html", r_journal=r_journal, r_conference=r_conference, service = service)
 
 ## Teaching
@@ -145,7 +144,6 @@ def events():
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
-    print(events)
     return render_template("personalpage/events.html", events = events)
 
 @app.route("/writings")
