@@ -27,6 +27,10 @@ def smcc():
 def gttmap():
     return render_template("minipages/gtt.html")
 
+@app.route("/relacionesbinarias")
+def relbinarias(): 
+    return render_template("minipages/relacionesbinarias.html")
+
 ## Sobrinos Tía Cony
 
 @app.route("/cony")

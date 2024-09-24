@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaciones Matemáticas</title>
+
+    <!-- Mathjax -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+        </script>
+        <script id="MathJax-script" 
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+</head>
+<body style="background-image:url(static/back-relaciones.svg);font-family: Arial, sans-serif;">
+    <div style="margin-left: 80px; margin-right:80px; margin-top:10px; margin-bottom:10px; padding: 10px; background-color: rgba(255,255,255,0.85);">
+    <h1 style="text-align: center;">Relaciones binarias</h1>
+    <hr>
+    <p style="text-align: center;">Una relación binaria $R$ de dominio $X$ y codominio $Y$ es un subconjunto
+        del producto cartesiano $X\times Y$. En el siguiente interactivo podrás jugar con relaciones binarias
+        pequeñas, para entender mejor cuáles son sus partes y las propiedades que pueden tener. Puedes configurar primero cuántos
+        elementos están en el dominio $X$ y cuántos están en el codominio $Y$. Luego, puedes seleccionar cuáles parejas
+        están en la relación $R$. El interactivo actualizará el dibujo, te dirá el dominio, codominio, rango e imagen de la relación.
+         También te dará información sobre si la relación es total, funcional, función, inyectiva, suprayectiva y biyectiva. 
+    </p>
+    </div>
+
+    <!-- Three columns, with equal width -->
+    <div style="display: flex; margin-left: 80px; margin-right:80px; padding:10px; background-color: rgba(255,255,255,0.85);">
+        
+        <div style="flex: 20%; padding: 5px;text-align: center;">
+            <h2>Establecer relación</h2>
+            <!-- Dropdown with 1 to 10 -->
+             <p>Tamaño de dominio y codominio</p>
+            <p>$|X|=$
+            <select name="domain" id="domain" onchange="update_all()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            </p>
+
+            <!-- Codomain -->
+            <p>$|Y|=$
+            <select name="codomain" id="codomain" onchange="update_all()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+            </select>
+            </p>
+
+            <p>Parejas en $R$</p>
+            <!-- Dos columnas -->
+            <div style="display: flex; text-align: center;">
+                <div id="parejas1" style="flex: 50%; padding: 5px; text-align: left;">
+                </div>
+                <div id="parejas2" style="flex: 50%; padding: 5px; text-align: left;">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div style="flex: 20%; padding: 5px; text-align: center;">
+            <h2>Figura</h2>
+            <svg width="200" height="260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Points in Left Column -->
+                <circle cx="45" cy="50" r="5" fill="blue" />
+                <circle cx="45" cy="100" r="5" fill="blue" />
+                <circle cx="45" cy="150" r="5" fill="blue" />
+                
+                <!-- Points in Right Column -->
+                <circle cx="155" cy="70" r="5" fill="red" />
+                <circle cx="155" cy="130" r="5" fill="red" />
+            </svg>
+        </div>
+        
+        <div style="flex: 60%; padding: 5px;">
+            <h2>Partes</h2>
+            <p id="pdominio"></p>
+            <p id="pcodominio"></p>
+            <p id="pdomact"></p>
+            <p id="prango"></p>
+            <hr>
+            <h2>Propiedades</h2>
+            <p id="ptotal"></p>
+            <p id="pfuncional"></p>
+            <p id="pfuncion"></p>
+            <p id="pinyectiva"></p>
+            <p id="psuprayectiva"></p>
+            <p id="pbiyectiva"></p>
+        </div>
+    </div>
+
+    <div style="margin-left: 80px; margin-right:80px; margin-top:10px; margin-bottom:10px; padding: 10px; background-color: rgba(255,255,255,0.85);">
+        <p style="text-align: center;">
+            Puedes conocer más sobre relaciones binarias en el siguiente enlace: <a href="https://blog.nekomath.com/as1">Álgebra Superior I en <i>El blog de Leo</i></a>
+        </p>
+        </div>
+    
+
+</body>
+</html>
+
+<script>
+    // Dictionary with Name: (x,y)
+
+    var points_left = {};
+
+    var points_right = {};
+
+    var pairs= ["AL", "AM", "BK"];
+
+    // Create points dynamically at wildcard
+
+    var svg = document.querySelector("svg");
+
+    // Clear the svg
+
+    function update_drawing(){
+        svg.innerHTML = "";
+
+        num_domain = document.getElementById("domain").value;
+        num_codomain = document.getElementById("codomain").value;
+
+        points_left = {};
+        points_right = {};
+
+        for (var i = 0; i < num_domain; i++) {
+            var name = String.fromCharCode(65 + i);
+            points_left[name] = [45, 50 + 50 * i];
+        }
+
+        for (var i = 0; i < num_codomain; i++) {
+            var name = String.fromCharCode(75 + i);
+            points_right[name] = [155, 50 + 50 * i];
+        }
+        
+        draw_pairs(pairs);
+        draw_points(points_left, "blue","left");
+        draw_points(points_right, "red","right");
+    }
+
+    function update_interface(){
+        num_domain = document.getElementById("domain").value;
+        num_codomain = document.getElementById("codomain").value;
+
+        // At parejas div, create checkbox for each pair
+        var div1 = document.getElementById("parejas1");
+        var div2 = document.getElementById("parejas2");
+
+        div1.innerHTML = "";
+        div2.innerHTML = "";
+
+        for (var i = 0; i < num_domain; i++) {
+            for (var j = 0; j < num_codomain; j++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                var pair_label = "(" + String.fromCharCode(65 + i) + ", " + String.fromCharCode(75 + j) + ")";
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = pair;
+                checkbox.name = pair;
+                checkbox.value = pair;
+                checkbox.checked = pairs.includes(pair);
+                checkbox.onchange = update_drawing;
+                var label = document.createElement("label");
+                label.htmlFor = pair;
+                label.appendChild(document.createTextNode("$"+pair_label+"$"));
+                // If more than half
+                if (i * num_codomain + j < num_domain * num_codomain / 2 ) {
+                    div = div1;
+                } else {
+                    div = div2;
+                }
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                div.appendChild(document.createElement("br"));
+                // Update Mathjax
+                // On change, update pairs
+                
+                checkbox.onchange = function(){
+                    update_pairs();
+                    update_drawing();
+                    update_properties();
+                }
+            }
+        }
+        MathJax.typeset();
+
+        // Remove pairs that are not in the new domain/codomain
+        pairs = pairs.filter(pair => pair[0].charCodeAt(0) - 65 < num_domain && pair[1].charCodeAt(0) - 75 < num_codomain);
+    }
+
+    // Function to update pairs from checkboxes
+
+    function update_pairs(){
+        pairs = [];
+        for (var i = 0; i < num_domain; i++) {
+            for (var j = 0; j < num_codomain; j++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                if (document.getElementById(pair).checked) {
+                    pairs.push(pair);
+                }
+            }
+        }
+    }
+
+    function update_all(){
+        update_interface();
+        update_drawing();
+        update_properties();
+    }
+
+    function update_properties(){
+        total=true;
+        funcional=true;
+        funcion=true;
+        inyectiva=true;
+        suprayectiva=true;
+        biyectiva=true;
+
+        var falla_total="";
+        var falla_funcional="";
+        var falla_inyectiva="";
+        var falla_suprayectiva="";
+
+        var dominio=[];
+        var codominio=[];
+        var domact=[];
+        var rango=[];
+
+        for (i = 0; i < num_domain; i++) {
+            dominio.push(String.fromCharCode(65 + i));
+        }
+
+        for (i = 0; i < num_codomain; i++) {
+            codominio.push(String.fromCharCode(75 + i));
+        }
+
+        for (var pair of pairs) {
+            if (!domact.includes(pair[0])) {
+                domact.push(pair[0]);
+            }
+            if (!rango.includes(pair[1])) {
+                rango.push(pair[1]);
+            }
+            // Sort the arrays
+            domact.sort();
+            rango.sort();
+        }
+
+        document.getElementById("pdominio").textContent = "Dominio: $\\text{Dom}(R) = \\{" + dominio.join(", ") + "\\}$";
+        document.getElementById("pcodominio").textContent = "Codominio: $\\text{Cod}(R) = \\{" + codominio.join(", ") + "\\}$";
+        document.getElementById("pdomact").textContent = "Dominio activo: $\\text{DomAct}(R) = \\{" + domact.join(", ") + "\\}$";
+        document.getElementById("prango").textContent = "Rango: $\\text{Ran}(R) = \\{" + rango.join(", ") + "\\}$";
+
+        // Import checkmark and cross
+        var checkmark = String.fromCharCode(10003);
+        var cross = String.fromCharCode(10007);
+        
+        // Checar si es total
+
+        for (var i = 0; i < num_domain; i++) {
+            var found = false;
+            for (var j = 0; j < num_codomain; j++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                if (pairs.includes(pair)) {
+                    found = true;
+                }
+            }
+            if (!found) {
+                total = false;
+                falla_total=String.fromCharCode(65 + i);
+            }
+        }
+
+        if (total) {
+            document.getElementById("ptotal").textContent = checkmark + " La relación sí es total pues cada elemento del dominio está al menos una pareja.";
+            document.getElementById("ptotal").style.color = "darkgreen";
+        } else {
+            document.getElementById("ptotal").textContent = cross + " La relación no es total pues el elemento $" + falla_total + "$ del dominio no está en una pareja.";
+            document.getElementById("ptotal").style.color = "red";
+        }
+
+        // Checar si es funcional
+        for (var i = 0; i < num_domain; i++) {
+            var found = false;
+            for (var j = 0; j < num_codomain; j++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                if (pairs.includes(pair)) {
+                    if (found) {
+                        funcional = false;
+                        falla_funcional=String.fromCharCode(65 + i);
+                    }
+                    found = true;
+                }
+            }
+        }
+
+        if (funcional) {
+            document.getElementById("pfuncional").textContent = checkmark + " La relación sí es funcional pues cada elemento del dominio está en a lo más una pareja.";
+            document.getElementById("pfuncional").style.color = "darkgreen";
+        } else {
+            document.getElementById("pfuncional").textContent = cross + " La relación no es funcional pues el elemento $" + falla_funcional + "$ del dominio está en más de una pareja.";
+            document.getElementById("pfuncional").style.color = "red";
+        }
+
+        // Checar si es función
+        funcion= funcional && total;
+
+        if (funcional && total) {
+            document.getElementById("pfuncion").textContent = checkmark + " La relación sí es una función pues es funcional y total.";
+            document.getElementById("pfuncion").style.color = "darkgreen";
+        } else if (!funcional && !total) {
+            document.getElementById("pfuncion").textContent = cross + " La relación no es una función. No es ni funcional ni total.";
+            document.getElementById("pfuncion").style.color = "red";
+        } else if (!funcional && total) {
+            document.getElementById("pfuncion").textContent = cross + " La relación no es una función pues aunque sea total, no es funcional.";
+            document.getElementById("pfuncion").style.color = "red";
+        } else if (!total && funcional) {
+            document.getElementById("pfuncion").textContent = cross + " La relación no es una función pues aunque sea funcional, no es total.";
+            document.getElementById("pfuncion").style.color = "red";
+        }
+
+        // Checar si es inyectiva
+        for (var j = 0; j < num_codomain; j++) {
+            var found = false;
+            for (var i = 0; i < num_domain; i++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                if (pairs.includes(pair)) {
+                    if (found) {
+                        inyectiva = false;
+                        falla_inyectiva=String.fromCharCode(75 + j);
+                    }
+                    found = true;
+                }
+            }
+        }
+
+        if (inyectiva) {
+            document.getElementById("pinyectiva").textContent = checkmark + " La relación sí es inyectiva pues cada elemento del codominio está en a lo más una pareja.";
+            document.getElementById("pinyectiva").style.color = "darkgreen";
+        } else {
+            document.getElementById("pinyectiva").textContent = cross + " La relación no es inyectiva pues el elemento $" + falla_inyectiva + "$ del codominio está en más de una pareja.";
+            document.getElementById("pinyectiva").style.color = "red";
+        }
+
+        // Checar si es suprayectiva
+
+        for (var j = 0; j < num_codomain; j++) {
+            var found = false;
+            for (var i = 0; i < num_domain; i++) {
+                var pair = String.fromCharCode(65 + i) + String.fromCharCode(75 + j)
+                if (pairs.includes(pair)) {
+                    found = true;
+                }
+            }
+            if (!found) {
+                suprayectiva = false;
+                falla_suprayectiva=String.fromCharCode(75 + j);
+            }
+        }
+
+        if (suprayectiva) {
+            document.getElementById("psuprayectiva").textContent = checkmark + " La relación sí es suprayectiva pues cada elemento del codominio está en al menos una pareja.";
+            document.getElementById("psuprayectiva").style.color = "darkgreen";
+        } else {
+            document.getElementById("psuprayectiva").textContent = cross + " La relación no es suprayectiva pues el elemento $" + falla_suprayectiva + "$ del codominio no está en ninguna pareja.";
+            document.getElementById("psuprayectiva").style.color = "red";
+        }
+
+        // Checar si es biyectiva
+
+        biyectiva = inyectiva && suprayectiva && funcion;
+
+        if (!funcion) {
+            document.getElementById("pbiyectiva").textContent = cross + " La relación no es biyectiva pues no es una función.";
+            document.getElementById("pbiyectiva").style.color = "red";
+        } else if (!inyectiva) {
+            document.getElementById("pbiyectiva").textContent = cross + " La relación no es biyectiva pues no es inyectiva.";
+            document.getElementById("pbiyectiva").style.color = "red";
+        } else if (!suprayectiva) {
+            document.getElementById("pbiyectiva").textContent = cross + " La relación no es biyectiva pues no es suprayectiva.";
+            document.getElementById("pbiyectiva").style.color = "red";
+        } else {
+            document.getElementById("pbiyectiva").textContent = checkmark + " La relación sí es biyectiva pues es inyectiva y suprayectiva.";
+            document.getElementById("pbiyectiva").style.color = "darkgreen";
+
+        }
+
+        MathJax.typeset();
+    }
+
+    function draw_points(set, color, label_side) {
+        for (var point in set) {
+            var [x, y] = set[point];
+            var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", x);
+            circle.setAttribute("cy", y);
+            circle.setAttribute("r", 9);
+            circle.setAttribute("fill", color);
+            // Text label for circle
+            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            if (label_side == "left") {
+                text.setAttribute("x", x - 32);
+            } else {
+                text.setAttribute("x", x + 15);
+            }
+            text.setAttribute("y", y + 7);
+            text.setAttribute("font-size", 20);
+            text.textContent = point;
+            svg.appendChild(circle);
+            svg.appendChild(text);
+        }
+    }
+
+    function draw_pairs(pairs){
+        for (var pair of pairs) {
+            var left = pair[0];
+            var right = pair[1];
+            var [x1, y1] = points_left[left];
+            var [x2, y2] = points_right[right];
+            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", x1);
+            line.setAttribute("y1", y1);
+            line.setAttribute("x2", x2);
+            line.setAttribute("y2", y2);
+            line.setAttribute("stroke", "black");
+            line.setAttribute("stroke-width", 5);
+            svg.appendChild(line);
+        }
+    }
+
+    update_interface();
+    update_drawing();
+    update_properties();
+
+</script>
