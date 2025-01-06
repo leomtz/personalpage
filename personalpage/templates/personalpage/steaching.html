@@ -18,31 +18,34 @@
 
         <div class="row pt-3">
             <div class="col-lg-6">
-                <h4> Undegraduate Thesis Reviewer </h4>
-                {% for item in service %}
-                {% if item.Service.service_type == "r_ug_thesis" %}
-                <div class="paperitem wrapper">
-                    <div class="prob-info">
-                        <strong> {{ item.Service.title }}</strong><br>
-                        <p>{{ item.Service.description }} ({{ item.Service.date.strftime('%Y') }})</p>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+                <h4> Master Thesis Reviewer </h4>
+                <ul>
+                    {% for item in service %}
+                    {% if item.Service.service_type == "r_master_thesis" %}
+                    {% if item.Service.date %}
+                    <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}) - {{ item.Service.title }}. </li>
+                    {% else %}
+                    <li> <strong> {{ item.Service.description }}</strong> (Ongoing) - {{ item.Service.title }}. </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                
             </div>
 
             <div class="col-lg-6">
-                <h4> Graduate Thesis Reviewer </h4>
-                {% for item in service %}
-                {% if item.Service.service_type == "r_master_thesis" %}
-                <div class="paperitem wrapper">
-                    <div class="prob-info">
-                        <strong> {{ item.Service.title }}</strong><br>
-                        <p>{{ item.Service.description }} ({{ item.Service.date.strftime('%Y') }})</p>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+                <h4> Undergraduate Thesis Reviewer </h4>
+                <ul>
+                    {% for item in service %}
+                    {% if item.Service.service_type == "r_ug_thesis" %}
+                    {% if item.Service.date %}
+                    <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}) - {{ item.Service.title }}. </li>
+                    {% else %}
+                    <li> <strong> {{ item.Service.description }}</strong> (Ongoing) - {{ item.Service.title }}. </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
 
         </div>

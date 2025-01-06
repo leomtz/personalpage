@@ -19,39 +19,57 @@
 
         <div class="row pt-3">
             <div class="col-lg-6">
-                <h4> Thesis Supervisor </h4>
-                {% for item in students %}
-                {% if item.Service.service_type == "s_ug_thesis" %}
-                <div class="paperitem wrapper">
-                    <div class="prob-info">
-                        {% if item.Service.date %}
-                        <strong> {{ item.Service.title }}</strong><br>
-                        <p>{{ item.Service.description }} ({{item.Service.date.strftime('%Y')}})</p>
-                        {% else %}
-                        <strong> {{ item.Service.title }}</strong><br>
-                        <p>{{ item.Service.description }} (Ongoing)</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+                <h4> Doctoral Advisory Committee </h4>
+                <ul>
+                    {% for item in students %}
+                    {% if item.Service.service_type == "a_d_thesis" %}
+                    {% if item.Service.date %}
+                    <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}). </li>
+                    {% else %}
+                    <li> <strong> {{ item.Service.description }}</strong> (Ongoing). </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <h4> Master Thesis Advisor </h4>
+                <ul>
+                    {% for item in students %}
+                    {% if item.Service.service_type == "s_m_thesis" %}
+                    {% if item.Service.date %}
+                    <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}) - {{ item.Service.title }}. </li>
+                    {% else %}
+                    <li> <strong> {{ item.Service.description }}</strong> (Ongoing) - {{ item.Service.title }}. </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <h4> Undergraduate Thesis Advisor </h4>
+                <ul>
+                    {% for item in students %}
+                    {% if item.Service.service_type == "s_ug_thesis" %}
+                    {% if item.Service.date %}
+                    <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}) - {{ item.Service.title }}. </li>
+                    {% else %}
+                    <li> <strong> {{ item.Service.description }}</strong> (Ongoing) - {{ item.Service.title }}. </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
 
             <div class="col-lg-6">
-                <h4> Social Service Supervisor </h4>
-                {% for item in students %}
-                {% if item.Service.service_type == "s_social_service" %}
-                <div class="paperitem wrapper">
-                    <div class="prob-info">
+                <h4> Social Service Superivisor </h4>
+                <ul>
+                    {% for item in students %}
+                    {% if item.Service.service_type == "s_social_service" %}
                     {% if item.Service.date %}
-                    <p> {{ item.Service.title }}</strong> ({{item.Service.date.strftime('%Y')}})</p><br>
+                    <li> <strong> {{ item.Service.title }}</strong> ({{ item.Service.date.strftime('%Y') }}). </li>
                     {% else %}
-                    <p> {{ item.Service.title }}</strong> (Ongoing)</p><br>
+                    <li> <strong> {{ item.Service.title }}</strong> (Ongoing). </li>
                     {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
 
         </div>

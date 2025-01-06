@@ -84,6 +84,7 @@ def sresearch():
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
+    service.reverse()
     return render_template("personalpage/sresearch.html", r_journal=r_journal, r_conference=r_conference, service = service)
 
 ## Teaching
@@ -97,6 +98,8 @@ def courses():
         .add_entity(Institution)\
         .add_entity(Location)\
         .all()
+    # Inverse chronological order
+    courses.reverse()
     return render_template("personalpage/courses.html", courses = courses)
 
 @app.route("/students")
