@@ -34,7 +34,7 @@
                 <h4> Doctoral Thesis Advisor </h4>
                 <ul>
                     {% for item in students %}
-                    {% if item.Service.service_type == "s_doc_thesis" %}
+                    {% if item.Service.service_type == "s_doc_thesis    " %}
                     {% if item.Service.date %}
                     <li> <strong> {{ item.Service.description }}</strong> ({{ item.Service.date.strftime('%Y') }}). </li>
                     {% else %}
